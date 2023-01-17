@@ -8,3 +8,6 @@ SQL> insert into myEmp values(102,'A2',2000);
 
 SQL> insert into myEmp values(103,'A3',1500);
 1 row created.
+
+
+CREATE TABLE hire_dates (id  NUMBER(8),  hire_date DATE DEFAULT SYSDATE);
