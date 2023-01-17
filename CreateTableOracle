@@ -11,3 +11,14 @@ SQL> insert into myEmp values(103,'A3',1500);
 
 
 CREATE TABLE hire_dates (id  NUMBER(8),  hire_date DATE DEFAULT SYSDATE);
+
+
+CREATE TABLE dept    (deptno      NUMBER(2),
+         dname       VARCHAR2(14),
+         loc         VARCHAR2(13),
+         create_date DATE DEFAULT SYSDATE);
+
+
+DESCRIBE dept
+
+
