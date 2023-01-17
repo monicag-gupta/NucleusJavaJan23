@@ -1,0 +1,19 @@
+SQL*Plus: Release 19.0.0.0.0 - Production on Tue Oct 18 20:20:13 2022
+Version 19.3.0.0.0
+Copyright (c) 1982, 2019, Oracle.  All rights reserved.
+Enter user-name: sys as sysdba
+Enter password:
+Connected to:
+Oracle Database 19c Enterprise Edition Release 19.0.0.0.0 - Production
+Version 19.3.0.0.0
+
+SQL> alter session set "_ORACLE_SCRIPT"=true;
+Session altered.
+
+SQL> create user monica identified by gupta;
+User created.
+
+SQL> GRANT CREATE SESSION TO monica;
+Grant succeeded.
+SQL> GRANT ALL PRIVILEGES TO monica;
+Grant succeeded.
