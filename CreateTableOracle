@@ -84,5 +84,26 @@ select * from leave3
 
 
 
+SQL> create table myEmp7(empid int not null, ename varchar(26),esal int, constraint chkmyEmp7 check(esal>0));
+Table created.
+
+SQL> insert into myEmp7 values(102, 'A1',0);
+insert into myEmp7 values(102, 'A1',0)
+*
+ERROR at line 1:
+ORA-02290: check constraint (MONICA.CHKMYEMP7) violated
+
+SQL> insert into myEmp7 values(102, 'A1',10);
+1 row created.
+
+SQL> select * from myEmp7;
+
+
+
+
+
+
+
+
 
 
