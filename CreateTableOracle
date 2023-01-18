@@ -32,4 +32,14 @@ CREATE TABLE hire_dates (id  NUMBER(8),  hire_date DATE DEFAULT SYSDATE);
 
 
 
+SQL> create table myEmp2(empid int not null, ename varchar(26),esal int);
+Table created.
+SQL> select * from myEmp;
+SQL> insert into myEmp2(ename,esal) values('C123',3000);
+ERROR at line 1:
+SQL> insert into myEmp2(ename,empid) values('C123',3000);
+SQL> select * from myEmp2;
+
+
+
 
