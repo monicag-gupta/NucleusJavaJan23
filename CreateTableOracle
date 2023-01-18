@@ -102,7 +102,17 @@ SQL> select * from myEmp7;
 
 
 
-
+select * from myEmp2;
+ insert into myEmp2 values(1001,'abd',66)
+ 
+ create table myEmp2BkUp as
+  select empid, ename, esal * 12 as CTC from myEmp2;
+  
+  select * from myEmp2BkUp
+desc myEmp2BkUp 
+ 
+ 
+ 
 
 
 
