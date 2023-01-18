@@ -59,4 +59,14 @@ ERROR at line 1:ORA-00001: unique constraint (MONICA.SYS_C007432) violated
 
 
 
+create table leave(empid int not null, type varchar(26), noOfDays int, constraint fkLeaveEmpid foreign key(empid) references myEmp6(empid));
+insert into myEmp6 values(101,'C123',3000);
+insert into myEmp6 values(103,'C123',3000);
+select * from myEmp6;
+insert into leave values(103,'CL',2);
+insert into leave values(103,'CL',2);
+1 row created.
+insert into leave values(510,'CL',2);
+ERROR at line 1:
+ORA-02291: integrity constraint (MONICA.FKLEAVEEMPID) violated - parent key not found
 
