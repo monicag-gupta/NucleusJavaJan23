@@ -70,3 +70,19 @@ insert into leave values(510,'CL',2);
 ERROR at line 1:
 ORA-02291: integrity constraint (MONICA.FKLEAVEEMPID) violated - parent key not found
 
+
+
+
+create table leave3(empid int , type varchar(26), noOfDays int, constraint fkLeave3Empid foreign key(empid) references myEmp6(empid));
+
+insert into leave3(type,noOfDays) values('CL',2);
+insert into leave3 values(103,'CL',2);
+insert into leave3 values(103,'CL',2);
+
+
+select * from leave3
+
+
+
+
+
