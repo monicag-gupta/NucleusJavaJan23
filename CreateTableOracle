@@ -43,3 +43,20 @@ SQL> select * from myEmp2;
 
 
 
+
+
+SQL> create table myEmp5(empid int primary key, ename varchar(26), esal int);
+Table created.
+SQL> create table myEmp6(empid int, ename varchar(26),esal int, constraint PK_myEmp6Empid primary key(empid));
+Table created.
+SQL> insert into myEmp5 values(102,'C123',3000);
+1 row created.
+SQL> insert into myEmp6 values(102,'C123',3000);
+insert into myEmp5 values(102,'C123',3000)
+ERROR at line 1:ORA-00001: unique constraint (MONICA.SYS_C007432) violated
+
+
+
+
+
+
