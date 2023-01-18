@@ -22,3 +22,14 @@ CREATE TABLE dept    (deptno      NUMBER(2),
 DESCRIBE dept
 
 
+
+CREATE TABLE hire_dates (id  NUMBER(8),  hire_date DATE DEFAULT SYSDATE);
+ insert into hire_dates(id) values (1011);
+ insert into hire_dates values (1011, DEFAULT);
+  insert into hire_dates values (1011,'17-Jan-22');
+  
+  select * from hire_dates;
+
+
+
+
