@@ -167,4 +167,22 @@ ALTER TABLE myEmp2 READ WRITE;
 
 
 
+insert into myEmp2BkUp select empid, ename, esal as CTC from myEmp2;
+
+
+update myEmp2 set esal=esal*1.2
+update myEmp2 set esal=200 where esal is null
+
+
+  select * from myEmp2BkUp;
+delete from myEmp2BkUp where ctc>100; 
+delete from myEmp2BkUp
+
+
+
+insert into myEmp2BkUp select empid, ename, esal as CTC from myEmp2;
+
+truncate table myEmp2BkUp
+
+
 
