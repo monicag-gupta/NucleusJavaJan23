@@ -213,6 +213,71 @@ UNDEFINE employee_num
 
 
 
+SELECT employee_id, last_name, department_id
+FROM   employees
+WHERE  last_name = 'higgins';
+
+
+
+
+SELECT employee_id, last_name, department_id
+FROM   employees
+WHERE  LOWER(last_name) = 'higgins';
+
+
+
+select LOWER(last_name) from employees;
+
+
+
+
+SELECT TRUNC(45.923,2), TRUNC(45.923),
+       TRUNC(45.923,-1)
+FROM   DUAL;
+
+
+SELECT Round(45.923,2), Round(45.923),
+       Round(45.923,-1)
+FROM   DUAL;
+
+
+
+
+SELECT last_name, salary, MOD(salary, 5000)
+FROM   employees
+WHERE  job_id = 'SA_REP';
+
+
+
+
+SELECT sysdate
+FROM   dual;
+
+
+
+
+SELECT last_name, (SYSDATE-hire_date)/7 AS WEEKS
+FROM   employees
+WHERE  department_id = 90;
+
+
+
+
+SELECT last_name,
+       TO_CHAR(hire_date, 'fmDD Month YYYY')
+       AS HIREDATE
+FROM   employees;
+
+
+
+
+SELECT TO_CHAR(salary, '$99,999.00') SALARY
+FROM   employees
+WHERE  last_name = 'Ernst';
+
+
+
+
 
 
 
