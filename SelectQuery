@@ -279,6 +279,63 @@ WHERE  last_name = 'Ernst';
 
 
 
+SELECT last_name, TO_CHAR(hire_date, 'DD-Mon-YYYY')
+FROM  employees
+WHERE hire_date < TO_DATE('01-Jan-90','DD-Mon-RR');
+
+
+
+SELECT last_name,
+  UPPER(CONCAT(SUBSTR (LAST_NAME, 1, 8), '_US'))
+FROM   employees
+WHERE  department_id = 60;
+
+
+
+
+SELECT AVG(salary), MAX(salary),
+       MIN(salary), SUM(salary)
+FROM   employees
+WHERE  job_id LIKE '%REP%';
+
+
+
+SELECT MIN(hire_date), MAX(hire_date)
+FROM	  employees;
+
+
+
+
+SELECT COUNT(*)
+FROM   employees
+WHERE  department_id = 50;
+
+
+
+SELECT COUNT(commission_pct)
+FROM   employees
+WHERE  department_id = 80;
+
+
+
+
+SELECT COUNT(DISTINCT department_id)
+FROM   employees;
+
+
+
+
+SELECT AVG(commission_pct)
+FROM   employees;
+
+
+
+
+SELECT AVG(NVL(commission_pct, 0))
+FROM   employees;
+
+
+
 
 
 
