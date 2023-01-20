@@ -108,6 +108,21 @@ ON    (worker.manager_id = manager.employee_id);
 
 
 
+WA query to find the salary of all sales representatives (%rep%) ‘s managers
+'%REP%'
+Table used: Employees
+
+  Select e1.manager_id from employees e1 where e1.job_id like '%REP%‘
+Select salary of emp, whose emp_id = 145
+  Select e2.salary from employees e2 where e2.Employee_id=145
+
+Ans:
+Select e2.salary from employees e2 join employees e1 on e2.Employee_id=e1.manager_id and e1.job_id like '%REP%'
+
+
+
+
+
 
 
 
