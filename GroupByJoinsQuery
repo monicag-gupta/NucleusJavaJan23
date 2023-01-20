@@ -34,6 +34,8 @@ GROUP BY department_id;
 
 
 
+
+
 Joins Syntax:
 SELECT	table1.column, table2.column
 FROM	table1
@@ -124,6 +126,11 @@ Select e2.salary from employees e2 join employees e1 on e2.Employee_id=e1.manage
 
 
 
+
+
+Select e1.first_name, e2.first_name, e1.salary John_Salary, e2.salary 
+from employees e1 on employees e2 
+on e1.salary < e2.salary and e1.first_name = 'John'
 
 
 
