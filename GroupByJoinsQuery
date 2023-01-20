@@ -34,3 +34,81 @@ GROUP BY department_id;
 
 
 
+Joins Syntax:
+SELECT	table1.column, table2.column
+FROM	table1
+[NATURAL JOIN table2] |
+[JOIN table2 USING (column_name)] |
+[JOIN table2 
+  ON (table1.column_name = table2.column_name)]|
+[LEFT|RIGHT|FULL OUTER JOIN table2 
+  ON (table1.column_name = table2.column_name)]|
+[CROSS JOIN table2];
+
+
+
+
+SELECT department_id, department_name,
+       location_id, city
+FROM   departments
+NATURAL JOIN locations ;
+
+
+
+SELECT employee_id, last_name, 
+       location_id, department_id
+FROM   employees JOIN departments
+USING (department_id) ;
+
+
+
+
+SELECT e.employee_id, e.last_name, e.department_id, 
+       d.department_id, d.location_id
+FROM   employees e JOIN departments d
+ON     (e.department_id = d.department_id);
+
+
+
+
+SELECT employee_id, city, department_name
+FROM   employees e 
+JOIN   departments d
+ON     d.department_id = e.department_id 
+JOIN   locations l
+ON     d.location_id = l.location_id;
+
+
+
+
+SELECT e.employee_id, e.last_name, e.department_id, 
+       d.department_id, d.location_id
+FROM   employees e JOIN departments d
+ON     (e.department_id = d.department_id)
+AND    e.manager_id = 149 ;
+
+
+SELECT worker.last_name emp, manager.last_name mgr
+FROM   employees worker JOIN employees manager
+ON    (worker.manager_id = manager.employee_id);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
