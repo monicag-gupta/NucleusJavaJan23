@@ -161,5 +161,24 @@ AS SELECT  employee_id, first_name || ' '
 
 
 
+You can usually perform DML operations on simple views.
+You cannot remove a row if the view contains the following:
+Group functions
+A GROUP BY clause
+The DISTINCT keyword
+The pseudocolumn ROWNUM keyword
+
+
+
+CREATE OR REPLACE VIEW empvu20
+AS SELECT	*
+   FROM     employees
+   WHERE    department_id = 20
+   WITH CHECK OPTION CONSTRAINT empvu20_ck ;
+
+
+
+
+
 
 
