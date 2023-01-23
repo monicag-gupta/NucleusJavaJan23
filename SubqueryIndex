@@ -246,6 +246,64 @@ FROM table(DBMS_XPLAN.DISPLAY (FORMAT=>'ALL +OUTLINE'));
 
 
 
+The important feature of this example is that I am using FORMAT=>'ALL +OUTLINE'. 
+Some of you might have come across the undocumented option, FORMAT=>'ADVANCED'. 
+I am not using it here because the content of its output has the potential to be different between releases, but there's no fundamental reason why you can't use it. 
+The 'ALL' format is documented and 'OUTLINE' is mentioned briefly; its basic content is unlikely to change between releases.
+
+
+
+
+Display the names of the constraints in the table student:
+select CONSTRAINT_NAME, CONSTRAINT_TYPE, TABLE_NAME
+from USER_CONSTRAINTS
+where TABLE_NAME='STUDENT';
+
+
+In Oracle, use the view user_constraints to display the names of the constraints in the database. The column constraint_name contains the name of the constraint, constraint_type indicates the type of constraint, and table_name contains the name of the table to which the constraint belongs. In the column constraint_type, the value “R” is for the foreign key, “P” is for the primary key, “U” is for the uniqueness constraint, and “C” is for the constraint check. In our example, there is a constraint in the table student of the type P (primary key) whose name is SYS_C007374.
+
+
+
+SELECT a.table_name, a.column_name, a.constraint_name, c.owner, 
+       -- referenced pk
+       c.r_owner, c_pk.table_name r_table_name, c_pk.constraint_name r_pk
+  FROM all_cons_columns a
+  JOIN all_constraints c ON a.owner = c.owner
+                        AND a.constraint_name = c.constraint_name
+  JOIN all_constraints c_pk ON c.r_owner = c_pk.owner
+                           AND c.r_constraint_name = c_pk.constraint_name
+ WHERE c.constraint_type = 'R'
+   AND a.table_name = :TableName
+
+
+
+
+CREATE INDEX emp_last_name_i  ON employees(last_name);
+
+
+
+SELECT * FROM employees WHERE last_name = 'Sans';
+
+SELECT * FROM employees WHERE UPPER(last_name) = 'SANS';
+
+EXPLAIN PLAN FOR
+SELECT * FROM employees
+WHERE UPPER(last_name) = 'SANS';
+
+SELECT 
+    PLAN_TABLE_OUTPUT 
+FROM 
+    TABLE(DBMS_XPLAN.DISPLAY());
+
+
+
+
+
+
+
+
+
+
 
 
 
