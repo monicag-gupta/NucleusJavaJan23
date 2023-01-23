@@ -297,6 +297,8 @@ FROM
 
 
 
+CREATE INDEX emp_last_name_fi
+ON employees(UPPER(last_name));
 
 
 
