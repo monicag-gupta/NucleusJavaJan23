@@ -194,5 +194,25 @@ DROP VIEW empvu80;
 
 
 
+CREATE INDEX 	emp_last_name_idx
+ON 		employees(last_name);
+
+
+DROP INDEX emp_last_name_idx;
+
+
+CREATE SYNONYM  d_sum
+FOR  dept_sum_vu;
+
+
+
+DROP SYNONYM d_sum;
+
+
+
+
+
+
+
 
 
