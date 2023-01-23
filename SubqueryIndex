@@ -81,3 +81,40 @@ WHERE  employee_id  NOT IN
 
 
 
+SELECT employee_id, job_id
+FROM   employees
+UNION
+SELECT employee_id, job_id
+FROM   job_history;
+
+
+
+SELECT employee_id, job_id, department_id
+FROM   employees
+UNION ALL
+SELECT employee_id, job_id, department_id
+FROM   job_history
+ORDER BY  employee_id;
+
+
+
+SELECT employee_id, job_id
+FROM   employees
+INTERSECT
+SELECT employee_id, job_id
+FROM   job_history;
+
+
+
+SELECT employee_id
+FROM   employees
+MINUS
+SELECT employee_id
+FROM   job_history;
+
+
+
+
+
+
+
