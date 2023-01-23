@@ -141,6 +141,16 @@ FROM   salvu50;
 
 
 
+CREATE OR REPLACE VIEW dept_sum_vu
+  (name, minsal, maxsal, avgsal)
+AS SELECT   d.department_name, MIN(e.salary), 
+            MAX(e.salary),AVG(e.salary)
+   FROM     employees e JOIN departments d
+   ON       (e.department_id = d.department_id)
+   GROUP BY d.department_name;
+
+
+
 CREATE OR REPLACE VIEW empvu80
   (id_number, name, sal, department_id)
 AS SELECT  employee_id, first_name || ' ' 
