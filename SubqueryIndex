@@ -190,4 +190,9 @@ AS SELECT	employee_id, last_name, job_id
 
 
 
+DROP VIEW empvu80;
+
+
+
+
 
