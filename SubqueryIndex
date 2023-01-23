@@ -136,6 +136,9 @@ CREATE VIEW 	salvu50
 
 
 
+SELECT *
+FROM   salvu50;
+
 
 
 
