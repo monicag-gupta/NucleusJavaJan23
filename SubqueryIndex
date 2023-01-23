@@ -210,6 +210,28 @@ DROP SYNONYM d_sum;
 
 
 
+Please obtain read catalog privilege
+from your database administrator:
+
+SQL> grant SELECT_CATALOG_ROLE to MONICA;
+Grant succeeded.
+
+SQL> grant SELECT ANY DICTIONARY to MONICA;
+Grant succeeded.
+
+
+select e.job_id, r.job_id
+from employees e
+join job_history r on (r.job_id = e.job_id)
+join departments d on (d.department_id = e.department_id)
+where e.employee_id <= 300
+and d.department_name in ('IT','Marketing');
+
+
+
+
+
+
 
 
 
