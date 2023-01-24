@@ -179,6 +179,12 @@ END;
 
 
 
+DECLARE
+  v_id   employees.employee_id%TYPE := 7345; 
+BEGIN							
+  DELETE FROM   demo where employee_id =v_id;
+END;
+/
 
 
 
