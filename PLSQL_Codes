@@ -97,4 +97,44 @@ END;
 
 
 
+Scalar data type:
+CHAR [(maximum_length)]
+VARCHAR2 (maximum_length)
+NUMBER [(precision, scale)]
+BINARY_INTEGER
+PLS_INTEGER
+BOOLEAN
+BINARY_FLOAT
+BINARY_DOUBLE
+DATE
+TIMESTAMP
+TIMESTAMP WITH TIME ZONE
+TIMESTAMP WITH LOCAL TIME ZONE
+INTERVAL YEAR TO MONTH
+INTERVAL DAY TO SECOND
+
+
+
+
+SET  SERVEROUTPUT  ON SIZE 1000000;
+DECLARE
+  n_emp_id EMPLOYEES.EMPLOYEE_ID%TYPE := &emp_id1;
+BEGIN
+  DECLARE
+    n_emp_id employees.employee_id%TYPE := &emp_id2;
+    v_name employees.first_name%TYPE;
+    BEGIN
+     SELECT first_name INTO v_name 
+        FROM employees WHERE employee_id = n_emp_id;
+     DBMS_OUTPUT.PUT_LINE('First name of employee ' || n_emp_id || ' is ' || v_name);
+    END;
+END;
+/
+
+
+
+
+
+
+
 
