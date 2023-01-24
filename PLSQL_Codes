@@ -168,6 +168,24 @@ END;
 
 
 
+DECLARE					
+ sal_var   employees.salary%TYPE := 800;   
+BEGIN
+  UPDATE	employees
+  SET		salary = salary + sal_var
+  WHERE	job_id='st_clerk';
+END;
+/
+
+
+
+
+
+
+
+
+
+
 
 
 
