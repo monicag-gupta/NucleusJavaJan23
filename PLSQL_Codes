@@ -117,6 +117,9 @@ INTERVAL DAY TO SECOND
 
 
 SET  SERVEROUTPUT  ON SIZE 1000000;
+
+
+
 DECLARE
   n_emp_id EMPLOYEES.EMPLOYEE_ID%TYPE := &emp_id1;
 BEGIN
@@ -149,6 +152,19 @@ END;
 /
 
 
+
+
+create table demo  as select employee_id,last_name,salary from employees;
+
+SET SERVEROUTPUT ON 
+
+
+
+BEGIN
+   INSERT INTO DEMO VALUES(1,'SMITH',9999);
+   INSERT INTO DEMO VALUES(2,'JOY',787687);
+END;
+/
 
 
 
