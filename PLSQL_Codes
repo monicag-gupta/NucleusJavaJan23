@@ -316,6 +316,22 @@ END;
 
 
 
+DECLARE 
+    TYPE emp_record_type IS RECORD
+        (employee_id  NUMBER(6) NOT NULL :=100,
+            last_name  employees.last_name%TYPE,
+            job_id  employees.job_id%TYPE
+        );
+	emp_record    emp_record_type;
+BEGIN
+	SELECT employee_id, last_name, job_id INTO emp_record from employees WHERE employee_id=&a;
+	DBMS_OUTPUT.PUT_LINE( emp_record.last_name||emp_record.job_id);
+END;
+/
+
+
+
+
 
 
 
