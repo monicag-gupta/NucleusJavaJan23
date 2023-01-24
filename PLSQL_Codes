@@ -191,6 +191,24 @@ END;
 
 
 
+DECLARE
+ a number(2) := &ano;
+ BEGIN 
+    IF( a < 20 )  THEN 
+        dbms_output.put_line('a is less than 20 ' ); 
+    END IF;
+    dbms_output.put_line('value of a is : ' || a); 
+END; 
+/
+
+
+
+
+
+
+
+
+
 
 
 
