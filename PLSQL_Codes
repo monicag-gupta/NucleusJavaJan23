@@ -61,16 +61,17 @@ All the king's horses
 
 
 DECLARE 
- var_salary number(6);
- var_emp_id number(6) = 100;
- BEGIN 
-SELECT salary  INTO var_salary  FROM employees  
-WHERE emp_id = var_emp_id; 
+ var_salary number(6);
+ var_emp_id number(6) := 100;
+ BEGIN 
+SELECT salary  INTO var_salary  FROM employees  
+WHERE employee_id = var_emp_id; 
 
-dbms_output.put_line(var_salary);  
+dbms_output.put_line(var_salary);  
 dbms_output.put_line('The employee ' || var_emp_id || ' has salary ' || var_salary); 
 END;
  /
+
 
 
 
