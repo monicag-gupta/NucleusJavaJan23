@@ -1,0 +1,65 @@
+set serveroutput on; 
+
+DECLARE
+    v_event VARCHAR2(15);
+BEGIN
+   v_event  := q'!Father's day!';
+  DBMS_OUTPUT.PUT_LINE('3rd Sunday in June is :   '|| v_event );
+   v_event  := q'[Mother's day]';
+  DBMS_OUTPUT.PUT_LINE('2nd Sunday in May is :   '|| v_event );
+END;
+/
+
+
+.. Alternative Quoting Mechanism (''Q'') for String Literals
+
+Traditional "Doubling-Up" of Single Quotes
+
+
+BEGIN  
+   DBMS_OUTPUT.put_line ('That''s a really funny ''joke''.');  
+END; 
+
+Statement processed.That's a really funny 'joke'.
+
+
+Using Paired Symbols
+
+BEGIN  
+    DBMS_OUTPUT.PUT_LINE (  
+       q'[What's a quote among friends?]');  
+END; 
+
+Statement processed.
+What's a quote among friends?
+
+
+
+Replacement for Single Quote
+
+BEGIN  
+    DBMS_OUTPUT.PUT_LINE (  
+       q'!What's a quote among friends?!');  
+END; 
+
+Statement processed.
+What's a quote among friends?
+
+
+Alternative Character Inside String!
+
+BEGIN   
+   dbms_output.put_line (q'PAll the king's horsesP');   
+END; 
+
+Statement processed.
+All the king's horses
+
+
+
+
+
+
+
+
+
