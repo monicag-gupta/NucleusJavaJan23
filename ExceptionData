@@ -69,6 +69,25 @@ END;
 
 
 
+create table depts as select * from departments;
+
+DECLARE 
+  v_did NUMBER := 500;
+  v_dname VARCHAR2(20) := 'Testing';
+  e_exp_dept EXCEPTION;
+BEGIN
+  UPDATE depts
+  SET department_name = v_dname
+  WHERE department_name = v_dname;
+  IF SQL%NOTFOUND THEN
+    RAISE e_exp_dept;
+  END IF;
+  COMMIT;
+EXCEPTION
+WHEN e_exp_dept THEN
+  DBMS_OUTPUT.PUT_LINE('No such department id.');
+END;
+/
 
 
 
