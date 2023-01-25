@@ -92,3 +92,33 @@ END;
  /
 
 
+
+
+There is no difference between is/as ... “IS” is used for creating a new procedure with a new name 
+where as ‘AS' is used to create a new procedure with existing procedure name... 
+it will not display "procedure already exists".
+
+
+
+
+
+
+
+DECLARE
+a number; 
+PROCEDURE squareNum(x IN OUT number) 
+IS 
+BEGIN 
+x := x * x; 
+END; 
+BEGIN 
+a:= 23; 
+squareNum(a); 
+dbms_output.put_line(' Square of (23): ' || a); 
+END;
+ /
+
+
+
+
+
