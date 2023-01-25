@@ -27,3 +27,23 @@ ELSIF SQL%FOUND THEN
 END IF; 
 END;
 /
+
+
+
+
+DECLARE 
+	var_rows number(5);
+    emp_rec employees.employee_id%TYPE;
+BEGIN 
+	SELECT employee_id into emp_rec from employees where employee_id=100; 
+	IF SQL%NOTFOUND THEN 
+        dbms_output.put_line('None of the employees have 999 id'); 
+ELSIF SQL%FOUND THEN 
+	var_rows := SQL%ROWCOUNT; 
+	dbms_output.put_line('Employees have ' || var_rows || ' id 999'); 
+END IF; 
+END;
+/
+
+
+
