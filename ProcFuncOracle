@@ -40,3 +40,55 @@ END;
 
 
 
+Deleting a Standalone Procedure
+A standalone procedure is deleted with the DROP PROCEDURE statement. Syntax for deleting a procedure is:
+DROP PROCEDURE procedure-name; 
+So you can drop greetings procedure by using the following statement:
+
+
+DROP PROCEDURE greetings; 
+
+
+
+DECLARE
+ a number;
+b number; 
+c number; 
+PROCEDURE findMin(x IN number, y IN number, z OUT number) 
+IS 
+BEGIN 
+IF x < y THEN z:= x; ELSE z:= y; 
+END IF; 
+END;
+BEGIN
+ a:= 23; 
+b:= 45; 
+findMin(a, b, c); 
+dbms_output.put_line(' Minimum of (23, 45) : ' || c); 
+END;
+ /
+
+
+
+
+CREATE OR REPLACE PROCEDURE findMin11(x IN number, y IN number, z OUT number) 
+AS 
+BEGIN 
+IF x < y THEN z:= x; ELSE z:= y; 
+END IF; 
+END;
+
+
+DECLARE
+ a number;
+b number; 
+c number; 
+BEGIN
+ a:= 23; 
+b:= 45; 
+findMin11(a, b, c); 
+dbms_output.put_line(' Minimum of (23, 45) : ' || c); 
+END;
+ /
+
+
