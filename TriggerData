@@ -1,0 +1,78 @@
+SYNTAX:
+CREATE [OR REPLACE] TRIGGER trigger_name
+{BEFORE|AFTER} triggering_event ON table_name
+[FOR EACH ROW]
+[WHEN condition]
+DECLARE
+	Declaration statements
+BEGIN
+	Executable statements
+EXCEPTION
+	Exception-handling statements
+END;
+     
+
+
+
+
+      A database trigger is a stored PL/SQL program unit associated with a specific database table. ORACLE executes (fires) a database trigger automatically when a given SQL operation (like INSERT, UPDATE or DELETE) affects the table. Unlike a procedure, or a function, which must be invoked explicitly, database triggers are invoked implicitly. 
+
+
+
+Database triggers can be used to perform any of the following: 
+Audit data modification 
+Log events transparently 
+Enforce complex business rules 
+Derive column values automatically 
+Implement complex security authorizations 
+Maintain replicate tables 
+
+
+
+
+You can associate up to 12 database triggers with a given table. A database trigger has three parts: a triggering event, an optional trigger constraint, and a trigger action. 
+
+When an event occurs, a database trigger is fired, and an predefined PL/SQL block will perform the necessary action. 
+
+
+
+The trigger_name references the name of the trigger. 
+BEFORE or AFTER specify when the trigger is fired (before or after the triggering event). 
+The triggering_event references a DML statement issued against the table (e.g., INSERT, DELETE, UPDATE). 
+The table_name is the name of the table associated with the trigger. 
+The clause, FOR EACH ROW, specifies a trigger is a row trigger and fires once for each modified row. 
+A WHEN clause specifies the condition for a trigger to be fired. 
+Bear in mind that if you drop a table, all the associated triggers for the table are dropped as well. 
+
+
+
+
+When you define a trigger, you can specify the number of times the trigger action is to be run:
+Once for every row affected by the triggering statement, such as a trigger fired by an UPDATE statement that updates many rows
+Once for the triggering statement, no matter how many rows it affects
+
+
+
+
+
+Row level trigger:
+
+CREATE OR REPLACE TRIGGER restrict_salary
+BEFORE INSERT OR UPDATE ON employees
+FOR EACH ROW
+BEGIN
+IF :NEW.salary > 15000 THEN
+RAISE_APPLICATION_ERROR (-20202,'Employee cannot earn more than $15,000.');
+END IF;
+END;
+/
+
+
+
+INSERT INTO employees (employee_id, last_name, first_name, email, hire_date, job_id, salary, department_id)
+VALUES (305, 'Smith', 'Rob', 'RSMITH05', SYSDATE, 'AD_PRES', 19500, 60);
+
+
+
+
+
