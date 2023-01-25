@@ -1,0 +1,23 @@
+Exception Name
+Description
+Error Number
+CURSOR_ALREADY_OPEN
+When you open a cursor that is already open.
+ORA-06511
+INVALID_CURSOR
+When you perform an invalid operation on a cursor like closing a cursor, fetch data from a cursor that is not opened.
+ORA-01001
+NO_DATA_FOUND
+When a SELECT...INTO clause does not return any row from a table.
+ORA-01403
+TOO_MANY_ROWS
+When you SELECT or fetch more than one row into a record or variable.
+ORA-01422
+ZERO_DIVIDE
+When you attempt to divide a number by zero.
+ORA-01476
+
+
+
+
+
