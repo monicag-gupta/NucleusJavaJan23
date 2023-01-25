@@ -41,6 +41,7 @@ create table product_rates(product_id number, rate number(5,2), foreign key(prod
 
 insert into product values(100, 'Toys');
 insert into product values(104, 'books');
+insert into product values(105, 'Laptops');
 
 insert into product_rates values(100, 20);
 insert into product_rates values(104, 70);
@@ -48,6 +49,26 @@ insert into product_rates values(104, 70);
 delete from product;
 Error report -
 ORA-02292: integrity constraint (MONICA.SYS_C007467) violated - child record found
+
+
+
+
+
+DECLARE 
+	Child_rec_exception EXCEPTION;
+ 	PRAGMA EXCEPTION_INIT (Child_rec_exception, -2292); 
+BEGIN 
+	Delete FROM product where product_id= 104;
+EXCEPTION 
+	WHEN Child_rec_exception THEN 
+	Dbms_output.put_line('Child records are present for this product_id.');
+END; 
+/
+
+
+
+
+
 
 
 
