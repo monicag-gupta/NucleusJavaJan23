@@ -175,4 +175,39 @@ END;
 
 
 
+CREATE OR REPLACE FUNCTION employer_details_func2
+ RETURN VARCHAR2
+ IS
+emp_name VARCHAR(20); 
+BEGIN 
+SELECT first_name INTO emp_name
+FROM employees WHERE employee_ID = 100;
+RETURN emp_name;
+END;
+/
+
+
+
+
+A function can be executed in the following ways.
+1) Since a function returns a value we can assign it to a variable.
+
+employee_name := employer_details_func2;
+
+    If ‘employee_name’ is of datatype varchar we can store the name of the employee by assigning the return type of the function to it.
+2) As a part of a SELECT statement
+
+SELECT employer_details_func2 FROM dual;
+
+3) In a PL/SQL Statements like,
+
+	dbms_output.put_line(employer_details_func2);
+ 
+This line displays the value returned by the function.
+
+
+
+
+
+
 
