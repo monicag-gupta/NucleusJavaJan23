@@ -121,3 +121,39 @@ ID, NAME, ADDRESS
 
 
 
+create table cust_bkup(id number primary key, name varchar(30),address varchar(100));
+
+
+CREATE OR REPLACE TRIGGER new_custbkup_trg
+    After INSERT ON cust
+    For each row
+BEGIN
+    INSERT INTO cust_bkup(id, name, address)
+    VALUES(:NEW.id, :NEW.NAME, :NEW.address);
+ END;
+ /
+
+
+
+
+CREATE OR REPLACE TRIGGER new_cust2_trg
+    After INSERT ON cust
+BEGIN
+    DBMS_OUTPUT.PUT_LINE('The cust_bkup table also get inserted');
+ END;
+ /
+
+Insert into cust values(700, 'A1','B1');
+
+select * from cust;
+select * from cust_bkup;
+
+
+
+
+
+
+
+
+
+
