@@ -165,10 +165,12 @@ END;
 BEGIN
  a:= 23; 
 b:= 45; 
-findMin(y=>a, x=>b, c); 
+findMin(a, z=>c, y=>b); 
 dbms_output.put_line(' Minimum of (23, 45) : ' || c); 
 END;
  /
+
+
 
 
 
