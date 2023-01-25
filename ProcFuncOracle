@@ -207,6 +207,28 @@ This line displays the value returned by the function.
 
 
 
+CREATE OR REPLACE FUNCTION totalCustomers 
+RETURN number 
+IS total number(5) := 0; 
+BEGIN 
+SELECT count(*) into total FROM customers; 
+RETURN total; 
+END;
+ /
+
+
+
+DECLARE 
+c number(5);
+BEGIN c := totalCustomers(); 
+dbms_output.put_line('Total no. of Customers: ' || c); 
+END;
+ /
+
+
+
+
+
 
 
 
