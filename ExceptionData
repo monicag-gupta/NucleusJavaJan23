@@ -119,6 +119,41 @@ END;
 
 
 
+The General Syntax to use this procedure is:
+RAISE_APPLICATION_ERROR (error_number, error_message); 
+• The Error number must be between -20000 and -20999 
+• The Error_message is the message you want to display when the error occurs.
+Steps to be followed to use RAISE_APPLICATION_ERROR procedure: 
+1. Declare a user-defined exception in the declaration section. 
+2. Raise the user-defined exception based on a specific business rule in the execution section. 
+3. Finally, catch the exception and link the exception to a user-defined error number in RAISE_APPLICATION_ERROR.
+
+
+
+
+create table emp as select employee_id as id,manager_id as mgr, salary from employees; 
+
+DECLARE
+	v_mgr emp.mgr%type := 534;
+BEGIN
+  DELETE FROM emp
+     WHERE  mgr= v_mgr;
+  IF SQL%NOTFOUND THEN
+     RAISE_APPLICATION_ERROR(-20202,
+       'This is not a valid manager');
+  END IF;
+  end;
+/
+
+
+
+
+
+
+
+
+
+
 
 
 
