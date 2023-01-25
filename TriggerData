@@ -108,3 +108,16 @@ BEGIN
 
 
 
+Insert into vw_customers values('AAA','BBB');
+
+select * from cust;
+
+ID, NAME, ADDRESS
+209	AAA	BBB
+513	AAA	BBB
+
+
+
+
+
+
