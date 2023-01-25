@@ -1,0 +1,29 @@
+Cursor Attributes
+%FOUND
+Returns TRUE if an INSERT, UPDATE, or DELETE statement affected one or more rows or a SELECT INTO statement returned one or more rows. Otherwise, it returns FALSE.
+%NOTFOUND
+The logical opposite of %FOUND. It returns TRUE if an INSERT, UPDATE, or DELETE statement affected no rows, or a SELECT INTO statement returned no rows. Otherwise, it returns FALSE.
+%ISOPEN
+Always returns FALSE for implicit cursors, because Oracle closes the SQL cursor automatically after executing its associated SQL statement.
+%ROWCOUNT
+Returns the number of rows affected by an INSERT, UPDATE, or DELETE statement, or returned by a SELECT INTO statement.
+
+
+
+
+
+
+Example: Implicit Cursor:
+
+DECLARE 
+	var_rows number(5);
+BEGIN 
+	UPDATE employees SET salary = salary + 1000; 
+	IF SQL%NOTFOUND THEN 
+	dbms_output.put_line('None of the salaries where updated'); 
+ELSIF SQL%FOUND THEN 
+	var_rows := SQL%ROWCOUNT; 
+	dbms_output.put_line('Salaries for ' || var_rows || 'employees are updated'); 
+END IF; 
+END;
+/
