@@ -36,4 +36,23 @@ EXCEPTION
 
 
 
+create table product(product_id number primary key, product_desc varchar2(100));
+create table product_rates(product_id number, rate number(5,2), foreign key(product_id) references product(product_id));
+
+insert into product values(100, 'Toys');
+insert into product values(104, 'books');
+
+insert into product_rates values(100, 20);
+insert into product_rates values(104, 70);
+
+delete from product;
+Error report -
+ORA-02292: integrity constraint (MONICA.SYS_C007467) violated - child record found
+
+
+
+
+
+
+
 
