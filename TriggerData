@@ -76,3 +76,35 @@ VALUES (305, 'Smith', 'Rob', 'RSMITH05', SYSDATE, 'AD_PRES', 19500, 60);
 
 
 
+
+
+create table cust(id number primary key, name varchar(30),address varchar(100));
+
+CREATE or replace VIEW vw_customers AS
+    SELECT 
+        name, address
+    FROM 
+        cust;
+        
+Insert into vw_customers values('AAA','BBB');
+
+
+
+CREATE OR REPLACE TRIGGER new_cust_trg
+    INSTEAD OF INSERT ON vw_customers
+    FOR EACH ROW
+DECLARE
+    cust_id NUMBER;
+BEGIN
+    select TRUNC(dbms_random.value(1,900)) into cust_id from dual;
+    -- insert a new customer first
+    INSERT INTO cust(id, name, address)
+    VALUES(cust_id, :NEW.NAME, :NEW.address);
+ END;
+ /
+
+
+
+
+
+
