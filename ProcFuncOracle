@@ -1,0 +1,42 @@
+PL/SQL, you can create your own Procedures.
+When you create a Procedure or function, you have to define this three parameters.
+1.) IN - IN parameter is referenced to the procedure or function. And value of paramameter in not overwritten.
+2.) OUT - OUT parameter is referenced to the procedure or function. And value of paramameter is overwritten allow.
+3.) IN OUT - IN OUT parameter is referenced to the procedure or function. And value of paramameter is both overwritten allow or not allow.
+
+
+
+
+CREATE OR REPLACE PROCEDURE greetings
+ AS
+ BEGIN 
+dbms_output.put_line('Hello World!');
+ END;
+ /
+
+
+
+A standalone procedure can be called in two ways:
+Using the EXECUTE keyword
+Calling the name of the procedure from a PL/SQL block
+The above procedure named 'greetings' can be called with the EXECUTE keyword as:
+
+EXECUTE greetings;
+
+
+The above call would display:
+Hello World PL/SQL procedure successfully completed.
+
+
+The procedure can also be called from another PL/SQL block:
+
+
+BEGIN 
+greetings; 
+END; 
+/
+
+
+
+
+
