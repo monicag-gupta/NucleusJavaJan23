@@ -47,3 +47,27 @@ END;
 
 
 
+
+Explicit cursor:
+
+Declaring the Cursor
+	CURSOR c_customers IS SELECT id, name, address FROM customers;
+
+Opening the Cursor
+	OPEN c_customers;
+Fetching the Cursor
+	FETCH c_customers INTO c_id, c_name, c_addr;
+
+Closing the Cursor
+	CLOSE c_customers;
+
+
+
+
+create table customers as 
+select Employee_id as id, first_name||' '||last_name as name, email as address, salary from employees;
+
+
+
+
+
