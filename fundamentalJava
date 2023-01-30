@@ -277,6 +277,35 @@ class ArrayCopyDemo{
 
 
 
+class Str{
+    int i;
+    Str(){}
+    Str(int i){this.i=i;}
+    Str replace(int j){
+       // i=j;
+        return new Str(j);
+    }
+}
+public class Main1 {
+    public static void main(String[] args) {
+        String str1=new String("Hello Java Coders");
+        String str2=new String(str1);
+        String str3="Hello Java Coders";
+        String str4=str3;
+
+        System.out.println(str1 == str1.replace('J', 'L') ? "Same Pool Value" : "Not in same Pool" );
+        Str s1=new Str();
+        s1.i=10;
+        System.out.println(s1 == s1.replace(20) ? "Same Pool Value" : "Not in same Pool" );
+
+
+
+    }
+}
+
+
+
+
 
 
 
