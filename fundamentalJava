@@ -325,3 +325,15 @@ class MultiDimArrayDemo
 
 
 
+public class Main1 {
+    static int sum(int i, int j){
+        return i+j;
+    } 
+    public static void main(String[] args) {
+        int s=sum(4,7);
+        System.out.println("Sum of 4,7 : " + s);
+    }
+}
+
+
+
