@@ -1,0 +1,113 @@
+package domain1;
+
+public class GF{ //Encapsulated class for GF
+    private void wallet(){
+        System.out.println("Private Wallet of GF");
+    }
+    public void restaurant(){
+        System.out.println("Public Restaurant : Pay from: ");
+        wallet();
+    }
+    public void google(){
+        System.out.println("Public Google from GF");
+    }
+    protected void family_ac(){
+        System.out.println("Protected Family ac details from GF");
+    }
+    void almirahGold(){
+        System.out.println("Default Almirah full of gold from GF");
+    }
+}
+
+
+
+
+package domain1;
+
+public class Child extends GF{
+    public void usingMethods(){
+        google();
+        almirahGold();
+        family_ac();
+        //wallet(); //Private function not allowed
+        restaurant();
+    }
+}
+
+
+package domain1;
+
+public class Serving{
+    public void usingMethods(){
+        GF g=new GF();
+        g.google();
+        g.almirahGold();
+        g.family_ac();
+        //g.wallet(); //Private function not allowed
+        g.restaurant();
+    }
+}
+
+
+
+package domain2;
+import domain1.*;
+public class ChildUSA extends GF{
+    public void usingMethods(){
+        google();
+        //almirahGold(); //default function not allowed outside package
+        family_ac();
+        //wallet(); //Private function not allowed
+        restaurant();
+    }
+}
+class other {
+    public void usingMethods() {
+        GF g = new GF();
+        g.google();
+        //g.almirahGold(); //default function not allowed outside package
+        //g.family_ac();  //protected function not allowed for non-inherited class
+        //g.wallet(); //Private function not allowed
+        g.restaurant();
+    }
+}
+
+
+
+
+package domain2;
+
+import domain1.*;
+
+public class Main {
+    public static void main(String[] args) {
+        System.out.println("Inheritance Example");
+        GF g = new GF();
+        g.google();
+        //g.almirahGold(); //default function not allowed outside package
+        //g.family_ac();  //protected function not allowed for non-inherited class
+        //g.wallet(); //Private function not allowed
+        g.restaurant();
+
+        ChildUSA ch1=new ChildUSA();
+        ch1.usingMethods();
+        ch1.google();
+        ch1.restaurant();
+
+        Child ch2=new Child();
+        ch2.usingMethods();
+        ch2.google();
+        ch2.restaurant();
+
+        Serving s1=new Serving();
+        s1.usingMethods();
+
+        other o1=new other();
+        o1.usingMethods();
+
+
+    }
+}
+
+
+
