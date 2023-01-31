@@ -1,3 +1,17 @@
+/* 
+Domain1:
+Mr GF : public Google, private Wallet, default Almirah full of gold, protected Family account
+Ananta: child staying with GF : Google, Almirah full of gold, Family account
+Ramu Kaka : Serving : Google, Almirah full of gold, Family account : Permission (object created)
+Domain2:
+Muskaan : USA : sis : ChildUSA: Google, Family account
+Aastha :Other: USA : Google: Permission 
+*/
+ 
+
+
+
+
 package domain1;
 
 public class GF{ //Encapsulated class for GF
