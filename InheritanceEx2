@@ -1,0 +1,70 @@
+interface EmpHB{
+    void leave(); //all functions of an interface are public and abstract by default
+    void project();
+}
+interface Acc{
+    void user();
+    void pass();
+
+}
+abstract class Emp1234{ //50% abstract class
+    public abstract void desig();
+    public void sal(){
+        System.out.println("Sal is a must!");
+    }
+}
+//Multiple inheritance : interfaces : implements
+//Single inheritance : classes : extends
+class Emp extends Emp1234 implements EmpHB, Acc {
+
+    @Override
+    public void leave() {
+        System.out.println("Leave");
+    }
+
+    @Override
+    public void project() {
+        System.out.println("Project");
+    }
+
+    @Override
+    public void user() {
+        System.out.println("uname");
+    }
+
+    @Override
+    public void pass() {
+        System.out.println("password");
+    }
+
+    @Override
+    public void desig() {
+        System.out.println("designation");
+    }
+}
+
+public class inheritanceEg {
+    public static void main(String[] args) {
+        EmpHB e1=new Emp();
+        e1.leave();
+        e1.project();
+        
+        Acc e2=new Emp();
+        e2.user();
+        e2.pass();
+        
+        Emp1234 e3=new Emp();
+        e3.desig();
+        e3.sal();
+        
+        Emp e4= new Emp();
+        e4.desig();
+        e4.leave();
+        e4.project();
+        e4.user();
+        e4.pass();
+        e4.sal();
+    }
+    
+
+}
