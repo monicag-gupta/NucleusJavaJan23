@@ -1,0 +1,57 @@
+package polymrfPkg;
+class Hair{}
+class Bone{}
+class Stone{
+    public void wings(Hair h){  //fn1
+        System.out.println("Abhay: This is the fossil of Insects: They fly low");
+    }
+    public void wings(Bone b){ //fn2: Overloading fn1 : diff datatype in parameter
+        System.out.println("Abhay: This is the fossil of Birds: They fly high");
+    }
+    public void wings(Bone b, int size){ //fn3: Overloading fn2/fn1 : diff number of parameters
+        System.out.println("Abhay: This is the fossil of Dinosaur: They are huge");
+    }
+    public void wings(int size, Bone b){//fn4: Overloading fn3 : diff order of datatype in parameters
+        System.out.println("Abhay: This is the fossil of Hen: They are birds flying low");
+    }
+    public void fossil(Mammals m){
+        System.out.println("Parth: IDK which mammal's fossil is this, but");
+        m.breathe();
+        m.handbones();
+    }
+    
+}
+
+abstract class Mammals{
+    public void breathe(){
+        System.out.println("Parth : I know for sure : All Mammals breathe");
+    }
+    public void handbones(){
+        //System.out.println("Parth: IDK which mammal's fossil is this");
+    }
+}
+class Bat extends Mammals{
+    @Override //makes it compulsory that parent-overridden method signature matches
+    public void handbones() {
+        System.out.println("Hatim: At runtime, this mammal flies");        
+    }
+}
+class Human extends Mammals{
+    @Override //makes it compulsory that parent-overridden method signature matches
+    public void handbones() {
+        System.out.println("Hatim: At runtime, this mammal works hard");
+    }
+}
+
+public class Arch {
+    public static void main(String[] args) {
+        Stone s1=new Stone();
+        s1.wings(new Hair());//wings(Hair)
+        s1.wings(new Bone());
+        s1.wings(new Bone(),500);
+        s1.wings(2,new Bone());
+        Mammals m1=new Bat();
+        s1.fossil(m1);
+        s1.fossil(new Human());
+    }
+}
