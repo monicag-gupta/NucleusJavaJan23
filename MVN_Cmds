@@ -1,0 +1,30 @@
+Download Maven from:
+https://maven.apache.org/download.cgi
+
+Unzip the file:
+apache-maven-3.8.7-bin.zip
+
+Keep the extracted folder at a favorite location eg: Java home
+Set the environment path to bin of maven folder
+C:\Program Files\Java\apache-maven-3.8.7-bin\apache-maven-3.8.7\bin
+
+
+
+
+C:\Users\monica>mvn -version
+Apache Maven 3.8.7 (b89d5959fcde851dcb1c8946a785a163f14e1e29)
+Maven home: C:\Program Files\Java\apache-maven-3.8.7-bin\apache-maven-3.8.7
+Java version: 11.0.17, vendor: Oracle Corporation, runtime: C:\Program Files\Java\jdk-11.0.17
+Default locale: en_US, platform encoding: Cp1252
+OS name: "windows 10", version: "10.0", arch: "amd64", family: "windows"
+
+
+
+Navigate inside a folder, where mvn project is to be created. 
+Open cmd at this folder
+Run:
+
+mvn archetype:generate -DgroupId=com.mvnPrj1 -DartifactId=MyMvnPrj1 -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
+
+Project structure is created.
+
