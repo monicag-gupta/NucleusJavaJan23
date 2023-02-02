@@ -1,0 +1,17 @@
+package getSetPkg;
+class A{
+    A(){
+        System.out.println("Constructing A obj");
+    }
+    {
+        System.out.println("Initializer Block called before Constructor");
+    }
+}
+
+public class StaticEg {
+    public static void main(String[] args) {
+        A a1=new A();
+        A a2=new A();
+
+    }
+}
