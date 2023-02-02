@@ -1,0 +1,64 @@
+package getSetPkg;
+class A{
+    int Principle;
+    A(){
+        System.out.println("Constructing A obj");
+    }
+    {
+        System.out.println("Initializer Block called before Constructor");
+    }
+    static String CompName;
+    public String toString(){
+        return "Principle: " + Principle + "Company Name: " + CompName ;
+    }
+    static int sum(int a, int b){
+        return a+b;
+    }
+    static String getCompName(){
+        return CompName;
+    }
+    static void setCompName(String cc){
+        CompName=cc;
+    }
+    void print(){
+        System.out.println("Principle: " + Principle + "Company Name: " + CompName);
+    }
+}
+class B{
+    static{
+        System.out.println("3. Static block of B");
+    }
+    B(){
+        System.out.println("B constructed");
+    }
+    {
+        System.out.println("Initializer of B, before Constructor");
+    }
+    static void fn(){
+        System.out.println("Static fn of B");
+    }
+}
+
+public class StaticEg {
+    static {
+        System.out.println("1. Before Main(), static block runs");
+    }
+    public static void main(String[] args) {
+        System.out.println("2. This is main!");
+        B b1=new B();
+        B b2=new B();
+        B.fn();
+
+//        A.CompName="Nucleus";
+//        A a1=new A();
+//        a1.Principle=23000;
+//        System.out.println(a1);
+//        a1.CompName = "NSEL";
+//        System.out.println(a1);
+//        A a2=new A();
+//        System.out.println(a2);
+//        a2.Principle=39000;
+//        System.out.println(a2);
+
+    }
+}
