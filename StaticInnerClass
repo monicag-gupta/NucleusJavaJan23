@@ -38,3 +38,52 @@ public class OuterEg{
     }
 
 }
+
+
+
+
+
+package getSetPkg;
+
+class Outer {  //Outer.class
+    static void fn1(){
+        System.out.println("Static in outer");
+    }
+    int i=20;
+    class Inner { //Outer$Inner.class
+        void sum(int x, int y) {
+            System.out.println(x + y);
+            fn1();
+            i=30;
+        }
+    }
+    static class InnerStatic { //Outer$InnerStatic.class
+        void fn2(){
+            System.out.println("This is non static fn of InnerStatic Class");
+        }
+        static void sum(int x, int y) {
+            System.out.println(x + y);
+        }
+    }
+
+}
+
+public class OuterEg{
+    static class InnerStaticEg {
+        public static void main(String[] args) {
+            Outer o = new Outer();
+            Outer.Inner i = o.new Inner();
+            Outer.Inner i2 = new Outer().new Inner();
+            i.sum(2, 3);
+            Outer.InnerStatic i3 = new Outer.InnerStatic();
+            i3.fn2();
+            Outer.InnerStatic.sum(5, 7);
+            Outer.fn1();
+            o.fn1();
+            Outer.InnerStatic.sum(7, 9);
+
+        }
+    }
+
+}
+
