@@ -1,0 +1,38 @@
+package getSetPkg;
+class King{
+    King(){
+        System.out.println("King constructed");
+    }
+    public void finalize() {
+        System.out.println("King finalized: Object Destroyed");
+    }
+}
+class Prince extends King {
+    Prince(){
+        System.out.println("Prince constructed");
+    }
+    public void finalize() {
+        System.out.println("Prince finalized: Object Destroyed");
+    }
+}
+class KidPrince extends Prince {
+    KidPrince(){
+        System.out.println("KidPrince constructed");
+    }
+    public void finalize() {
+        System.out.println("KidPrince finalized: Object Destroyed");
+        //KidPrince kp=new KidPrince();
+    }
+}
+public class ConstFinalizeEg {
+    public static void main(String[] args) {
+        King kp = new KidPrince();
+        while(true) {
+
+
+            //kp = null;
+            System.gc();
+            System.out.println("Main ends!");
+        }
+    }
+}
