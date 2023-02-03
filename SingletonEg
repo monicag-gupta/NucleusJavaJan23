@@ -1,0 +1,39 @@
+package oops2;
+class SingletonClass{
+    private String msg;
+
+    public String getMsg() {
+        return msg;
+    }
+
+    public void setMsg(String msg) {
+        this.msg = msg;
+    }
+
+    private SingletonClass(){   }
+    private SingletonClass(String msg){ this.msg=msg;  }
+    private static SingletonClass singleObj;
+    public static  SingletonClass getSingletonObj(String msg){
+        if(singleObj ==null){
+            singleObj=new SingletonClass(msg);
+        }
+        return singleObj;
+    }
+    public static  SingletonClass getSingletonObj(){
+        if(singleObj ==null){
+            singleObj=new SingletonClass();
+        }
+        return singleObj;
+    }
+}
+public class SingletonEg {
+    public static void main(String[] args) {
+        SingletonClass s1= SingletonClass.getSingletonObj("abc");
+        System.out.println(s1.getMsg()); //abc
+        SingletonClass s2= SingletonClass.getSingletonObj("def");
+        System.out.println(s2.getMsg()); //abc
+        s2.setMsg("defgh");
+        System.out.println(s2.getMsg()); //defgh
+        System.out.println(s1.getMsg()); //defgh
+    }
+}
