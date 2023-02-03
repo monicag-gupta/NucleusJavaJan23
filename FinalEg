@@ -1,0 +1,38 @@
+package oops2;
+class A{
+    final double PI=3.14;
+    final void fn1(){
+        //PI=3.143333; //final var cannot be reassigned
+        System.out.println("final Fn1() from A");
+    }
+    void fn2(){
+        System.out.println("Fn2() from A");
+    }
+    
+}
+class B extends A{
+    @Override
+    void fn2() {
+        System.out.println("Fn2() from B : A");
+    }
+//    @Override
+//    void fn1() {
+//        System.out.println("Fn1() (cannot be overriden as it is final in A) from B : A");
+//    }
+}
+final class C{
+    
+}
+//class D extend C{ //C is a final class: not inheritable
+//    
+//}
+public class FinalEg {
+    public static void main(String[] args) {
+        System.out.println("Demo : Final");
+        new A().fn2();
+        A a=new B();
+        System.out.println("PI: " + a.PI);
+        a.fn1();
+        a.fn2();
+    }
+}
