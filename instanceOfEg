@@ -1,0 +1,71 @@
+class Animal{}  
+class Dog1 extends Animal{//Dog inherits Animal  
+   public static void main(String args[]){  
+ 		Dog1 d=new Dog1();  
+  	System.out.println(d instanceof Animal);//true  
+  }  
+}  
+
+
+package oops2;
+
+abstract class Loan{
+    private int interest=10;
+    public int EMICalculate(int Principle){
+        return Principle*interest;
+    }
+
+    public int getInterest() {
+        return interest;
+    }
+
+    public void setInterest(int interest) {
+        this.interest = interest;
+    }
+}
+
+class HomeLoan extends Loan{
+    public void docs(){
+        System.out.println("Submit docs");
+    }
+}
+
+class PersonalLoan extends Loan{
+    public void employmentDetails(){
+        System.out.println("Submit employment docs");
+    }
+}
+class Bank{
+    private Loan l;
+
+    public Loan getL() {
+        return l;
+    }
+
+    public void setL(Loan l) {
+        this.l = l;
+    }
+
+    public void emi(int p){
+        l.EMICalculate(p);
+        if(l instanceof HomeLoan){
+            HomeLoan h=(HomeLoan) l; //downcasting
+            h.docs();
+        }
+        if(l instanceof PersonalLoan){
+            PersonalLoan h=(PersonalLoan) l; //downcasting
+            h.employmentDetails();
+        }
+    }
+}
+public class castEg {
+    public static void main(String[] args) {
+        Bank icici=new Bank();
+        Loan hl=new HomeLoan();
+        icici.setL(hl);
+        icici.emi(10000);
+    }
+}
+
+
+
