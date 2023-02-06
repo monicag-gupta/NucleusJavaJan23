@@ -296,5 +296,38 @@ public class Eg5 {
 
 
 
+package exceptionHandling;
+class ResourcePrinter implements AutoCloseable{
+
+    @Override
+    public void close(){
+        System.out.println("Printer is shutdown");
+    }
+    public void print(String m){
+        System.out.println("Printing.." + m);
+    }
+}
+
+public class Eg5 {
+    public static void main(String[] args) {
+        try(ResourcePrinter printer =new ResourcePrinter()){
+            printer.print("Hello World");
+            if(true)
+                throw new ArithmeticException();
+            printer.print("Hello World post exception");
+        }
+        catch (ArithmeticException e){
+            System.out.println(e);
+        }
+        finally{
+            System.out.println("Finally block");
+        }
+        System.out.println("Outside try with resources");
+        
+    }
+}
+
+
+
 
 
