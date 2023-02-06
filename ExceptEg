@@ -1,0 +1,40 @@
+package exceptionHandling;
+class Resource{
+    int power;
+    void print(){
+        System.out.println("Resource");
+    }
+}
+
+public class Eg1 {
+    int divide(int x, int y, Resource r){
+        try {
+            int res = x / y;
+            if(r.power==1)
+                throw new ArrayIndexOutOfBoundsException();
+//            r.power=0;
+            return res;
+        }
+        catch(ArithmeticException e){
+            System.out.println(e);
+//            r.power=0;
+            return 0;
+        }
+        finally{
+            System.out.println("Finally block");
+            r.power=0;
+        }
+        //return 0;
+
+    }
+    public static void main(String[] args) {
+        int x=10;
+        int y=10;
+        Resource r=new Resource();
+        r.power=2;
+        int res=new Eg1().divide(x,y,r);
+        System.out.println(r.power==0 ? "Resource shut down": "Resource is on");
+        System.out.println();
+
+    }
+}
