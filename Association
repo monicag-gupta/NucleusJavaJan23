@@ -1,0 +1,95 @@
+Types of Association:
+1. IS-A Association
+  The IS-A Association is also referred to as Inheritance.
+2. HAS-A Association
+2.a. Aggregation
+2.b. Composition
+
+
+
+In Aggregation, both the entries can survive individually which means ending one entity will not affect the other entity.
+
+
+
+package domain1;
+public class Toy{
+    String category;
+    Battery b;
+
+    public String getCategory() {        return category;    }
+
+    public void setCategory(String category) {        this.category = category;    }
+
+    public Battery getB() {        return b;    }
+
+    public void setB(Battery b) {        this.b = b;    }
+
+    public String toString() {
+        return "Toy{category=" + category + ", b=" + b + '}';
+    }
+}
+
+
+
+
+
+package domain1;
+
+public class Battery{
+    String type;
+    void setType(String type){this.type = type;}
+    String getType(){return type;}
+    public String toString() {
+        return "Battery{type= " + type +"}";
+    }
+}
+
+
+package domain1;
+
+public class Main11 {
+    public static void main(String[] args) {
+        Toy car = new Toy();
+        Battery battery = new Battery();
+        battery.setType("small pencil battery");
+        car.setB(battery);
+        car.setCategory("Toy Car");
+        System.out.println(car);
+        //Toy{category=Toy Car, b=Battery{type= small pencil battery}}
+    }
+}
+
+
+
+Composition is a restricted form of Aggregation in which two entities are highly dependent on each other.  
+It represents part-of relationship.
+
+
+
+
+package domain1;
+class Project{
+    public String prjName;
+    PrjDetails prjDetails;
+    Project(String n, PrjDetails p){prjName=n;prjDetails=p;}
+    public String toString(){
+        return "Project Name: " + prjName + "\n Description: " + prjDetails.prjDesc +
+                "\n ProjectLeader : " + prjDetails.prjLead;
+    }
+}
+class PrjDetails{
+    String prjDesc;
+    String prjLead;
+    PrjDetails(String d,String l){ prjDesc=d; prjLead=l;}
+}
+public class Main12 {
+    public static void main(String[] args) {
+        Project fin1=new Project("Finacle", new PrjDetails("Banking", "Ishu"));
+        System.out.println(fin1);
+    }
+}
+
+
+
+
+
