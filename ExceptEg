@@ -270,3 +270,31 @@ public class Eg4 {
 
 
 
+
+package exceptionHandling;
+class ResourcePrinter implements AutoCloseable{
+
+    @Override
+    public void close(){
+        System.out.println("Printer is shutdown");
+    }
+    public void print(String m){
+        System.out.println("Printing.." + m);
+    }
+}
+
+public class Eg5 {
+    public static void main(String[] args) {
+        try(ResourcePrinter printer =new ResourcePrinter()){
+            printer.print("Hello World");
+        }
+        System.out.println("Outside try with resources");
+        
+    }
+}
+
+
+
+
+
+
