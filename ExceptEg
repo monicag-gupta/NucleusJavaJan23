@@ -177,3 +177,12 @@ public class Eg3 {
 
 
 
+situations for Exception Handling:
+1. throws RuntimeException : it is assumed to be handled by Developer
+2. throws Checked Exception:
+    a. used to propagate the  unhandled exception to next level
+    b. If such method is inherited and overridden, then : we propagate same , child exception or no exception.
+    
+
+
+
