@@ -186,3 +186,47 @@ situations for Exception Handling:
 
 
 
+
+package exceptionHandling;
+class AgeException extends Exception{ //checked Exception
+    public AgeException(){super("Age invalid Exception!");}
+    public AgeException(String msg){super(msg);}
+    public String toString(){
+        return "AgeException " + super.getMessage();
+    }
+}
+class Emp{
+    private int age;
+    public void setAge(int age) throws AgeException{
+        if(age>150 || age <= 18){
+            throw new AgeException("Age not in Range of (18-150)");
+        }
+        this.age=age;
+    }
+
+    @Override
+    public String toString() {
+        return "Emp{" +
+                "age=" + age +
+                '}';
+    }
+}
+public class Eg4 {
+    public static void main(String[] args) {
+        Emp e=new Emp();
+        try {
+            e.setAge(-3);
+        }
+        catch(AgeException ex){
+            System.out.println(ex);
+        }
+        System.out.println(e);
+    }
+}
+
+
+
+
+
+
+
