@@ -61,3 +61,38 @@ public class Eg2 {
     
 }
 
+
+
+
+
+
+package exceptionHandling;
+import java.io.*;
+
+public class Eg2 {
+    void reading1() throws IOException{
+        throw new IOException("File IO not studied");
+    }
+    void reading2() throws IOException
+    {
+        reading1();
+    }
+
+    public static void main(String[] args){
+        try{
+            new Eg2().reading2();
+        }
+        catch(IOException e){
+            System.out.println(e);
+        }
+        
+        System.out.println("Continue the code..");
+    }
+    
+}
+
+
+
+
+
+
