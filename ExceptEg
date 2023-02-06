@@ -128,3 +128,52 @@ public class Eg2 {
 }
 
 
+
+package exceptionHandling;
+import java.io.*;
+class Loan{
+    int EMI(int interest, int principle) throws Exception { //propagating Checked Exception
+        int emi=0;
+        if(interest==0){
+            throw new IOException("Interest cannot be zero");
+        }
+        if(principle==0){
+            throw new ClassNotFoundException();
+        }
+        emi=(interest*principle)/(20*12);
+        return emi;
+    }
+
+}
+class HomeLoan extends Loan{
+    @Override
+    int EMI(int interest, int principle) throws IOException {
+        //Compulsorily propagate same or child Exception
+        try {
+            return super.EMI(interest, principle);
+        }
+        catch(Exception e){
+            throw new IOException(e.getMessage());
+        }
+        //return 0;
+    }
+}
+class PersonalLoan extends Loan{
+    int EMI(int interest, int principle) throws Exception {
+        //Compulsorily propagate same or child Exception
+        return super.EMI(interest, principle);
+    }
+}
+class VehicleLoan extends Loan{
+    int EMI(int interest, int principle) {
+        //Compulsorily propagate same or child or no Exception 
+        //return super.EMI(interest, principle);
+        return 0;
+    }
+}
+public class Eg3 {
+
+}
+
+
+
