@@ -69,3 +69,37 @@ public class AnnonymousEg {
 
 
 
+package innerClassPkg;
+@FunctionalInterface
+interface King{
+    void chotaBheem(); //SAM : Single Abstract Method
+    default void chutki(){
+        System.out.println("Default Method: Chutki of King");
+    }
+}
+//class Fighter implements King{
+//    public void chotaBheem(){
+//        System.out.println("Kalaripayattu");
+//    }
+//}
+public class LambdaEg {
+    
+
+    public static void main(String[] args) {
+//        King k=new King(){
+//            public void chotaBheem(){
+//                System.out.println("Kalaripayattu");
+//            }
+//        };
+       
+        
+        King k = () -> System.out.println("Kalaripayattu");
+        k.chotaBheem();
+        k.chutki();
+        
+    }
+}
+
+
+
+
