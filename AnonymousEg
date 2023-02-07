@@ -103,3 +103,76 @@ public class LambdaEg {
 
 
 
+
+package innerClassPkg;
+@FunctionalInterface
+interface King{
+    void chotaBheem(); //SAM : Single Abstract Method
+    default void chutki(){
+        System.out.println("Default Method: Chutki of King");
+    }
+}
+class Kirmada{
+    void fight(King k){
+        k.chutki();
+        k.chotaBheem();
+    }
+}
+//class Fighter implements King{
+//    public void chotaBheem(){
+//        System.out.println("Kalaripayattu");
+//    }
+//}
+public class LambdaEg {
+    
+
+    public static void main(String[] args) {
+//        King k=new King(){
+//            public void chotaBheem(){
+//                System.out.println("Kalaripayattu");
+//            }
+//        };
+       
+        
+        King k = () -> System.out.println("Kalaripayattu");
+        Kirmada k1=new Kirmada();
+        k1.fight(k);
+        
+        k1.fight(()-> System.out.println("Kung fu"));
+        
+    }
+}
+
+
+
+package innerClassPkg;
+
+interface WIFI{
+    void internet();
+}
+interface LAN{
+    void fastinternet();
+}
+
+class Server{
+    void connect(WIFI w){
+        w.internet();
+        System.out.println("Serves via internet");
+    }
+    void connect2(LAN w){
+        w.fastinternet();
+        System.out.println("Serves via internet");
+    }
+    
+}
+public class LambdaEg2 {
+    public static void main(String[] args) {
+        Server s1=new Server();
+        s1.connect(()-> System.out.println("Wifi credentials"));
+        s1.connect2(()-> System.out.println("Lan Credentials"));
+    }
+}
+
+
+
+
