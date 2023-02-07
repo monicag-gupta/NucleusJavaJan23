@@ -20,3 +20,48 @@ public class AnnonymousEg {
         a.localClassFn();
     }
 }
+
+
+
+
+
+package innerClassPkg;
+interface C{
+    void fn();
+}
+class D{
+    void fnD(){
+        System.out.println("fnD in D class");
+    }
+}
+abstract class E{
+    abstract void fnE();
+}
+
+public class AnnonymousEg {
+//    class A implements C{ //AnnonymousEg$A
+//        public void fn(){
+//            System.out.println();
+//        }
+//    }
+    public static void main(String[] args) {
+       C c=new C(){       //AnnonymousEg$1
+           public void fn(){
+            System.out.println();
+        }
+       };
+       c.fn();
+       D d=new D(){  //AnnonymousEg$2
+           void fnD(){
+               System.out.println("fnD in D, AnnonymousEg$2");
+           }
+       };
+       d.fnD();
+       E e=new E(){
+         void fnE(){
+             System.out.println("fnE in E, AnnonymousEg$3");
+         }
+       };
+       e.fnE();
+    }
+}
