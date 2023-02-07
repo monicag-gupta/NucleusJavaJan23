@@ -1,0 +1,22 @@
+package innerClassPkg;
+interface C{
+    void fn();
+}
+class A{
+    void localClassFn(){
+        class B implements C{
+            public void fn(){
+                System.out.println("This is from local inner class");
+            }
+        }
+        C b=new B();
+        b.fn();
+
+    }
+}
+public class AnnonymousEg {
+    public static void main(String[] args) {
+        A a=new A();
+        a.localClassFn();
+    }
+}
