@@ -1,0 +1,63 @@
+package lambdaPkg;
+
+interface L1{
+    void fnL1();
+    public default void fn(){
+        System.out.println("This is a default fn of L1");
+    }
+}
+interface L2{
+    String fnL2();
+}
+interface L3{
+    void fnL3(int i);
+}
+interface L4{
+    void fnL4(int i, int j);
+}
+interface L5{
+    int fnL5(int x);
+}
+interface L6{
+    int fnL6(int i, int j);
+}
+public class LambdaEg1 {
+    public static void main(String[] args) {
+        //Lambda with no return value and no param
+        L1 l1=()-> System.out.println("Lambda void fnL1()");
+        l1.fnL1();
+        l1.fn();
+        //Lambda with String return value no param
+        L2 l21=()->{
+            return "Hello from Lambda String fnL2()";
+        };
+        l21.fnL2();
+        L2 l22 = () -> "Hello from Lambda String fnL2()";
+        l22.fnL2();
+        L2 l23=()->{
+            String s="Hello How are your codes?\n";
+            return s + "Hello from Lambda String fnL2()";
+        };
+        l23.fnL2();
+        //Lambda with no return value, single int param
+        L3 l31=(int a)-> System.out.println("i's value in L31: " + a);
+        l31.fnL3(20);
+        L3 l32=(a)-> System.out.println("i's value in L32: " + a);
+        l32.fnL3(20);
+        L3 l33 = a -> System.out.println("i's value in L32: " + a);
+        l33.fnL3(20);
+        //lambda with no return value and 2 int params
+        L4 l41=(int a, int b)-> System.out.println("i+j value in L41: " + (a+b));
+        l41.fnL4(20,30);
+        L4 l42= (a, b)-> System.out.println("i+j value in L41: " + (a+b));
+        l42.fnL4(20, 30);
+        //lambda with int return value and int param
+        L5 l5= a -> a * a;
+        System.out.println(l5.fnL5(20));
+        //lambda with int return value and 2 int params
+        L6 l6= (a,b) -> a*b;
+        System.out.println(l6.fnL6(20,30));
+        
+       
+    }
+}
