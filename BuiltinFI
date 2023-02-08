@@ -1,0 +1,28 @@
+package lambdaPkg;
+interface MyPredicate{
+    Boolean test(Integer o);
+}
+interface MyPredicate2{
+    Boolean test(Object o);
+}
+class B{
+    boolean checkGr10(Integer x){
+        return x>10;
+    }
+}
+
+public class FIBuiltInEg {
+    public static void main(String[] args) {
+        MyPredicate p1=new B()::checkGr10;
+        System.out.println(p1.test(20));
+        MyPredicate2 p2 = a->{
+            //gr than 10
+            if(a instanceof Integer){
+                Integer a2=(Integer)a;
+                return a2>10;
+            }
+            return false;
+        };
+        System.out.println(p2.test(new Integer(40)));
+    }
+}
