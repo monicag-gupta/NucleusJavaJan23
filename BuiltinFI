@@ -63,3 +63,71 @@ public class FIBuiltInEg {
         System.out.println(p4.test(new Integer(40)));
     }
 }
+
+
+
+
+
+
+package lambdaPkg;
+import java.util.function.Predicate;
+import java.util.function.Supplier;
+import java.util.function.Consumer;
+import java.util.function.Function;
+
+interface MyFunction{
+    Integer apply(String s);
+}
+interface MyConsumer{
+    void accept(Integer x);
+}
+interface MySupplier{
+    String get();
+}
+interface MyPredicate{
+    Boolean test(Integer o);
+}
+interface MyPredicate2{
+    Boolean test(Object o);
+}
+class B{
+    boolean checkGr10(Integer x){
+        return x>10;
+    }
+}
+
+public class FIBuiltInEg {
+    public static void main(String[] args) {
+        MyPredicate p1=new B()::checkGr10;
+        System.out.println(p1.test(20));
+        MyPredicate2 p2 = a->{
+            //gr than 10
+            if(a instanceof Integer){
+                Integer a2=(Integer)a;
+                return a2>10;
+            }
+            return false;
+        };
+        System.out.println(p2.test(new Integer(40)));
+        Predicate<Integer> p3 = new B()::checkGr10;
+        System.out.println(p3.test(new Integer(40)));
+        Predicate<Integer> p4 = a -> a>10;
+        System.out.println(p4.test(new Integer(40)));
+        
+        MySupplier s1=()->"hello";
+        System.out.println(s1.get());
+        Supplier<Integer> s2=()->100;
+        System.out.println(s2.get());
+        
+        MyConsumer c1=a-> System.out.println(a*a);
+        Consumer<String> c2=a-> System.out.println("Hello " + a+" !");
+        c1.accept(100);
+        c2.accept("Name");
+        
+        MyFunction fn1=a->a.length();
+        System.out.println(fn1.apply("Hello World"));
+        Function<String,Integer> fn2=a->a.length();
+        System.out.println(fn2.apply("Hello World"));
+    }
+}
+
