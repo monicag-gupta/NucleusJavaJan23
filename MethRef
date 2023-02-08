@@ -1,0 +1,78 @@
+package lambdaPkg;
+class A{
+    void fn1A(){
+        System.out.println("fn1A");
+    }
+    static void fn2A(){
+        System.out.println("Static fn2A");
+    }
+    A(){
+        System.out.println("Constructor A()");
+    }
+    int fn3A(int x){
+        return x*x;
+    }
+    void fn4A(int x, int y){
+        System.out.println(x*y);
+    }
+    A(int x, int y){
+        System.out.println(x*y);
+    }
+    
+}
+interface MR1{
+    void fnMR1(); //void fn1A(), static void fn2A(), A(), System.out.println()
+}
+interface MR2{
+    int fnMR2(int x); //int fn3A(int), sout
+}
+interface MR3{
+    void fnMR3(int x, int y); //void fn4A(int x, int y), A(int, int)
+}
+interface MR4{
+    int fnMR4(String s);//String obj="Hello"; obj.length() ;XString.length();
+}
+
+public class MethodRefEg {
+    public static void main(String[] args) {
+        //Method Ref : to an instance method
+        MR1 mr11 = new A() :: fn1A;
+        mr11.fnMR1();
+        //Lambda of above:
+        MR1 mr12 = () -> new A().fn1A();
+        mr12.fnMR1();
+        //Method Ref : to a static method
+        MR1 mr13 = A :: fn2A;
+        mr13.fnMR1();
+        //Method Ref : to a constructor
+        MR1 mr14 = A :: new;
+        mr14.fnMR1();
+        int x=20;
+        //String x="aa";
+        //local variable usage in lambda
+        MR2 mr21 = a-> a+x;
+        System.out.println(mr21.fnMR2(45));
+        //Method Ref
+        MR2 mr22=new A()::fn3A;
+        System.out.println(mr22.fnMR2(45));
+        //lambda of above
+        MR2 mr23= a-> { return new A().fn3A(a);};
+        System.out.println(mr23.fnMR2(45));
+        //Method Ref 
+        MR3 mr31=new A()::fn4A;
+        mr31.fnMR3(4,5);
+        MR3 mr32= A :: new;
+        mr32.fnMR3(4,5);
+        //Meth Ref to arbitary Object ( object of JVM known classes)
+        //String obj="Hello"; obj.length();
+        //new String("Hello").length();
+        //String::length;
+        MR4 mr41=String::length;
+        System.out.println(mr41.fnMR4("Hello"));
+        //lambda of above:
+        MR4 mr42 = a-> new String(a).length();
+        System.out.println(mr42.fnMR4("Hello"));
+        
+        
+    }
+}
