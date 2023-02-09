@@ -24,3 +24,34 @@ public class GenericsEg {
 
 
 
+
+package collectionPkg;
+class MyEmp<T, U> {
+    T empid;
+    U deptCode;
+    String name;
+    MyEmp(T emp, String name, U d){
+        empid=emp;
+        this.name=name;
+        deptCode=d;
+    }
+    public String toString(){
+        return "Emp: ID: " + empid + " Name: " + name + " Dept : " + deptCode;
+    }
+    
+}
+public class GenericsEg {
+    public static void main(String[] args) {
+        MyEmp<Integer, String> e1=new MyEmp<>(101, "Abc", "IT");
+        System.out.println(e1);
+        MyEmp<String, String> e2=new MyEmp<>("102", "Abc", "HR");
+        System.out.println(e2);
+//        int i=(Integer)e2.empid;
+        int i=e1.empid;
+    }
+}
+
+
+
+
+
