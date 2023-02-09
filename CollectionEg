@@ -207,5 +207,55 @@ System.out.println("Final Size of Queue :"+qe.size());
 
 
 
+package collectionPkg;
+import java.util.ArrayList;
+import java.util.Iterator;
+
+class Emp{
+    int eid;
+    String name;
+
+    public Emp(int eid, String name) {
+        this.eid = eid;
+        this.name = name;
+    }
+    public Emp(){}
+    @Override
+    public String toString() {
+        return "Emp{" +
+                "eid=" + eid +
+                ", name='" + name + '\'' +
+                '}';
+    }
+}
+public class CollEg {
+    public static void main(String[] args) {
+        ArrayList<Emp> emps=new ArrayList<>();
+        emps.add(new Emp(101,"Abc"));
+        emps.add(new Emp(102,"Abd"));
+        emps.add(new Emp(103,"Abe"));
+        emps.add(new Emp(104,"Abi"));
+        for(Emp e:emps){
+            System.out.println(e);
+        }
+        for(int i=0; i< emps.size();i++){
+            System.out.println(emps.get(i));
+        }
+        Iterator<Emp> itEmps=emps.iterator();
+        while(itEmps.hasNext()){
+            System.out.println(itEmps.next());
+        }
+        System.out.println(emps);
+        
+        
+    }
+}
+
+
+
+
+
+
+
 
 
