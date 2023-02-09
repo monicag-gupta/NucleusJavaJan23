@@ -1,0 +1,26 @@
+package collectionPkg;
+class MyEmp<T>{
+    T empid;
+    String name;
+    MyEmp(T emp, String name){
+        empid=emp;
+        this.name=name;
+    }
+    public String toString(){
+        return "Emp: ID: " + empid + " Name: " + name;
+    }
+    
+}
+public class GenericsEg {
+    public static void main(String[] args) {
+        MyEmp<Integer> e1=new MyEmp<Integer>(new Integer(101), "Abc");
+        System.out.println(e1);
+        MyEmp<String> e2=new MyEmp<String>("102", "Abc");
+        System.out.println(e2);
+//        int i=(Integer)e2.empid;
+        int i=e1.empid;
+    }
+}
+
+
+
