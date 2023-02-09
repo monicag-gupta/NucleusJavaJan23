@@ -54,4 +54,29 @@ public class GenericsEg {
 
 
 
+import java.util.*;
+class JavaExample {
+	public static void main(String args[]) {
+		ArrayList<String> alist = new ArrayList<String>();
+		alist.add("Steve");
+		alist.add("Tim");
+		alist.add("Lucy");
+		alist.add("Pat");
+		alist.add("Angela");
+		alist.add("Tom");
+		System.out.println("The List: \n" + alist);
+		// Removing "Steve" and "Angela"
+		System.out.println("Removing Steve from position: " + alist.indexOf("Steve"));
+		alist.remove("Steve");
+		System.out.println("Removing Angela from position: " + alist.indexOf("Angela"));
+		alist.remove("Angela");
+		System.out.println("The List: \n" + alist);
+		// Removing 3rd element
+		System.out.println("Removing 3rd element position: " + alist.get(2));
+		alist.remove(2);
+		System.out.println("The List: \n" + alist);
+	}
+}
+
+
 
