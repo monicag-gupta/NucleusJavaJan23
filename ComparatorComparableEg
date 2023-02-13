@@ -1,0 +1,85 @@
+package collectionPkg;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
+class Empl implements  Comparable<Empl>, Comparator<Empl>{
+    @Override
+    public int compareTo(Empl e) {
+        return this.name.compareTo(e.name);
+    }
+    public int compare(Empl e1, Empl e2) {
+        return e1.name.compareTo(e2.name);
+    }
+
+    private int age;
+    private String name;
+    private int empId;
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getEmpId() {
+        return empId;
+    }
+
+    public void setEmpId(int empId) {
+        this.empId = empId;
+    }
+
+    public Empl(){}
+    public Empl(int age, String name, int empId) {
+        this.age = age;
+        this.name = name;
+        this.empId = empId;
+    }
+
+    @Override
+    public String toString() {
+        return "\nEmpl{" +
+                "age=" + age +
+                ", name='" + name + '\'' +
+                ", empId=" + empId +
+                '}';
+    }
+}
+class CompEmplAge implements Comparator<Empl>{
+    @Override
+    public int compare(Empl e1, Empl e2) {
+        return e1.getAge() - e2.getAge();
+    }
+}
+
+public class CompEg {
+    public static void main(String[] args) {
+        List<Empl> empls = new ArrayList<>();
+        empls.add(new Empl(100,"Abc",102));
+        empls.add(new Empl(60,"Tbc",110));
+        empls.add(new Empl(105,"Hbc",102));
+        System.out.println(empls);
+        Collections.sort(empls);
+        System.out.println("Sorted according to name: \n" + empls );
+        Collections.sort(empls, new CompEmplAge());
+        System.out.println("Sorted according to Age: \n" + empls );
+        Comparator<Empl> compEmplId=(e1,e2) -> e1.getEmpId() -e2.getEmpId();
+        Collections.sort(empls, compEmplId);
+        System.out.println("Sorted according to empID: \n" + empls );
+        Collections.sort(empls, (e1,e2)->e1.getAge()-e2.getAge());
+        System.out.println("Sorted according to Age: \n" + empls );
+        Collections.sort(empls, new Empl());
+        System.out.println("Sorted according to Name: \n" + empls );
+    }
+}
