@@ -86,6 +86,70 @@ public class MapEg {
 
 
 
+package collectionPkg;
+import java.util.*;
+
+public class MapEg {
+    public static void main(String args[]) {
+        Map<String, String> fruit = new LinkedHashMap<>();
+        fruit.put("Apple", "red");
+        fruit.put("Pear", "yellow");
+        fruit.put("Plum", "purple");
+        fruit.put("Cherry", "red");
+        fruit.put("Cherry", "deepred");
+        fruit.put("Strawberry", "deepred");
+        System.out.println("Map Set : " + fruit);
+        System.out.println("Key Set: " + fruit.keySet());
+        System.out.println("Value Collection: " + fruit.values());
+        System.out.println("Each Entry Set: " + fruit.entrySet());
+        System.out.println("Map.Entry set of values: ");
+        Set<Map.Entry<String, String>> mapEntry = fruit.entrySet();
+        for (Map.Entry<String, String> ele : mapEntry) {
+            System.out.println(ele.getKey() + " : has Value : " + ele.getValue());
+        }
+        List<String> l=(ArrayList<String>) fruit.values();
+        List<String> l2=new ArrayList<>(fruit.values());
+        Set<String> l3 = (Set<String>)fruit.values();
+        System.out.println("\nThe Fruits are: ");
+        for (String key : fruit.keySet()) {
+            System.out.println(key + ": " + fruit.get(key));
+        }
+      }
+    }
+
+
+
+
+package collectionPkg;
+import java.util.*;
+
+public class MapEg {
+    public static void main(String args[]) {
+        Map<String, String> fruit = new TreeMap<>();
+        fruit.put("Apple", "red");
+        fruit.put("Pear", "yellow");
+        fruit.put("Plum", "purple");
+        fruit.put("Cherry", "red");
+        fruit.put("Cherry", "deepred");
+        fruit.put("Strawberry", "deepred");
+        System.out.println("Map Set : " + fruit);
+        System.out.println("Key Set: " + fruit.keySet());
+        System.out.println("Value Collection: " + fruit.values());
+        System.out.println("Each Entry Set: " + fruit.entrySet());
+        System.out.println("Map.Entry set of values: ");
+        Set<Map.Entry<String, String>> mapEntry = fruit.entrySet();
+        for (Map.Entry<String, String> ele : mapEntry) {
+            System.out.println(ele.getKey() + " : has Value : " + ele.getValue());
+        }
+        List<String> l=(ArrayList<String>) fruit.values();
+        List<String> l2=new ArrayList<>(fruit.values());
+        Set<String> l3 = (Set<String>)fruit.values();
+        System.out.println("\nThe Fruits are: ");
+        for (String key : fruit.keySet()) {
+            System.out.println(key + ": " + fruit.get(key));
+        }
+      }
+    }
 
 
 
