@@ -1,0 +1,65 @@
+package collectionPkg;
+import java.util.function.*;
+
+class MyStream<T>{
+    T o;
+
+    public void setO(T o) {
+        this.o = o;
+    }
+
+    public void forEach(Consumer<T> c){
+        c.accept(o);
+    }
+    public MyStream<T> peek(Consumer<T> c){
+        c.accept(o);
+        return this;
+    }
+    public MyStream<T> map(Function<T,T> f){
+        this.o = f.apply(this.o);
+        return this;
+    }
+}
+
+//interface MyPredicate<T>{
+//    Boolean test(T o);
+//    default MyPredicate<T> or(MyPredicate<T> t1) {
+//        MyPredicate<T> t2 = o -> this.test(o) || t1.test(o);
+//        return t2;
+//    }
+//    default MyPredicate<T> and(MyPredicate<T> t1) {
+//        MyPredicate<T> t2 = o -> this.test(o) && t1.test(o);
+//        return t2;
+//    }
+//}
+
+
+public class StreamAPIEg1 {
+//    void fn(int x){
+//        System.out.println(x*x);
+//    }
+    public static void main(String[] args) {
+        MyStream<Integer> stream1=new MyStream<>();
+        stream1.setO(10);
+        stream1.forEach(System.out::println);
+        
+//        MyPredicate<Integer> m1=x -> x>18;
+//        MyPredicate<Integer> m2=x -> x<60;
+//        MyPredicate<Integer> validateAge=m1.and(m2);
+//        System.out.println("Validate Age 20: "+ validateAge.test(20));
+        
+        
+//        Consumer<Integer> c1=new StreamAPIEg1()::fn;
+//        Consumer<Integer> c2=c1.andThen(a-> System.out.println(a*a*a));
+//        c2.accept(20);
+        
+        MyStream<Integer> m2=new MyStream<>();
+        m2.map(a->a*a).peek(System.out::print).map(a->a*a*a).forEach(System.out::print);
+        
+    }
+}
+
+
+
+
+
