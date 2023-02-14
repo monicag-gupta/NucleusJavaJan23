@@ -96,4 +96,23 @@ public class JavaForEachArray {
 
 
 
+Intermediate Operations:
+Stream.filter()
+Stream.map()
+Stream.distinct()
+Stream.peek()
+
+Terminal Operations:
+Stream.collect()
+Stream.min() / Stream.max()
+Stream.findAny()
+Stream.findFirst()
+Stream.count()
+
+
+
+
+
+
+
 
