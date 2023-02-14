@@ -130,6 +130,20 @@ import java.util.*;
 
 
 
+import java.util.stream.*;
+import java.util.*;
+import java.util.function.*;
+public class SimpleStream2 {
+   public static void main(String args[]) {
+      Random random = new Random();
+random.ints().limit(10).forEach(System.out::println);
+   }
+}
+
+
+
+
+
 
 
 
