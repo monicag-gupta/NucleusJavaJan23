@@ -146,4 +146,31 @@ random.ints().limit(10).forEach(System.out::println);
 
 
 
+import java.util.*; 
+public class Main { 
+	public static void main(String args[]) { 
+		List<String> gadgets = new ArrayList<>(); 
+		gadgets.add("SmartPh"); 
+		gadgets.add("SmartWatch"); 
+		gadgets.add("SmartTV"); 
+		gadgets.add("iPhone"); 
+		for (String gadget : gadgets) { 
+    		System.out.println("processing: " + gadget);
+			if (gadget.length() > 8) { 
+				System.out.println("Prior ot Java 8: " + gadget); 
+				break; 
+		} 	} 
+		// using lambda expression and stream methods 
+		String item = gadgets.stream() 
+				.peek(s -> System.out.println("processing: " + s)) 
+				.filter(s -> s.length() > 8) .findFirst().orElse(""); 
+		System.out.println("In Java 8, first item: " + item); 
+		}	}
+
+
+
+
+
+
+
 
