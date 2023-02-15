@@ -1,0 +1,96 @@
+package designPatternsPkg.creational.abstractPkg;
+
+public interface Loan{
+void calcEMI(int principle, int tenure);
+void setDocs(String docs);
+}
+
+
+
+
+package designPatternsPkg.creational.abstractPkg;
+
+public class ClassLoan implements Loan{
+    int interest;
+    String docs;
+
+    public void setInterest(int interest) {
+        this.interest = interest;
+    }
+    int EMI;
+
+    @Override
+    public void calcEMI(int principle, int tenure) {
+        EMI = (interest * principle * tenure ) / 12;
+    }
+
+    @Override
+    public void setDocs(String docs) {
+            this.docs=docs;
+    }
+}
+
+
+
+
+
+package designPatternsPkg.creational.abstractPkg;
+
+public class HomeLoan extends ClassLoan{
+    public HomeLoan(int interest){
+        setInterest(interest);
+    }
+
+    @Override
+    public String toString() {
+        return "This is Home Loan with EMI : " + EMI + "You have submitted: " + docs + " interest : "+ interest;
+    }
+}
+
+
+
+package designPatternsPkg.creational.abstractPkg;
+
+public class VehicleLoan extends ClassLoan{
+    public VehicleLoan(int interest){
+        setInterest(interest);
+    }
+    @Override
+    public String toString() {
+        return "This is Vehicle Loan with EMI : " + EMI + "You have submitted: " + docs + " interest : "+ interest;
+    }
+}
+
+
+
+
+package designPatternsPkg.creational.abstractPkg;
+
+public class AbstractFactoryLoan {
+    ClassLoan l;
+    public ClassLoan getLoanObj(int p, int t, String d, String type){
+        ClassLoan c;
+        if(type.equals("HomeLoan")){
+            c=new HomeLoan(10);
+
+        }
+        else
+            c=new VehicleLoan(12);
+        c.setDocs(d);
+        c.calcEMI(p,t);
+//        System.out.println(c);
+        return c;
+    }
+}
+
+
+
+package designPatternsPkg.creational.abstractPkg;
+
+public class Main {
+    public static void main(String[] args) {
+        AbstractFactoryLoan al=new AbstractFactoryLoan();
+        ClassLoan l=al.getLoanObj(10000,20, "Adhar card, PAN card, Plot papers", "HomeLoan");
+        System.out.println(l);
+    }
+}
