@@ -1,0 +1,77 @@
+package designPatternsPkg.structural.Facade;
+
+public interface Loan {
+    void displayInfo();
+    int EMI(int p);
+}
+
+
+
+package designPatternsPkg.structural.Facade;
+
+public class HomeLoan implements Loan{
+
+    @Override
+    public void displayInfo() {
+        System.out.println("This is Home Loan");
+    }
+    public int EMI(int p){
+        return p*12;
+    }
+}
+
+
+
+package designPatternsPkg.structural.Facade;
+
+public class VehicleLoan implements Loan{
+
+    @Override
+    public void displayInfo() {
+        System.out.println("This is Vehicle Loan");
+    }
+    public int EMI(int p){
+        return p*12;
+    }
+}
+
+
+
+package designPatternsPkg.structural.Facade;
+
+public class FacadeClass {
+    Loan l;
+    public void displayHomeLoanInfo(int p){
+        l=new HomeLoan();
+        l.displayInfo();
+        int res=l.EMI(p);
+        System.out.println("EMI for Home loan : " + res);
+        
+    }
+    public void displayVehicleLoanInfo(int p){
+        l=new VehicleLoan();
+        l.displayInfo();
+        int res=l.EMI(p);
+        System.out.println("EMI for Vehicle loan : " + res);
+
+    }
+}
+
+
+
+
+
+package designPatternsPkg.structural.Facade;
+
+public class Main {
+    public static void main(String[] args) {
+        FacadeClass f=new FacadeClass();
+        f.displayHomeLoanInfo(10000);
+        f.displayVehicleLoanInfo(2000);
+    }
+}
+
+
+
+
+
