@@ -212,4 +212,39 @@ public class ISPEg {
 
 
 
+DIP:
+package solidPkg;
+
+import java.security.spec.RSAOtherPrimeInfo;
+interface HotDrink{
+    void serve();
+}
+class Tea implements HotDrink{
+    public void serve(){
+        System.out.println("Serve Tea");
+    }
+}
+class Coffee implements HotDrink{
+    public void serve(){
+        System.out.println("Serve Coffee");
+    }
+}
+class Restaurant{
+    HotDrink h;
+    Restaurant(HotDrink h){
+        this.h=h;
+    }
+    void order(){
+        h.serve();
+    }
+}
+
+public class DIPEg {
+    public static void main(String[] args) {
+        Restaurant r=new Restaurant(new Tea());
+        r.order();
+        r=new Restaurant(new Coffee());
+        r.order();
+    }
+}
 
