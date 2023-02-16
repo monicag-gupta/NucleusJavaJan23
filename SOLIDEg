@@ -116,6 +116,56 @@ public class LSPEg {
 
 
 
+NOT in LSP:
+
+package solidPkg;
+
+import com.sun.jdi.connect.VMStartException;
+
+interface Loan{
+    public int emi(int p, int t);
+}
+
+public class LoanLSPEg {
+    public static void main(String[] args) {
+        Loan citizen=(p,t)->p*t*10;
+        Loan warWidowFundCitizen=(p,t)-> {
+            throw new ArithmeticException("War Widow Fund: Not in LSP");
+        };
+        System.out.println(citizen.emi(10000,20));
+        System.out.println(warWidowFundCitizen.emi(10000,20));
+    }
+}
+
+
+
+
+package solidPkg;
+
+import com.sun.jdi.connect.VMStartException;
+
+interface Loan{
+    public int emi(int p, int t);
+}
+interface LoanReImbursed{
+//    public int emi(int p, int t);
+    void noEmi();
+}
+
+public class LoanLSPEg {
+    public static void main(String[] args) {
+        Loan citizen=(p,t)->p*t*10;
+        LoanReImbursed warWidowFundCitizen=()-> System.out.println("War Widow Fund : LSP");
+        System.out.println(citizen.emi(10000,20));
+        warWidowFundCitizen.noEmi();
+    }
+}
+
+
+
+
+
+
 
 
 
