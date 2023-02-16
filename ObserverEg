@@ -1,0 +1,68 @@
+package designPatternsPkg.behavioural.observerPkg;
+
+public interface LoanAgreement {
+    boolean emiPaid(int emi, int month);
+}
+
+
+
+package designPatternsPkg.behavioural.observerPkg;
+
+public class HomeLoanAgreement implements LoanAgreement
+{
+    @Override
+    public boolean emiPaid(int emi, int month) {
+        if(month > 3 && emi == 0){
+            return false;
+        }
+        return true;
+    }
+}
+
+
+
+package designPatternsPkg.behavioural.observerPkg;
+
+public class VehicleLoanAgreement implements LoanAgreement
+{
+    @Override
+    public boolean emiPaid(int emi, int month) {
+        if(month > 2 && emi == 0){
+            return false;
+        }
+        return true;
+    }
+}
+
+
+
+
+package designPatternsPkg.behavioural.observerPkg;
+
+public class DefaulterCheck {
+    LoanAgreement l;
+    public DefaulterCheck(LoanAgreement l){
+        this.l=l;
+    }
+    public void sendNotice(int emi, int month){
+        if(l.emiPaid(emi, month)){
+            System.out.println("On time");
+        }
+        else
+            System.out.println("Notice sent to client for being defaulter");
+    }
+}
+
+
+
+
+package designPatternsPkg.behavioural.observerPkg;
+
+public class Main {
+    public static void main(String[] args) {
+        HomeLoanAgreement h=new HomeLoanAgreement();
+        DefaulterCheck d=new DefaulterCheck(h);
+        d.sendNotice(20000,1);
+        d.sendNotice(0,3);
+    }
+}
