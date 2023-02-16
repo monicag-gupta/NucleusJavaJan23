@@ -1,3 +1,18 @@
+Principle Name : What it says?
+SRP: Single Responsibility Principle
+One class should have one and only one reasonability
+OCP: Open Closed Principle
+Software components should be open for extension, but closed for modification
+LSP: Liskov Substitution Principle
+Derived types must be completely substitutable for their base types
+ISP: Interface Segregation Principle
+Clients should not be forced to implement unnecessary methods which they will not use
+DIP: Dependency Inversion Principle
+Depend on abstractions, not on concretions
+
+
+
+
 SRP:
 
 package solidPkg;
@@ -17,6 +32,89 @@ public class SRP {
     }
     
 }
+
+
+
+
+LSP:
+package solidPkg;
+class Bird{
+    public void fly(){
+        System.out.println("All birds fly");
+    }
+}
+class Crow extends Bird{
+    @Override
+    public void fly(){
+        System.out.println("Crows fly");
+    }
+}
+class Ostrich extends Bird{
+    @Override
+    public void fly(){
+        throw new ArithmeticException("I cannot fly...NOT in LSP");
+    }
+}
+class CheckBirds{
+    static void checkflight(Bird b){
+        b.fly();
+    }
+}
+
+
+public class LSPEg {
+    public static void main(String[] args) {
+        CheckBirds.checkflight(new Bird());
+        CheckBirds.checkflight(new Crow());
+        CheckBirds.checkflight(new Ostrich());
+        CheckBirds.checkflight(new Bird());
+    }
+}
+
+
+
+
+
+
+package solidPkg;
+class FlyingBird{
+    public void fly(){
+        System.out.println("All birds fly");
+    }
+}
+class NonFlyingBird{
+    
+}
+
+class Crow extends FlyingBird{
+    @Override
+    public void fly(){
+        System.out.println("Crows fly");
+    }
+}
+class Ostrich extends NonFlyingBird{
+//    @Override
+//    public void fly(){
+//        throw new ArithmeticException("I cannot fly...NOT in LSP");
+//    }
+}
+class CheckBirds{
+    static void checkflight(FlyingBird b){
+        b.fly();
+    }
+}
+
+
+public class LSPEg {
+    public static void main(String[] args) {
+        CheckBirds.checkflight(new FlyingBird());
+        CheckBirds.checkflight(new Crow());
+//        CheckBirds.checkflight(new Ostrich());
+        CheckBirds.checkflight(new FlyingBird());
+    }
+}
+
+
 
 
 
