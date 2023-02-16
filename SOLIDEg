@@ -1,0 +1,23 @@
+SRP:
+
+package solidPkg;
+@FunctionalInterface
+interface Op{
+    int mathOperation(int x, int y);
+    default int save(int res){
+        return res;
+    }
+}
+
+public class SRP {
+    public static void main(String[] args) {
+        Op add=(x,y)->x+y;
+        Op sub=(x,y)->x-y;
+        System.out.println(add.save(add.mathOperation(3,4)));
+    }
+    
+}
+
+
+
+
