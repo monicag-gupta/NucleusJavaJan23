@@ -1,0 +1,54 @@
+package designPatternsPkg.behavioural.strategyPkg;
+
+public interface Loan {
+    int EMI(int p, int t);
+}
+
+
+
+package designPatternsPkg.behavioural.strategyPkg;
+
+public class HomeLoan implements  Loan{
+    @Override
+    public int EMI(int p, int t) {
+        return p*t*10;
+    }
+}
+
+
+
+package designPatternsPkg.behavioural.strategyPkg;
+
+public class VehicleLoan implements  Loan{
+    @Override
+    public int EMI(int p, int t) {
+        return p*t*12;
+    }
+}
+
+
+package designPatternsPkg.behavioural.strategyPkg;
+
+public class LoanEMICalc {
+    private Loan l;
+    public LoanEMICalc(Loan l){this.l=l;}
+    public void EMICalc(int p, int t){
+        int emi=l.EMI(p,t);
+        System.out.println("Emi: "+ emi);
+    }    
+}
+
+
+
+package designPatternsPkg.behavioural.strategyPkg;
+
+public class Main {
+    public static void main(String[] args) {
+        LoanEMICalc l1=new LoanEMICalc(new HomeLoan());
+        l1.EMICalc(1000,20);
+    }
+}
+
+
+
+
