@@ -167,5 +167,49 @@ public class LoanLSPEg {
 
 
 
+package solidPkg;
+interface DisConverter{
+    int m2Km(int m);
+    int cm2M(int cm);
+}
+interface TempConverter{
+    int Cel2Far(int cel);
+    int kel2Far(int Kel);
+    int far2Cel(int far);
+}
+class DistanceConverter implements DisConverter{
+
+//    @Override
+//    public int Cel2Far(int cel) {
+//        return 0;
+//    }
+//
+//    @Override
+//    public int kel2Far(int Kel) {
+//        return 0;
+//    }
+//
+//    @Override
+//    public int far2Cel(int far) {
+//        return 0;
+//    }
+
+    @Override
+    public int m2Km(int m) {
+        return 0;
+    }
+
+    @Override
+    public int cm2M(int cm) {
+        return 0;
+    }
+}
+public class ISPEg {
+}
+
+
+
+
+
 
 
