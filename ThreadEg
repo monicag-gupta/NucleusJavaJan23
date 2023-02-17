@@ -276,6 +276,25 @@ public class ThreadPriority {
 
 
 
+Methods:
+public void suspend()
+This method puts a thread in suspended state and can be resumed using resume() method.
+public void stop()
+This method stops a thread completely.
+public void resume()
+This method resumes a thread which was suspended using suspend() method.
+public void wait()
+Causes the current thread to wait until another thread invokes the notify().
+public void notify()
+Wakes up a single thread that is waiting on this object's monitor.
+public void notifyAll()
+Wakes up all the threads that called wait( ) on the same object.
+
+
+
+
+
+
 
 
 
