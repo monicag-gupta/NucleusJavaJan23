@@ -161,3 +161,28 @@ public class BalThread implements Runnable {
 
 
 
+
+
+package threadPkg;
+
+public class Main {
+    public static void main(String[] args) {
+        Account a1=new Account("Armaan", 100000);
+        Account a2=new Account("Shalini", 200000);
+        Thread dt1 = new Thread(new DepoThread(a1, 10000));
+        Thread wt1 = new Thread(new DrawThread(a1, 2000));
+        Thread bt1 = new Thread(new BalThread(a1));
+        Thread dt2 = new Thread(new DepoThread(a2, 15000));
+        Thread wt2 = new Thread(new DrawThread(a2, 20000));
+        Thread bt2 = new Thread(new BalThread(a2));
+        dt1.start();
+        wt1.start();
+        bt1.start();
+        
+        wt2.start();
+        dt2.start();
+        bt2.start();
+        
+    }
+}
+
