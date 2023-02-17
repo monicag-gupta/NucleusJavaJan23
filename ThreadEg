@@ -435,6 +435,7 @@ public class ThreadPrg1 extends Thread {
 
 
 
+Thread Priority does not mean execution priority, it represents priority in case of starvation of resource.
 
 
 
