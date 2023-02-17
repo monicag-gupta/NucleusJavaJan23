@@ -110,3 +110,54 @@ public class Account {
 
 
 
+
+
+package threadPkg;
+
+public class DepoThread implements Runnable {
+    Account account;
+    int amt;
+    public DepoThread(Account s, int a) {
+        account = s;
+        amt = a;
+    }
+    public void run() {
+        account.deposit(amt);
+    }
+}
+
+
+
+
+package threadPkg;
+
+public class DrawThread implements Runnable {
+        Account account;
+        int amt;
+	public DrawThread(Account s, int a) {
+            account = s;
+            amt = a;
+    }
+        public void run() {
+            account.withdraw(amt);
+    }
+}
+
+
+
+
+package threadPkg;
+
+public class BalThread implements Runnable {
+    Account account;
+	public BalThread(Account s) {
+        account = s;  
+    }
+    public void run() {
+        account.enquire(); 	
+    }
+}
+
+
+
+
