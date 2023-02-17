@@ -378,6 +378,58 @@ public class TestThread {
 
 
 
+class MyThread extends Thread  { 
+	public void run() 	{ 
+		for (int i=0; i<5 ; i++) 
+		     System.out.println(Thread.currentThread().getName() 	+ " in control"); 
+	} 		} 
+public class ThreadPrg1  { 
+	public static void main(String[]args) 	{ 
+		MyThread t = new MyThread(); 
+		t.start(); 
+		for (int i=0; i<5; i++) 		{ 
+                   System.out.println(Thread.currentThread().getName() 	+ " in control");
+			// Control passes to child thread 
+			Thread.yield(); 
+			// After execution of child Thread main thread takes over 
+			//System.out.println(Thread.currentThread().getName() 	+ " in control"); 
+		} 	} 
+} 
+
+
+
+
+
+
+public class ThreadPrg1 extends Thread {
+	String s;
+	ThreadPrg1(String ss){s=ss;}
+	public void run() {
+		System.out.println(s + ": Start.. ");
+		try {
+			Thread.sleep(300);
+		} catch (InterruptedException ie) {
+		}
+		System.out.println(s+ " : End.. ");
+	}
+	public static void main(String[] args) {
+		ThreadPrg1 c1 = new ThreadPrg1("c1");
+		ThreadPrg1 c2 = new ThreadPrg1("c2");
+		System.out.println("Main Start.. ");
+		c1.start();
+		try {
+			c1.join(); // Waiting for c1 to finish
+		} catch (InterruptedException ie) {	}
+		System.out.println("c1.join ended!");
+		c2.start();
+		System.out.println("Main Ends.. ");
+	}
+}
+
+
+
+
+
 
 
 
