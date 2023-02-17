@@ -64,3 +64,49 @@ public class MyThread1 extends Thread{
 
 
 
+Thread(): Allocates a new Thread object
+Thread(Runnable target): Allocates a new Thread object
+Thread(Runnable target, String name): Allocates a new Thread object
+Thread(String name): Allocates a new Thread object
+
+
+
+
+
+
+
+package threadPkg;
+
+public class Account {
+    public String AccountName;
+    public Account(){
+        AccountName="";
+        balance=1000;
+    }
+    public Account(String name){
+        AccountName=name;
+        balance=1000;
+    }
+    public Account(String name, int bal){
+        AccountName=name;
+        balance=bal;
+    }
+    
+    int balance;
+    // if 'synchronized' is removed, the outcome is unpredictable
+    public synchronized void deposit(int deposit_amount) {
+        System.out.println("\nDeposit amount" + deposit_amount + " for " + AccountName);
+        balance += deposit_amount;		
+    }
+    public synchronized void withdraw(int deposit_amount) {
+        System.out.println("\nWithdrawn amount" + deposit_amount + " for " + AccountName);
+        balance -= deposit_amount;		
+    }
+    public synchronized void enquire() {
+        System.out.println("\nBalance=" + balance+ " for " + AccountName);		
+    }
+}
+
+
+
+
