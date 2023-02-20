@@ -163,3 +163,9 @@ public class FileCopy {
 }
 
 
+
+
+/Monica/test.txt /Monica/test-copied.txt
+C:\\Monica\\test.txt C:\\Monica\test-copied.txt
+
+
