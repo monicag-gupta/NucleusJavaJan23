@@ -1,0 +1,13 @@
+package org.example;
+
+import java.util.logging.Logger;
+
+public class LoggerEg {
+    public static void main(String[] args) {
+       // System.setProperty("java.util.logging.SimpleFormatter.format", "[%1$tF %1$tT] [%4$-7s] %5$s %n");
+        System.setProperty("java.util.logging.SimpleFormatter.format","[%4$-4s] %5$s %n");
+        Logger.getLogger(LoggerEg.class.getName()).info("This is an info");
+        Logger.getLogger(LoggerEg.class.getName()).warning("This is a warning");
+    }
+}
+
