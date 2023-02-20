@@ -254,3 +254,33 @@ public class PathFileNIO {
     }	}
 
 
+
+try {
+    Files.move(sourcePath, destinationPath,
+            StandardCopyOption.REPLACE_EXISTING);
+} catch (IOException e) {
+    e.printStackTrace();
+}
+
+
+
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+ 
+public class CheckFileAttributes {
+  public static void main(String args[]) {
+    Path filePath = Paths.get("aaa.txt");
+    //Is file readable
+    System.out.println("Is file readable: " + Files.isReadable(filePath));
+    //Is file writable
+    System.out.println("Is file writable: " + Files.isWritable(filePath));
+    //Is file executable
+     System.out.println("Is file executable: " + Files.isExecutable(filePath));
+  }
+}
+
+
+
+
+
