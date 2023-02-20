@@ -310,7 +310,7 @@ import java.io.*;
 public class SerialExample {
     public static void main(String[] args)     {
         Emp object = new Emp("ab", 20, 2, 1000);
-        String filename = "aaaa.ser";
+        String filename = "C:\\Monica\\aaaa.ser";
         try { // Serialization
             // Saving of object in a file 
             FileOutputStream file = new FileOutputStream(filename);
