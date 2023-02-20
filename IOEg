@@ -366,3 +366,35 @@ message.eight=This is eighth message
 message.nine=This is ninth message
 message.ten=This is tenth message
 
+
+
+
+ApplicationProperties.java
+
+package pkg4IO;
+
+package org.example;
+import java.io.IOException;
+import java.util.Properties;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+public class ApplicationProperties {
+    private final Properties properties;
+    ApplicationProperties() {
+        properties = new Properties();
+        try {
+            properties.load(getClass().getClassLoader().getResourceAsStream("application.properties"));
+        } catch (IOException e) {
+            Logger.getLogger(getClass().getName()).log(Level.ALL, "IOException Occured while loading properties file:" +e.getMessage());
+        }
+    }
+    public String readProperty(String keyName) {
+        Logger.getLogger(getClass().getName()).log(Level.INFO, "Reading Property " + keyName);
+        return properties.getProperty(keyName, "There is no key in the properties file");
+    }
+}
+
+
+
+
+
