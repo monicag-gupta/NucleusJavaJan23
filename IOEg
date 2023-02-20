@@ -233,4 +233,24 @@ public class PathFileNIO {
     
     
     
+    
+    import java.io.IOException;
+import java.nio.file.*;
+public class PathFileNIO {
+	 public static void main(String[] args) {
+		 Path sourcePath = Paths.get("/Monica/test.txt");
+		 Path destinationPath = Paths.get("/Monica/test-copy1.txt");
+		 try {
+		     //Files.copy(sourcePath, destinationPath);
+		     Files.copy(sourcePath, destinationPath,
+						StandardCopyOption.REPLACE_EXISTING);
+		     System.out.println("Done");
+		 } catch(FileAlreadyExistsException e) {
+		     //file already exists and unable to copy
+		 } catch (IOException e) {
+		     //permission issue
+		     e.printStackTrace();
+		 }
+    }	}
+
 
