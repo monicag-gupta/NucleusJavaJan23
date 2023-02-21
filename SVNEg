@@ -10,3 +10,87 @@ Don't edit the default repository files.
 If it shows any errors, make sure that the folder is empty and not write-protected.
 TortoiseSVN will set a default folder icon when it creates a repository to identify local repositories. 
 If we create a repository by any other option, this folder icon is not assigned. 
+
+
+
+
+Import a Project by TortoiseSVN:
+If we want to import a project into an existing repository, then we can set the repository layout because it will already have been decided. 
+The imported folder cannot be considered as a working copy. We have to do a checkout operation to copy the files back from the server.
+Before you import your project into a repository, you should:
+Remove the unnecessary files which are not needed to build the project like temp files, compiler binaries, and more.
+Organize the files in directory and subdirectory. It is highly recommended to make our project’s structure before importing.
+
+
+Import a Project by TortoiseSVN:
+Create a Project in IntelliJ: Prj1
+Run HelloWorld in it.
+
+Now select the root directory of the project in the windows explorer and right-click on it. 
+It will open the context menu, choose TortoiseSVN -> Import to import the project. 
+It will ask you for the destination repository URL. 
+Browse and select the repository where you want to import the project. 
+Click Ok to continue.
+We can also specify the import message on the text area. 
+Also, include the ignored files by ticking on the dialogue box.
+
+It will start copying the project data. 
+We have successfully imported a project to our specified repository.
+
+
+
+
+Browse the Project
+To check whether the project is successfully imported or not, browse the repository.
+To browse the project right-click on any folder and select TortoiseSVN -> Repo-browser. 
+It will ask for the repository location, provide a valid repository location. Click Ok to continue.
+Please make sure the selected URL is the URL where we have stored our project. It will open the Tortoise repo browser. 
+Here we can perform operations over files like browse, edit, create, delete, checkout, and more. 
+To share it with other users, checkout and commit this project.
+
+
+
+SVN Checkout:
+The checkout operation checks out a working copy from the repository. It provides a checkout command to operate.
+The Checkout command is used to copy the files from the SVN repository to the working copy. 
+If we want to access files from the SVN server, then we have to check out it first.
+The checkout operation creates a working copy of the repository where we can edit, delete, or add contents. 
+It can be performed to a file, a project, or a repository. To checkout, we should have the URL of the file or repository.
+Create a new empty folder->SVN_Prj1_CheckOut-> Right click-> SVN Checkout->press ok
+
+
+
+Click OK for CheckOut
+All file of your project will automatically be copied to this folder and it will turn to green
+
+
+
+Make Changes
+Open Main.java from: 
+C:\Users\monica\ProjectsJava\SVN_Prj1_CheckOut\src
+And make the following changes and save and close the file:
+
+public class Main {
+public static void main(String[] args) {
+System.out.println("Hello world!");
+System.out.println("Hello world Again!");
+}
+}
+
+
+
+View changed icon
+Main.java is shown as red exclamation as not committed file.
+
+
+
+Commit
+Right-click the folder and click SVN update
+Then click SVN Commit
+
+
+
+
+
+
+
