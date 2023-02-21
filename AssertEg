@@ -1,0 +1,42 @@
+package AssertPkg;
+
+public class ToBeTestedEg {
+    public int add2No(int x, int y){
+        return x + y;
+    }
+    public static int sq(int x){
+        return x * x;
+    }
+
+}
+
+
+
+
+package AssertPkg;
+
+public class AssertEg {
+    public static void main(String[] args) {
+        ToBeTestedEg t1=new ToBeTestedEg();
+        assert (t1.add2No(2,3) == 5) : "Incorrect fn: add2No()";
+        System.out.println("Post assertion....code continues..");
+    }
+}
+
+
+
+
+By default, assertions are disabled. We need to run the code as given. The syntax for enabling assertion statement in Java source code is:
+java –ea Test
+Or
+java –enableassertions Test
+Disabling Assertions
+The syntax for disabling assertions in java are:
+java –da Test
+Or
+java –disableassertions Test
+Here, Test is the file name.
+
+
+
+
