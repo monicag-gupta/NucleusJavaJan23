@@ -1,0 +1,12 @@
+To create a repository using TortoiseSVN, follow the below steps:
+Step1: Open the windows explorer and create a new folder and name it e.g., SVN_Prj1.
+Make the folder Read-Write (un-tick read-only in properties of folder)
+Step2: Right-click on the newly created folder and select option TortoiseSVN → Create Repository here.
+An SVN repository will be created. 
+Next, it will ask you for the default folder structure. 
+Select the Create Folder structure option.
+A new repository is created inside SVN_Prj1. 
+Don't edit the default repository files. 
+If it shows any errors, make sure that the folder is empty and not write-protected.
+TortoiseSVN will set a default folder icon when it creates a repository to identify local repositories. 
+If we create a repository by any other option, this folder icon is not assigned. 
