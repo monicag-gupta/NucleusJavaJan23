@@ -166,3 +166,21 @@ public class TestCaseTimed {
     }
 }
 
+
+
+package tests;
+
+import org.junit.Test;
+import org.junit.rules.ExpectedException;
+import source.MainClass;
+
+import static org.junit.Assert.*;
+
+public class TestException {
+
+    @Test(expected=NumberFormatException.class)
+    public void cube() {
+        assertEquals(27, MainClass.cube(-3));
+    }
+}
+
