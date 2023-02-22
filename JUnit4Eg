@@ -149,3 +149,20 @@ public class TestCases {
 
 
 
+
+package tests;
+
+import org.junit.Test;
+import source.MainClass;
+
+import static org.junit.Assert.*;
+
+public class TestCaseTimed {
+
+    @Test(timeout = 1000)
+    public void findMax() {
+
+        assertEquals(4, MainClass.findMax(new int[] { 1, 3, 4, 2 }));
+    }
+}
+
