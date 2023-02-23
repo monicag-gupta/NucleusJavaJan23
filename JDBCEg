@@ -68,7 +68,8 @@ public class MainRead {
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			Connection con = DriverManager.getConnection(
-					"jdbc:oracle:thin:@localhost:1521:orcl", "monica", "gupta");
+					"jdbc:oracle:thin:@10.1.50.198:1535:nsbt19c", "sh", "sh");
+					
 			Statement stmt = con.createStatement();
 			ResultSet rs = stmt.executeQuery("select * from Emptbl"); // emptbl
 			while (rs.next())
