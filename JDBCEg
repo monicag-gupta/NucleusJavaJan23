@@ -1,0 +1,13 @@
+To execute a statement against a database, the following flow is observed
+Load the driver (Only performed once)
+Obtain a Connection to the database (Save for later use)
+Obtain a Statement object from the Connection
+Use the Statement object to execute SQL.  Updates, inserts and deletes return Boolean.  Selects return a ResultSet
+Navigate ResultSet, using data as required
+Close ResultSet
+Close Statement
+
+Do NOT close the connection after every statement
+The same connection object can be used to create further statements
+A Connection may only have one active Statement at a time.  Do not forget to close the statement when it is no longer needed.
+Close the connection when you no longer need to access the database
