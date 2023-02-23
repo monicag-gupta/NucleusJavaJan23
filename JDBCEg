@@ -43,3 +43,17 @@ Insert some arbitrary records in EmpTbl:
 insert into Emptbl values (101,'Emp1',80000);
 insert into Emptbl values (102,'Emp2',81000);
 commit;
+
+
+
+
+
+ <dependency>
+            <groupId>com.oracle.ojdbc</groupId>
+            <artifactId>ojdbc10</artifactId>
+            <version>19.3.0.0</version>
+        </dependency>
+        
+        
+        
+        
