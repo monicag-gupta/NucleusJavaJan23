@@ -11,3 +11,35 @@ Do NOT close the connection after every statement
 The same connection object can be used to create further statements
 A Connection may only have one active Statement at a time.  Do not forget to close the statement when it is no longer needed.
 Close the connection when you no longer need to access the database
+
+
+
+Types of Statements:
+Statement
+Use for general-purpose access to your database. Useful when you are using static SQL statements at runtime. The Statement interface cannot accept parameters. 
+PreparedStatement 
+Use when you plan to use the SQL statements many times. The PreparedStatement interface accepts input parameters at runtime. 
+CallableStatement 
+Use when you want to access database stored procedures. The CallableStatement interface can also accept runtime input parameters. 
+
+
+
+Execute methods:
+boolean execute(String SQL) 
+Returns a boolean value of true if a ResultSet object can be retrieved; otherwise, it returns false. Use this method to execute SQL DDL statements or when you need to use truly dynamic SQL.
+int executeUpdate(String SQL) 
+Returns the numbers of rows affected by the execution of the SQL statement. Use this method to execute SQL statements for which you expect to get a number of rows affected - for example, an INSERT, UPDATE, or DELETE statement.
+ResultSet executeQuery(String SQL) 
+Returns a ResultSet object. Use this method when you expect to get a result set, as you would with a SELECT statement.
+
+
+
+
+
+Create table EmpTbl(id int, name varchar(30), salary int);
+
+Insert some arbitrary records in EmpTbl:
+
+insert into Emptbl values (101,'Emp1',80000);
+insert into Emptbl values (102,'Emp2',81000);
+commit;
