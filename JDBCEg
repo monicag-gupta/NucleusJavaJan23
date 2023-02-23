@@ -83,3 +83,27 @@ public class MainRead {
 }
 
 
+
+
+
+import java.sql.*;
+
+public class MainInsert {
+    public static void main(String args[]) throws Exception {
+        Class.forName("oracle.jdbc.driver.OracleDriver");
+        Connection con = DriverManager.getConnection(
+                "jdbc:oracle:thin:@localhost:1521:orcl", "monica", "gupta");
+        Statement stmt = con.createStatement();
+        int result = stmt.executeUpdate("insert into EmpTbl values(103,'Emp3',50000)");
+        // int result=stmt.executeUpdate("update EmpTbl set name='Emp33',salary= 70000 where id=103");
+        // int result=stmt.executeUpdate("delete from EmpTbl where id=103");
+        System.out.println(result + " records affected");
+        con.close();
+    }
+}
+
+
+
+
+
+
