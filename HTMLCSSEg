@@ -117,3 +117,72 @@
 </html>
 
 
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div *{
+        color:blue;
+        }
+        p{
+        color:green;
+        }
+
+    </style>
+    <link href="nsbtPrj.css" rel="stylesheet">
+</head>
+<body>
+<h2>Hello World!</h2>
+<h3>
+    <a href="First.html">First</a>
+</h3>
+<h4 style="color:red;">Inline Style Eg</h4>
+<div>
+    Hello All
+    <p>
+        Para inside div
+    </p>
+    <h1>
+        h1 in div
+    </h1>
+    <h2 id="para1">h2 in div</h2>
+</div>
+<p>
+    Para outside div
+</p>
+<p id="para1">Specific para</p>
+<p class="veg">Carrot</p>
+<p class="nonveg">Meat</p>
+<p class="veg">Beetroot</p>
+<p class="nonveg">Fish</p>
+</body>
+</html>
+
+
+
+
+
+div{
+font-size:40;
+color:orange;
+}
+
+
+#para1{
+color:lightblue;
+}
+.veg{
+color:green;
+}
+.nonveg{
+color:red;
+}
+
+
+
+
+
