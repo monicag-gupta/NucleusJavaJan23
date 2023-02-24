@@ -8,10 +8,41 @@
 <h1>Hello World!</h1><p>this is <i>new</i> Para</p>
 <hr>
 <div>Data : in Body of div</div>
-<ul>
+<ul type="circle">
     <li>item1</li>
     <li>Item2</li>
 </ul>
+<ol type="a">
+    <li>item1</li>
+    <li>Item2</li>
+</ol>
+<h3>
+    SKills Required:
+
+<select>JEE
+    <option>C++</option>
+    <option>Java</option>
+</select>
+    <br>
+    Skills for Project : NSBT
+    <input list="nsbtSkills">
+    <datalist id="nsbtSkills">
+        <option>C++</option>
+        <option>Java</option>
+    </datalist>
+    <br>
+    <input type="file" multiple>
+
+    <br>
+    <br>
+    <input type="Radio" value="C++" name="Skil"> C++
+    <input type="Radio" value="Java" name="Skil"> Java
+    <br>
+    <br>
+    <input type="Checkbox" value="C++" name="Skil2"> C++
+    <input type="Checkbox" value="Java" name="Skil2"> Java
+
+</h3>
 <br>
 <img src="nature.jpg" width="100" height="100">
 <br>
@@ -35,9 +66,9 @@
     </tr>
 </table>
 <br>
-<form action="Second.html" method="get">
-    Enter your Name: <input type="text" placeholder="Name here"><br>
-    Enter ID: <input id="Eid" type="text" required><label for="Eid" style="color:red;">*This is a compulsory field</label><br>
+<form action="Second.html" method="post">
+    Enter your Name: <input type="text" placeholder="Name here" name="CandidateName"><br>
+    Enter ID: <input id="Eid" type="text" required name="IDCand"><label for="Eid" style="color:red;">*This is a compulsory field</label><br>
     <label for="Sal">Enter Salary</label>
     <input id="Sal" type="text"><br>
     Company: <input type="text" value="NSBT" readonly><br>
@@ -63,6 +94,8 @@
 <br>
 </body>
 </html>
+
+
 
 
 
