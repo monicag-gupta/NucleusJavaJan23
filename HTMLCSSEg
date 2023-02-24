@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Hello World!</h1><p>this is <i>new</i> Para</p>
+<hr>
+<div>Data : in Body of div</div>
+<ul>
+    <li>item1</li>
+    <li>Item2</li>
+</ul>
+<br>
+<img src="nature.jpg" width="100" height="100">
+<br>
+<table border="1">
+    <tr>
+        <th>Name</th>
+        <th>Id</th>
+        <th colspan="2">Skills</th>
+    </tr>
+    <tr>
+        <td>Manav</td>
+        <td>103</td>
+        <td>C, C++, Java</td>
+        <td>HTML5</td>
+    </tr>
+    <tr>
+        <td>Parth</td>
+        <td>101</td>
+        <td>C</td>
+        <td>Java</td>
+    </tr>
+</table>
+<br>
+<form action="Second.html" method="get">
+    Enter your Name: <input type="text" placeholder="Name here"><br>
+    Enter ID: <input id="Eid" type="text" required><label for="Eid" style="color:red;">*This is a compulsory field</label><br>
+    <label for="Sal">Enter Salary</label>
+    <input id="Sal" type="text"><br>
+    Company: <input type="text" value="NSBT" readonly><br>
+    <input type="search"> for search boxes<br/>
+    <input type="number" min="5" max="50" step="5"> for spinboxes<br/>
+    <input type="range"> for sliders<br/>
+    <input type="color"> for color pickers<br/>
+    <input type="tel"> for telephone numbers<br/>
+    <input type="url"> for web addresses<br/>
+    <input type="email"> for email addresses<br/>
+    <input type="date"> for calendar date pickers<br/>
+    <input type="month"> for months<br/>
+    <input type="week"> for weeks<br/>
+    <input type="time"> for timestamps<br/>
+    <input type="datetime"> for precise, absolute date+time stamps<br/>
+    <input type="datetime-local"> for local dates and times<br/>
+    <input type="password"> for password char display<br/>
+    <input type="Submit" value="Submit">
+
+
+</form>
+<br>
+<br>
+</body>
+</html>
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h2>Hello World!</h2>
+<h3>
+    <a href="First.html">First</a>
+</h3>
+
+</body>
+</html>
+
+
