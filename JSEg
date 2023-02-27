@@ -171,6 +171,45 @@ Undefined: the variable has been created by not yet assigned a value
 
 
 
+externalJS.js
+
+function add2No(a, b){
+//External Script
+    i=parseInt(a);
+    j=parseInt(b);
+    return i+j;
+}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="externalJS.js"></script>
+</head>
+<body>
+Enter x: <input type="number" min="0" step="1" id="num1" value="12">
+<br>
+Enter y: <input type="number" min="0" step="1" id="num2">
+<br>
+<div id="res">Result : </div>
+<button onclick="fn();">InlineScriptCallingfn</button>
+<script>
+    function fn(){
+    //Internal Script
+    var a=document.getElementById("num1").value;
+    var b=document.getElementById("num2").value;
+    document.getElementById("res").innerHTML += add2No(a,b);
+
+
+    }
+</script>
+</body>
+</html>
+
+
+
 
 
 
