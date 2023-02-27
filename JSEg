@@ -320,6 +320,43 @@ element.appendChild(para);
 
 
 
+JSON:
+
+{
+"employees":[
+{"firstName":"John", "lastName":"Doe"}, 
+{"firstName":"Anna", "lastName":"Smith"},
+{"firstName":"Peter", "lastName":"Jones"}
+]
+}
+
+
+Data is in name/value pairs
+Data is separated by commas
+Curly braces hold objects
+Square brackets hold arrays
+
+
+
+
+<!DOCTYPE html>
+<html><body>
+<h2>Create Object from JSON String</h2>
+<p id="demo"></p> <script>
+var text = '{"employees":[' +
+'{"firstName":"Monica","lastName":"Gupta" },' +
+'{"firstName":"Ishu","lastName":"RoyChoudhury" },' +
+'{"firstName":"Ishani","lastName":"Choudhury" }]}';
+obj = JSON.parse(text);
+document.getElementById("demo").innerHTML =
+obj.employees[1].firstName + " " + obj.employees[1].lastName;
+</script></body></html>
+
+
+
+
+
+
 
 
 
