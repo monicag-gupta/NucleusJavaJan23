@@ -157,4 +157,21 @@ Entry for Employees only:
 
 
 
+JavaScript allows the same variable to contain different types of data values.
+Primitive data types
+Number: integer & floating-point numbers
+Boolean: logical values “true” or “false”
+String: a sequence of alphanumeric characters
+Composite data types (or Complex data types)
+Object: a named collection of data
+Array: a sequence of values
+Special data types
+Null: an initial value is assigned
+Undefined: the variable has been created by not yet assigned a value
+
+
+
+
+
+
 
