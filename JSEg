@@ -122,5 +122,24 @@
 
 
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+</head>
+<body>
+  <div onclick="alert('Outer div clicked');">
+      Only Outer<br><br> Inner div:
+      <div onclick="alert('Inner div clicked');"><br>Hello Inside outer<br>
+      <button onclick="prompt('Enter Name: ');">Click on button</button>
+      </div>
+  </div>
+</body>
+</html>
+
+
+
 
 
