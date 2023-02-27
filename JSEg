@@ -44,3 +44,48 @@
 
 
 
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+</head>
+<body>
+    <button onclick="inputNo();">Input two Nos.</button>
+    <br>
+    <h5>The Numbers are:
+    <div id="num1">NaN</div>
+    <div id="num2"></div>
+    </h5>
+    <button onclick="sum();">Sum</button>
+    <h5>The Sumation is:
+        <div id="sumId"></div>
+    </h5>
+<script>
+    function inputNo(){
+        var i = prompt("Enter a number: ");
+        var j = prompt("Enter another number: ");
+        document.getElementById("num1").innerHTML = i;
+        document.getElementById("num2").innerHTML = j;
+    }
+    function sumation(a,b){
+        return a+b;
+    }
+    function sum(){
+        var i= document.getElementById("num1").innerHTML;
+        var j= document.getElementById("num2").innerHTML;
+        a=parseInt(i);
+        b=parseInt(j);
+        var msg= "Concatenation result is: " + sumation(i,j);
+        msg += "<br>Sumation result is: "  + sumation(a,b);
+        document.getElementById("sumId").innerHTML = msg;
+        }
+
+
+</script>
+</body>
+</html>
+
