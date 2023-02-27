@@ -141,5 +141,20 @@
 
 
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+</head>
+<body>
+Entry for Employees only:
+<a href="First.html" onclick="return confirm('Are you sure, you r an employee');">Employee Page</a>
+</body>
+</html>
+
+
+
 
 
