@@ -372,4 +372,26 @@ document.getElementById("demo").innerHTML = obj.name;
 
 
 
+<!DOCTYPE html>	<html lang="en-us">  <head>
+    <meta charset="utf-8">    <meta name="viewport" content="width=device-width">
+    <title>Favorite food with required attribute</title>
+    <style>
+      input:invalid {
+        border: 2px dashed red;
+      }
+      input:invalid:required {
+        background-image: linear-gradient(to right, pink, lightgreen);
+      }
+      input:valid {
+        border: 2px solid black;
+      }
+    </style>  </head>
+<body>
+    <form>
+      <label for="choose">Would you prefer a fruit or a cup of Coffee?</label>
+      <input id="choose" name="i_like" required>
+      <button>Submit</button>
+    </form>	</body>	</html>
+
+
 
