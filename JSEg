@@ -212,5 +212,70 @@ Enter y: <input type="number" min="0" step="1" id="num2">
 
 
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="externalJS.js"></script>
+</head>
+<body>
+<table>
+ <tr>
+     <td>Username: </td><td><input type="text" id="uname"></td>
+ </tr>
+    <tr>
+        <td>Password: </td><td><input type="password" id="passwd"></td>
+    </tr>
+    <tr colspan="2">
+        <td><button onclick="login()">Login/authenticate</button></td>
+    </tr>
+
+</table>
+<script>
+    function login(){
+        var l=document.getElementById("uname").value;
+        var p=document.getElementById("passwd").value;
+        if(l=="nsbt" && p=="nsbtpass"){
+            alert("Login successful!");
+        }
+        else{
+            alert("try again as nsbtpass");
+        }
+    }
+</script>
+</body>
+</html>
+
+
+
+
+<script>
+var counter;
+for (counter = 1; counter <= 10; counter++)
+{
+	document.write(counter*counter + “ “);
+}
+</script>
+
+
+
+
+<script language=“JavaScript”>
+var book;  (What is the difference if “var book=“”;)
+var booklist = new Array(“Chinese”, “English”, “Jap”);
+for (var counter in booklist) {
+	book += booklist[counter] + “ “;
+}
+alert(book);
+</script>
+
+
+
+
+
+
+
+
 
 
