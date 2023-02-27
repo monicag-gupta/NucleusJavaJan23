@@ -355,6 +355,19 @@ obj.employees[1].firstName + " " + obj.employees[1].lastName;
 
 
 
+<!DOCTYPE html>
+<html><body>
+<h2>Store and retrieve data from local storage.</h2>
+<p id="demo"></p><script>
+var myObj, myJSON, text, obj;
+//Storing data:
+myObj = { name: "Ishu", age: 5, city: "Delhi" };
+myJSON = JSON.stringify(myObj);
+obj = JSON.parse(myJSON);
+document.getElementById("demo").innerHTML = obj.name;
+</script></body></html>
+
+
 
 
 
