@@ -89,3 +89,38 @@
 </body>
 </html>
 
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+</head>
+<body>
+    <button onclick="hello();">SayHello</button>
+    <div id="res1">Calling sq(2) : <br></div>
+    <div id="res2">Calling sq : <br></div>
+    <script>
+        function hello(){
+            alert("Hello World");
+            document.getElementById("res1").innerHTML += sq(2);
+            document.getElementById("res2").innerHTML += sq;
+        }
+        function sq(a){
+            b=parseInt(a);
+            return b*b;
+        }
+
+
+    </script>
+</body>
+</html>
+
+
+
+
+
+
