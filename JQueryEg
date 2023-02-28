@@ -165,3 +165,32 @@ glyphicons-halflings-regular.svg
 glyphicons-halflings-regular.ttf 
 glyphicons-halflings-regular.woff
 
+
+
+
+
+<!DOCTYPE html>  <html>  <head>
+  <script src="jquery.js"></script>
+  <script>
+$(document).ready(function(){
+    $("button").click(function(){
+      var nm=$("#nm").val();
+      var eid=$("#eid").val();
+      $("#row1").append("<tr><td>"+nm+"</td><td>"+eid+"</td></tr>");
+
+    });
+
+});
+</script>  </head>  <body>
+<table id="row1">
+  <tr >
+    <th>Name</th>
+    <th>Empid</th>
+  </tr>
+</table>
+<br>
+<br>
+Enter Name: <input type="text" id="nm"><br>
+Enter Id: <input type="text" id="eid"><br>
+<button>Add row</button>
+</body>  </html>
