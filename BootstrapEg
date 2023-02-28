@@ -19,3 +19,16 @@
 
 
 
+
+<html>  
+  <head>  
+    <title>Example3</title>  
+    <!-- Bootstrap -->  
+    <link href="bootstrap.css" rel="stylesheet" media="screen">  
+   </head>  
+  <body>  
+        <img src="img1.jpg" class="img-responsive"/>
+     </body>  
+</html> 
+
+
