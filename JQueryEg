@@ -107,3 +107,36 @@ $(document).ready(function(){
 
 
 
+
+<!DOCTYPE html>  <html>  <head>
+  <script src="jquery.js"></script>
+  <script>
+$(document).ready(function(){
+    $("#button1").click(function(){
+        $("p").html("Hello <b>JQuery Paragraph</b>");
+        $("#para1").text("Hello <b>JQuery Paragraph</b>");
+    });
+    $("#button2").click(function(){
+        var x=$("#x").val();
+        var y=$("#y").val();
+        a=parseInt(x);
+        b=parseInt(y);
+        res= a+b;
+        $("h1").html($("h1").html() + res);
+
+    });
+});
+</script>  </head>  <body>
+<button id="button1">Click here to change the content of all p elements</button>
+<p>This is a paragraph.</p>
+<p>This is another paragraph.</p>
+<div id="para1">This is a div</div>
+<br>
+Enter x: <input type="text" id="x">
+<Br>
+Enter y: <input type="text" id="y">
+<br>
+<button id="button2">Sum</button>
+<h1>Result : </h1>
+</body>  </html>
+
