@@ -38,6 +38,35 @@ This is to prevent any jQuery code from running before the document is finished 
 <!DOCTYPE html>  <html>  <head>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js
 "></script>
+  <script>
+$(document).ready(function(){
+  $("#hide").click(function(){
+    $("p").hide();// $("p").hide(1000);
+  });
+  $("#show").click(function(){
+    $("p").show();// $("p").show(1500);
+  });
+  $("#tog").click(function(){
+    $("p").toggle(2000);// $("p").show(1500);
+  });
+});
+</script>  </head>  <body>
+<p>  <b>The Poem:</b><br/>
+  Twinkle, twinkle, little star<br/>
+  How I wonder what you are  </p>
+<button id="hide">Hide</button><br>
+<button id="show">Show</button><br>
+<button id="tog">Show/Hide</button><br>
+</body>
+</html>
+
+
+
+
+
+<!DOCTYPE html>  <html>  <head>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js
+"></script>
   <script>  
 $(document).ready(function(){
   $("#hide").click(function(){
