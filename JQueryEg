@@ -8,3 +8,30 @@ https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js
 
 
 
+
+All jQuery methods are usually inside a document ready event:
+$(document).ready(function(){   // jQuery methods go here...});
+Or
+$(function(){   // jQuery methods go here...});
+This is to prevent any jQuery code from running before the document is finished loading (is ready).
+
+
+
+<html>
+<head>
+  <title>The jQuery Example</title>
+  <script src = "jquery.js"></script>
+  <script>
+         $(document).ready(function(){
+            document.write("<h1>Hello, World!</h1>");
+         });
+      </script>
+</head>
+<body>
+<h1>Hello</h1>
+</body>
+</html>
+
+
+
+
