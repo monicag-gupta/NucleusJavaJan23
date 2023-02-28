@@ -97,3 +97,26 @@
    </body>  
 </html> 
 
+
+
+
+<html>   <head>      <title>Example3</title>  
+<link href="./bootstrap.min.css" rel="stylesheet" media="screen">     </head>  
+  <body>  
+ <div class="row barone">  
+    <div class="col-lg-2">     <p>Division 1 X 1	</p>      </div>  
+    <div class="col-lg-2">      <p>Division 1 X 2	</p>      </div>  
+    <div class="col-lg-2">      <p>Division 1 X 3	</p>      </div>
+</div>
+ <div class="row barone">	
+    <div class="col-lg-2">      <p>Division 2 X 1	</p>      </div>  
+    <div class="col-lg-2">      <p>Division 2 X 2	</p>      </div>  
+    <div class="col-lg-2">      <p>Division 2 X 3	</p>      </div>  
+    <div class="col-lg-2">      <p>Division 2 X 4	</p>      </div>  
+    <div class="col-lg-2">      <p>Division 2 X 5	</p>      </div>  
+    <div class="col-lg-2">      <p>Division 2 X 6	</p>      </div>  
+    </div>    
+   </body>  
+</html> 
+
+
