@@ -87,4 +87,23 @@ $(document).ready(function(){
 
 
 
+<!DOCTYPE html>  <html>  <head>
+  <script src="jquery.js"></script>
+  <script>
+$(document).ready(function(){
+    $("button").click(function(){
+        $("p").html("Hello <b>JQuery Paragraph</b>");
+        $("#para1").text("Hello <b>JQuery Paragraph</b>");
+    });
+});
+</script>  </head>  <body>
+<button>Click here to change the content of all p elements</button>
+<p>This is a paragraph.</p>
+<p>This is another paragraph.</p>
+<div id="para1">This is a div</div>
+</body>  </html>
+
+
+
+
 
