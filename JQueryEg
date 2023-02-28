@@ -146,3 +146,22 @@ Responsive Web Design Example: https://colly.com/Simon Collison
 
 
 
+
+Download from:
+https://getbootstrap.com/docs/4.0/getting-started/download/
+Directory structure being:
+bootstrap/ 
+css/ 
+bootstrap.css 
+bootstrap.min.css 
+bootstrap-theme.css 
+bootstrap-theme.min.css 
+js/ 
+bootstrap.js 
+bootstrap.min.js 
+fonts/ 
+glyphicons-halflings-regular.eot 
+glyphicons-halflings-regular.svg 
+glyphicons-halflings-regular.ttf 
+glyphicons-halflings-regular.woff
+
