@@ -32,3 +32,23 @@
 </html> 
 
 
+
+
+
+<html>    <head>      <title>Example3</title>      <!-- Bootstrap -->
+    <link href="./bootstrap.css" rel="stylesheet" media="screen">   </head>
+<body>
+<table class="table table-bordered">
+    <thead> <tr> <th>Features</th> <th>Individual</th> <th>Enterprise</th> </tr> </thead>
+    <tbody> <tr> <td><h3>No. Of users</h3></td> <td><span class="badge">One</span></td>
+        <td><span class="badge">Unlimited</span></td> </tr>
+    <tr> <td><h3>Pro training</h3></td> <td><span class="badge">No</span></td>
+        <td><span class="badge">Yes</span></td>  </tr>
+    <tr> <td><h3>Price</h3></td> <td><button type="button" class="btn btn-warning btn-lg"> $9/Month</button></td> <td><button type="button" class="btn btn-warning btn-lg">	 $99/Month</button> </td>   </tr>
+    <tr> <td></td> <td><button type="button" class="btn btn-success btn-lg">Buy now</button></td>
+        <td><button type="button" class="btn btn-success btn-lg"">Buy now</button></td> </tr>
+    </tbody>  </table>     </body>   </html>
+
+
+
+
