@@ -120,3 +120,29 @@
 </html> 
 
 
+
+
+
+<html>   <head>      <title>Example3</title>
+    <link href="./bootstrap.css" rel="stylesheet" media="screen">     </head>
+<body>
+<p>Tabs With Dropdown Example</p>
+<ul class="nav nav-tabs">
+    <li class="active"><a href="#">Home</a></li>
+    <li><a href="#">SVN</a></li>
+    <li><a href="#">iOS</a></li>
+    <li><a href="#">VB.Net</a></li>
+    <li class="dropdown"> <a class="dropdown-toggle" data-toggle="dropdown" href="#"> Java <span class="caret"></span> </a>
+        <ul class="dropdown-menu">
+            <li><a href="#">Swing</a></li>
+            <li><a href="#">jMeter</a></li>
+            <li><a href="#">EJB</a></li>
+            <li class="divider"></li>
+            <li><a href="#">Separated link</a></li>
+        </ul>
+    </li> <li><a href="#">PHP</a></li>
+</ul>
+
+</body>
+</html>
+
