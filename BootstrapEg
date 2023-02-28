@@ -1,0 +1,21 @@
+<html>
+<head>
+    <title>Example1</title>
+    <!-- Bootstrap -->
+    <link href="./bootstrap.min.css" rel="stylesheet" media="screen">
+</head>
+<body>
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <ul class="nav navbar-nav">
+        <li><h1>Item1</h1></li>
+        <li class="active"><h1>Item2</h1></li>
+        <li><h1>Item3</h1></li>
+        <li><h1>Item4</h1></li>
+    </ul>
+</nav>
+</body>
+</html>
+
+
+
+
