@@ -2,7 +2,7 @@
 <head>
     <title>Example1</title>
     <!-- Bootstrap -->
-    <link href="./bootstrap.min.css" rel="stylesheet" media="screen">
+    <link href="./bootstrap.css" rel="stylesheet" media="screen">
 </head>
 <body>
 <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
