@@ -252,3 +252,59 @@ public class MyFirstServlet extends HttpServlet {
 
 
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="MyFirstServlet" method="post">
+    Enter Name: <input type="text" name="nm">
+    <input type="submit">
+</form>
+</body>
+</html>
+
+
+
+package servletPkg;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.PrintWriter;
+
+@WebServlet("/MyFirstServlet")
+public class MyFirstServlet extends HttpServlet {
+    static int count=0;
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int count2=0;
+        PrintWriter out = response.getWriter();
+        String name=request.getParameter("nm");
+        out.println("<html><body><h1>Hello " + name + "!! </h1>");
+        out.println("<h2>You are visitor number : " + (++count) + " !!</h2>");
+        out.println("</body></html>");
+
+    }
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int count2=0;
+        PrintWriter out = response.getWriter();
+        String name=request.getParameter("nm");
+        out.println("<html><body><h1>From Post : Hello " + name + "!! </h1>");
+        out.println("<h2>You are visitor number : " + (++count) + " !!</h2>");
+        out.println("</body></html>");
+
+    }
+}
+
+
+
+
+
+
