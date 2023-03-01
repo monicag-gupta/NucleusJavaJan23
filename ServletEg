@@ -306,5 +306,38 @@ public class MyFirstServlet extends HttpServlet {
 
 
 
+Important request header information
+Accept: This specifies the certain media types that are acceptable in the response.
+Accept-Charset: This indicates the character sets that are acceptable in the response.
+Accept-Encoding: This restricts the content-coding values that are acceptable in the response
+Accept-Language: This restricts the set of language that are preferred in the response.
+Authorization : This type indicates that user agent is attempting to authenticate itself with a server.
+From: This type contains internet email address for the user who controls the requesting user agent.
+Host: This type indicates internet host and port number of the resource being requested.
+If-Modified-Since: This type makes GET method condition. Do not return the requested information if it is not modified since the specified date.
+Range: This type request one or more sub-range of the entity, instead of the entire entity.
+Referer: This type enables client to specify, for the servers benefit, the address(URL) of the resources from which the Request-URL was obtained.
+User-Agent: This type contains information about the user agent originating the request.
+
+
+
+
+
+
+ protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+          response.setContentType("text/html");
+          PrintWriter out = response.getWriter();
+          out.println("Headers<hr/>");
+          Enumeration<String> headerNames = request.getHeaderNames();
+          while (headerNames.hasMoreElements()) {
+                String headerName = headerNames.nextElement();
+                out.print("Header Name: <em>" + headerName);
+                String headerValue = request.getHeader(headerName);
+                out.print("</em>, Header Value: <em>" + headerValue);
+                out.println("</em><br/>");
+          }
+    }
+
+
 
 
