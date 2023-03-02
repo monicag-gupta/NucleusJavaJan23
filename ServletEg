@@ -411,4 +411,41 @@ public class MySecondServlet extends HttpServlet {
 
 
 
+Status code 301 SC_MOVED_PERMANENTLY
+Status code 307 SC_TEMPORARY_REDIRECT
+Status code 400 SC_BAD_REQUEST
+Status code 403 SC_FORBIDDEN
+Status code 404 SC_NOT_FOUND
+Status code 405 SC_METHOD_NOT_ALLOWED
+Status code 500 SC_INTERNAL_SERVER_ERROR
+
+
+
+
+
+package servletPkg;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.Enumeration;
+
+@WebServlet("/MyFirstServlet")
+public class MyFirstServlet extends HttpServlet {
+
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+       // response.sendRedirect("MySecondServlet");
+        response.sendError(404, "No recognized search engine specified.");
+
+    }
+
+}
+
+
 
