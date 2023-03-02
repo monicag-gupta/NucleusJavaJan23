@@ -449,3 +449,123 @@ public class MyFirstServlet extends HttpServlet {
 
 
 
+
+
+
+RegForm.html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h2>Register</h2>
+<table border=1>
+    <tr>
+        <td>
+            <form method="get" action="MyFirstServlet">
+                First Name:<input type=text name="fname">
+                Last Name:<input type=text name="lname">
+                <input type="submit">
+            </form>
+        </td>
+    </tr>
+</table>
+
+</body>
+</html>
+
+
+MyFirstServlet:
+
+package servletPkg;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.Enumeration;
+
+@WebServlet("/MyFirstServlet")
+public class MyFirstServlet extends HttpServlet {
+
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String fname=request.getParameter("fname"); 
+        String lname=request.getParameter("lname"); 
+        if( (fname!=null && fname.trim().length()!=0) && (lname!=null && lname.trim().length()!=0))
+            request.getRequestDispatcher("MySecondServlet").forward(request,response);
+        else{
+            request.setAttribute("errorattr", "first name or last name not entered"); 
+            request.getRequestDispatcher("MyThirdServlet").include(request,response);
+            //getServletContext().getNamedDispatcher("MyThirdServletName").include( request, response);
+            request.getRequestDispatcher("RegForm.html").include(request,response);
+            response.getWriter().println("<H1> This is the MyFirstServlet Page.. including other pages</H1>");
+        }
+
+
+    }
+
+}
+
+
+
+
+MySecondServlet:
+
+package servletPkg;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.PrintWriter;
+
+@WebServlet("/MySecondServlet")
+public class MySecondServlet extends HttpServlet {
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        response.setContentType("text/html");
+        java.io.PrintWriter out = response.getWriter();
+        out.println("<html><head><title>Success</title>");
+        out.println("<head><body>");
+        out.println("Thanks <I> "+request.getParameter("fname")+"</I>" );
+        out.println("</body></html>");
+    }
+}
+
+
+
+MyThirdServlet:
+
+package servletPkg;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+
+@WebServlet(name = "MyThirdServletName", urlPatterns ="/MyThirdServlet")
+public class MyThirdServlet extends HttpServlet {
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        java.io.PrintWriter out = response.getWriter();
+        response.setContentType("text/html");
+        out.println("<html><head><title>login </title>");
+        out.println("</head><body><font color=red><b>");
+        String err=(String)request.getAttribute("errorattr");
+        if(err!=null) 		{ out.println(err); }
+        out.println("</font><b><br></body></html>");
+
+    }
+}
+
+
