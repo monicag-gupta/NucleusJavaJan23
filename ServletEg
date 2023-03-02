@@ -341,3 +341,74 @@ User-Agent: This type contains information about the user agent originating the 
 
 
 
+RegForm.html:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="MyFirstServlet" method="get">
+    Enter Name: <input type="text" name="nm">
+    <input type="submit">
+</form>
+</body>
+</html>
+
+
+
+MyFirstServlet.java:
+package servletPkg;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.Enumeration;
+
+@WebServlet("/MyFirstServlet")
+public class MyFirstServlet extends HttpServlet {
+
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        response.sendRedirect("MySecondServlet");
+    }
+
+}
+
+
+
+MySecondServlet:
+
+package servletPkg;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.PrintWriter;
+
+@WebServlet("/MySecondServlet")
+public class MySecondServlet extends HttpServlet {
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        PrintWriter out = response.getWriter();
+//        response.setContentType("text/html");
+        out.println("<html><body>");
+        out.println("<h1>This is MySecondServlet Page</h1>");
+        out.println("<h1>Welcome "  + request.getParameter("nm") +  " !! </h1>");
+        out.println("</body></html>");
+    }
+}
+
+
+
+
+
+
