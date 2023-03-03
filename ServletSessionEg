@@ -235,6 +235,38 @@ public class MySecondServlet extends HttpServlet {
 
 
 
+package servletPkg;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.PrintWriter;
+
+@WebServlet("/MySecondServlet")
+public class MySecondServlet extends HttpServlet {
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        javax.servlet.http.Cookie cks[]=request.getCookies();
+        String fname=null;
+        for(javax.servlet.http.Cookie ck : cks){
+            if(ck.getName().equals("fname")){
+                fname=ck.getValue();
+            }
+        }
+
+        PrintWriter out = response.getWriter();
+        out.println("<H1> This is the MySecondServlet Page.. <BR>Welcome : " + fname + " !! </H1>");
+        out.println("<h1><a href='RegForm.html'>To The Form</a></h1>");
+
+    }
+}
+
+
+
+
 
 
 
