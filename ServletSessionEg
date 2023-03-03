@@ -92,6 +92,51 @@ public class MySecondServlet extends HttpServlet {
 
 
 
+Http:
+Cannot be used to maintain data across two sessions
+Is a stateless protocol
+
+The following techniques can be used to track sessions data in servlets:
+Without explicit support from servlet API – programming session handling 
+URL rewriting 
+Hidden form fields 
+SSL Sessions  //we will not work on it
+Using Servlet API support 
+javax.servlet.http.Cookies 
+javax.servlet.http.HttpSession
+
+
+
+
+URL Rewriting:
+MyFirstServlet:
+
+
+package servletPkg;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.Enumeration;
+
+@WebServlet("/MyFirstServlet")
+public class MyFirstServlet extends HttpServlet {
+
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String fname=request.getParameter("fname");
+        PrintWriter out = response.getWriter();
+        out.println("<H1> This is the MyFirstServlet Page.. <BR>Welcome : " + fname + " !! </H1>");
+        out.println("<h1><a href='MySecondServlet?fname=" + fname + "'>To Next Page</a></h1>");
+    }
+
+}
+
+
 
 
 
