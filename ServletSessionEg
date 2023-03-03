@@ -140,5 +140,41 @@ public class MyFirstServlet extends HttpServlet {
 
 
 
+Hidden Form Field:
+MyFirstServlet:
+
+package servletPkg;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.Enumeration;
+
+@WebServlet("/MyFirstServlet")
+public class MyFirstServlet extends HttpServlet {
+
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String nm=request.getParameter("fname");
+        PrintWriter out = response.getWriter();
+        out.println("<H1> This is the MyFirstServlet Page.. <BR>Welcome : " + nm + " !! </H1>");
+        out.println("<h1><form action='MySecondServlet'><input type='hidden' value='"
+                +nm+"' name='fname'><input type='submit' value='toNextServlet'></form></h1>");
+    }
+
+}
+
+
+
+
+
+
+
+
+
 
 
