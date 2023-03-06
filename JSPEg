@@ -110,6 +110,50 @@
 
 
 
+Elements:
+Scripting elements 
+Scripting elements provide glue around template text and actions. 
+EL (Expression Language)
+Directive elements 
+provide information for the translation phase. 
+Action elements 
+Actions provide information for the request processing phase. 
+An Action can either be standard, that is, defined in this specification, or custom, that is provided via the portable tag extension mechanism. 
+
+
+
+
+Scripting elements :
+Three language-based types of scripting elements 
+scriptlets <% …. %> 
+expressions <%= ... %> 
+declarations <%! ... %> 
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Insert title here</title>
+</head>
+<body>
+<h1>Hello World!!</h1>
+<h3>
+<% int count=0; %>
+<%! int hitcount=0; %>
+<%= "You are visitor : " + (++count) %>
+<br>
+You are Visitor (hitcount: ) :
+<%= ++hitcount %>
+ </h3>
+</body>
+</html>
+
+
+
+
+
+
 
 
 
