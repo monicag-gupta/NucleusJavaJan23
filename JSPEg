@@ -242,6 +242,17 @@ config
 
 
 
+<html>
+   <body>
+   <strong>HttpServlet Name</strong>:<%=page.getClass().getName() %>
+   <Br>
+   <strong>Same HttpServlet Name</strong>:<%=this.getClass().getName() %>
+   </body>
+</html>
+
+
+
+
 
 
 
