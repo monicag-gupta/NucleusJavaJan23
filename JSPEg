@@ -368,6 +368,40 @@ You are Visitor (hitcount: ) :
 
 
 
+<%@ page language="java" import="java.util.Date,java.io.IOException, java.sql.*"%>
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Insert title here</title>
+</head>
+<body>
+<form action="Register.jsp" method="get">
+Enter Name: <input type="text" name="uname"><br>
+<input type="submit">
+</form>
+</body>
+</html>
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Insert title here</title>
+</head>
+<body>
+<h1>
+Welcome to my Site: <%=request.getParameter("uname")%>!!
+</h1>
+</body>
+</html>
+
+
+
+
+
+
 
 
 
