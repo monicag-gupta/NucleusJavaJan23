@@ -280,6 +280,91 @@ javax.servlet.http.*
 
 
 
+<%@ page language="java" import="java.util.Date,java.io.IOException, java.sql.*"%>
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Insert title here</title>
+</head>
+<body>
+<%@ include file="Header.html"%>
+
+<h1>Hello World!!</h1>
+<h3>
+<% int count=0; %>
+<%! int hitcount=0; %>
+<%= "You are visitor : " + (++count) %>
+<br>
+You are Visitor (hitcount: ) :
+<%= ++hitcount %>
+
+<%! String sum(int x, int y){
+    return ("sum of " + x + " + " + y + " = " + (x+y));
+}
+%>
+<br>
+<hr>
+<%=sum(3,4)%>
+ </h3>
+ <%@ include file="Footer.html"%>
+</body>
+</html>
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<table bgcolor="lightgrey" width="100%">
+    <tr>
+        <td>
+            <img src="nature.jpg" width="50" height="50">
+        </td>
+    <td>
+    Home
+        <select><option></option></select>
+    </td>
+    <td>
+    Contact
+    </td>
+    </tr>
+</table>
+</body>
+</html>
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<table bgcolor="lightblue" width="100%">
+  <tr>
+    <td>
+      <a href="https://docs.oracle.com/en/java/">Java docs</a>
+      </td>
+    <td>
+      <a href="https://docs.oracle.com/javase/6/docs/api/">JDK 1.6 docs</a>
+    </td>
+  </tr>
+</table>
+</body>
+</html>
+
+
+
+
+
+
 
 
 
