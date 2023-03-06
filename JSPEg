@@ -186,6 +186,15 @@ You are Visitor (hitcount: ) :
 
 
 
+<%
+         out.println("Your IP address is " + request.getRemoteAddr());
+      %>
+
+
+
+
+
+
 
 
 
