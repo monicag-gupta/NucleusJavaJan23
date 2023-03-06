@@ -255,6 +255,33 @@ config
 
 
 
+The following packages are implicitly imported in a JSP file: 
+java.lang.* 
+javax.servlet.* 
+javax.servlet.jsp.* 
+javax.servlet.http.* 
+
+
+
+
+<%@ page language="Java" import="java.util.*,java.io.*"%> 
+<html> 
+<head> <title> Example 1 </title> </head> 
+<body> 
+<% Date now=new Date();%> 
+<h2> Server date and time is 
+<%=now %>
+</h2> 
+</body> 
+</html> 
+
+
+
+
+
+
+
+
 
 
 
