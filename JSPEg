@@ -156,6 +156,36 @@ You are Visitor (hitcount: ) :
 
 
 
+<!DOCTYPE html>
+<html>
+<head>
+<title>Insert title here</title>
+</head>
+<body>
+<h1>Hello World!!</h1>
+<h3>
+<% int count=0; %>
+<%! int hitcount=0; %>
+<%= "You are visitor : " + (++count) %>
+<br>
+You are Visitor (hitcount: ) :
+<%= ++hitcount %>
+
+<%! String sum(int x, int y){
+    return ("sum of " + x + " + " + y + " = " + (x+y));
+}
+%>
+<br>
+<hr>
+<%=sum(3,4)%>
+ </h3>
+</body>
+</html>
+
+
+
+
+
 
 
 
