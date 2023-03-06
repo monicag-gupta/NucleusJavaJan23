@@ -196,5 +196,28 @@ You are Visitor (hitcount: ) :
 
 
 
+Implicit JSP objects are automatically defined variables 
+These are defined in the _jspService() method 
+These are not accessible in declarations. 
+out  
+<% out.println("<h1>Hello</h1>"); %> 
+request 
+<%=request.getParameter("name") %> 
+response 
+<% response.setContentType("text/html"); %> 
+<% response.sendRedirect("http://localhost:8080/a.html"); %> 
+session 
+application 
+<% application.setAttribute("aName",“EmpPortal"); %> 
+<%= application.getAttribute("aName")%> 
+exception 
+page 
+pageContext 
+config 
+
+
+
+
+
 
 
