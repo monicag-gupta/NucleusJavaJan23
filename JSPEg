@@ -57,5 +57,30 @@
 
 
 
+<!DOCTYPE html>
+<html>
+<head>
+<title>Insert title here</title>
+</head>
+<body>
+<h1>Hello World!!</h1>
+<h3>
+<% for(int i=0;i<10;i++){
+    out.println("<br>The iterated value: " + i);
+    try{
+    Thread.sleep(1000);
+    }
+    catch(Exception e){}
+    out.println(new java.util.Date());
+    }
+ %>
+ </h3>
+</body>
+</html>
+
+
+
+
+
 
 
