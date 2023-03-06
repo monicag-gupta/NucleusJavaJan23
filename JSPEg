@@ -220,4 +220,29 @@ config
 
 
 
+<html> <head> <title>UseSession</title> </head> <body>
+    <%
+      // Try and get the current count from the session
+      Integer count = (Integer)session.getAttribute("COUNT");
+      // If COUNT is not found, create it and add it to the session
+      if ( count == null ) {
+        count = 1;
+        session.setAttribute("COUNT", count);
+      } else {
+        count = count + 1;
+        session.setAttribute("COUNT", count);
+      }  
+      // Get the User's Name from the request
+      out.println("<b>Hello you have visited this site: " + count + " times. </b>");
+    %>
+  </body> </html>
+
+
+
+
+
+
+
+
+
 
