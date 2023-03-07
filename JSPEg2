@@ -1,0 +1,26 @@
+package com.site;
+
+public class Calculator {
+    public int cube(int n){
+        return n*n*n;
+    }
+
+}
+
+
+
+
+<%@ page language="java"%>
+<html>    <head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+        <title>JSP Multiple Checkbox</title>     </head>
+    <body>
+        <h1>
+           <jsp:useBean id="obj" class="com.site.Calculator"/>
+           <%
+            int m=obj.cube(5);
+            out.print("cube of 5 is "+m);
+           %>
+       </h1>
+    </body>  
+ </html>
