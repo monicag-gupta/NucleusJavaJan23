@@ -24,3 +24,70 @@ public class Calculator {
        </h1>
     </body>  
  </html>
+ 
+ 
+ 
+ 
+ 
+package com.site;
+public class StudentsBean implements java.io.Serializable {
+    private static final long serialVersionUID = 1L;
+    private String firstName = null;
+    private String lastName = null;
+    public StudentsBean() {   }
+    public String getFirstName(){      return firstName;   }
+    public String getLastName(){      return lastName;   }
+    public void setFirstName(String firstName){
+        this.firstName = firstName;   }
+    public void setLastName(String lastName){
+        this.lastName = lastName;   }
+
+    @Override
+    public String toString() {
+        return "StudentsBean{" +
+                "firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                '}';
+    }
+}
+
+
+
+
+
+
+<%@ page language="java"%>
+<html>    <head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+        <title>JSP Multiple Checkbox</title>     </head>
+    <body>
+        <h1>
+           <jsp:useBean id="obj" class="com.site.Calculator"/>
+           <%
+            int m=obj.cube(5);
+            out.print("cube of 5 is "+m);
+           %>
+       </h1>
+
+             <jsp:useBean id = "students" class = "com.site.StudentsBean">
+                <jsp:setProperty name = "students" property = "firstName" value = "Ishu"/>
+                <jsp:setProperty name = "students" property = "lastName" value = "Choudhury"/>
+               </jsp:useBean>
+              <p>Student First Name:
+                <jsp:getProperty name = "students" property = "firstName"/>
+             </p>
+               <p>Student Last Name:
+                <jsp:getProperty name = "students" property = "lastName"/>
+             </p>
+
+    </body>
+ </html>
+
+
+
+
+
+
+
+
+
