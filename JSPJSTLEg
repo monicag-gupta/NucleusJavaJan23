@@ -111,6 +111,22 @@ public class SimpleTagEx extends TagSupport {
 
 
 
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="s" uri="WEB-INF/tlds/simple.tld"%>
+<html>
+<head>
+<title>Simple Tag</title>
+</head>
+<body>
+<h1>
+Cube of 2 is: &nbsp;&nbsp;
+<s:Simple number="2"></s:Simple>
+</h1>
+</body>
+</html>
+
+
+
 
 
 
