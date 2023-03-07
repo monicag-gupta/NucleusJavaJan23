@@ -200,6 +200,91 @@ Age: <jsp:getProperty property="age" name="userinfo" /><br>
 
 
 
+<%@ page language="java"%>
+<html>    <head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+        <title>JSP Multiple Checkbox</title>     </head>
+    <body>
+        <form action="Register.jsp">
+            Enter username: <input type="text" name="uname"><br>
+            Enter password: <input type="text" name="pass"><br>
+            <input type="submit" value="register">
+       </form>
+    </body>
+ </html>
+
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Insert title here</title>
+</head>
+<body>
+<%
+if(request.getParameter("uname").equals("NSBT") && request.getParameter("pass").equals("nsbt"))
+{
+%>
+<jsp:forward page="Welcome.jsp"/>
+<%
+}
+else
+{
+%>
+<jsp:include page="ErrorPage.jsp">
+<jsp:param name="errorattr" value="Username or password incorrect"/>
+</jsp:include>
+<jsp:include page="index.jsp"/>
+<%
+}
+%>
+<h1>
+
+</h1>
+</body>
+</html>
+
+
+
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<h1 style="color:blue">
+Welcome to my Site:
+<%=request.getParameter("uname")%>
+</h1>
+
+</body>
+</html>
+
+
+
+
+
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<h1 style="color:red">
+<%=request.getParameter("errorattr") + " for " + request.getParameter("uname")%>
+</h1>
+
+</body>
+</html>
+
+
+
+
 
 
 
