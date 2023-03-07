@@ -287,6 +287,15 @@ Welcome to my Site:
 
 
 
+ A JSP <%@include %> directive 
+includes literal text "as is" in the JSP page 
+is not intended for use with content that changes at runtime. 
+The include occurs only when the servlet implementing the JSP page is being built and compiled. 
+The <jsp:include> action 
+allows you to include either static or dynamic content in the JSP page. 
+Static pages are included just as if the <%@include@%> directive had been used. 
+Dynamic included files act on the given request and return results that are included in the JSP page. 
+The include occurs each time the JSP page is served. 
 
 
 
