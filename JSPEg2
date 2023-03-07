@@ -360,6 +360,23 @@ The include occurs each time the JSP page is served.
 
 
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt"%>
+<html>  <head>  <title>fmt:formatDate</title>  </head>  <body>
+<h2>Different Formats of the Date</h2>
+<c:set var="dated" value="28-02-2023" />
+<fmt:parseDate value="${dated}" var="date"  pattern="dd-MM-yyyy" />
+<p>  Formatted Time :<fmt:formatDate type="time" value="${date}" />  </p>
+<p> Formatted Date :  <fmt:formatDate type="date" value="${date}" /> </p>
+<p> Formatted Date and Time :  <fmt:formatDate type="both" value="${date}" />  </p>
+<p> Formatted Date and Time in short style :
+<fmt:formatDate type="both" dateStyle="short" timeStyle="short"  value="${date}" /> </p>
+<p>  Formatted Date and Time in medium style :
+<fmt:formatDate type="both" dateStyle="medium" timeStyle="medium"  value="${date}" /> </p>
+<p>  Formatted Date and Time in long style :
+<fmt:formatDate type="both" dateStyle="long" timeStyle="long"  value="${date}" />  </p>
+</body>  </html>
+
 
 
 
