@@ -330,6 +330,21 @@ The include occurs each time the JSP page is served.
 
 
 
+<%@ taglib uri="http://java.sun.com/jstl/core" prefix="c" %>
+<html>
+<head>
+<title>Core Tag Example</title>
+</head>
+<body>
+<c:forEach var="j" begin="1" end="3">
+   Item <c:out value="${j}"/><p>
+</c:forEach>
+</body>
+</html>
+
+
+
+
 
 
 
