@@ -312,6 +312,25 @@ The include occurs each time the JSP page is served.
     
 
 
+<%@ taglib uri="http://java.sun.com/jstl/core" prefix="c" %>
+<html>
+<head>
+<title>Core Tag Example</title>
+</head>
+<body>
+<c:set var="income" scope="session" value="${40000*4}"/>
+<c:if test="${income > 80000}">
+   <p>My income is: <c:out value="${income}"/><p>
+</c:if>
+</body>
+</html>
+
+
+
+
+
+
+
 
 
 
