@@ -43,3 +43,75 @@ simple.tld
 
 
 
+
+
+
+package simple;
+import java.io.IOException;
+import javax.servlet.jsp.JspException;
+import javax.servlet.jsp.JspWriter;
+import javax.servlet.jsp.tagext.TagSupport;
+public class SimpleTagEx extends TagSupport {
+    private int number;
+    public void setNumber(int number) {       this.number = number;   }
+    public int doStartTag(){
+        JspWriter out=pageContext.getOut();
+        try{
+            out.print(number*number*number);
+        }    catch(Exception e){        e.printStackTrace();    }
+        return SKIP_BODY;
+    }   }
+
+
+
+
+
+<?xml version="1.0" encoding="UTF-8"?>
+<taglib xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd" version="2.0">
+    <tlib-version> 1.2</tlib-version>
+    <uri>SimpleTag</uri>
+    <description>A simple tag with attribute</description>
+    <tag>
+        <name>Simple</name>
+        <tag-class>simple.SimpleTagEx</tag-class>
+        <attribute>
+            <name>number</name>
+            <required>true</required>
+        </attribute>
+    </tag> 
+</taglib>
+
+
+
+
+
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="s" uri="WEB-INF/tlds/simple.tld"%>
+<html>
+<head>
+<title>Simple Tag</title>
+</head>
+<body>
+<s:Simple number="2"/>
+</body>
+</html>
+
+
+
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="s" uri="WEB-INF/tlds/simple.tld"%>
+<html>
+<head>
+<title>Simple Tag</title>
+</head>
+<body>
+<s:Simple number="2"></s:Simple>
+</body>
+</html>
+
+
+
+
+
+
+
