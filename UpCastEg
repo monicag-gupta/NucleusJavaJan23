@@ -1,0 +1,42 @@
+package core;
+enum Days{SUNDAY, MONDAY, TUESDAY}
+
+//An enum is a special "class" that represents a group of constants
+// (unchangeable variables, like final variables).
+//  To create an enum, use the enum keyword (instead of class or interface),
+//  and separate the constants with a comma.
+//  Note that BY convention they should be in uppercase letters:
+abstract class Pa{
+    public abstract void print();
+//    {
+//        System.out.println("I m Pa");
+//    }
+}
+class Ch extends Pa{
+    @Override
+    public void print(){
+        System.out.println("I m Ch");
+    }
+    public void print(String s){
+        System.out.println("I m Child with String: " + s);
+    }
+}
+class Ch2 extends Pa{
+    @Override
+    public void print(){
+        System.out.println("I m Ch2");
+    }
+}
+public class ClassMain {
+    public static void main(String[] args) {
+        Pa p=new Ch2();
+        p.print();
+        Ch c=p instanceof Ch? (Ch)p : new Ch();
+        c.print();
+        c.print("HelloWorld");
+        Days aday = Days.SUNDAY;
+        System.out.println("The choosen day is: " + aday);
+    }
+
+
+}
