@@ -1,0 +1,59 @@
+package core;
+final class Person{
+    final String name;
+    final Age age;
+
+    public String getName() {
+        return name;
+    }
+
+    public Age getAge() {
+        return new Age(age.getAge());
+    }
+    public Person(){name="name";age=new Age(100);}
+    public Person(String name, Age age) {
+        this.name = name;
+        this.age = new Age(age.getAge());
+    }
+
+    @Override
+    public String toString() {
+        return "Person{" +
+                "name='" + name + '\'' + " is of age: " +
+                age +
+                '}';
+    }
+}
+class Age{
+    int age;
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public Age(int age) {
+        this.age = age;
+    }
+    public Age(){}
+
+    @Override
+    public String toString() {
+        return age + " years.";
+    }
+}
+public class ClassMain {
+    public static void main(String[] args) {
+       Age age=new Age(12);
+       Person p=new Person("Priyansh",age);
+        System.out.println(p);
+        age.setAge(20);
+        p.getAge().setAge(20);
+        System.out.println(p);
+    }
+
+
+}
