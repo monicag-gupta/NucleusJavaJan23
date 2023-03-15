@@ -1,0 +1,46 @@
+<%@ page import="java.util.*"%>
+<!DOCTYPE html>
+<html>
+<body>
+<h1>
+<form action="#" method="post">
+Name: <input type="text" name="nam">
+<input type="submit">
+</form>
+<hr>
+<br>
+<%
+if(request.getParameter("nam")==null){
+%>
+<br>
+<%="This page is not submitted yet"%>
+<%
+}
+else{
+out.println("<br> Welcome to NSBT : "+request.getParameter("nam"));
+}
+%>
+
+<hr>
+<br>
+The Servlet Name:
+    <%=this.getClass().getName()%>
+    </h1>
+<hr>
+<br>
+<%--
+<jsp:forward page="userdetails.jsp">
+<jsp:param value="Abc" name="param1"/>
+</jsp:forward>
+--%>
+<%
+//response.sendRedirect("First.html");
+%>
+<jsp:include page="userdetails.jsp">
+<jsp:param value="Abc" name="param1"/>
+</jsp:include>
+<hr>
+<br>
+<%@include file="First.html"%>
+</body>
+</html>
