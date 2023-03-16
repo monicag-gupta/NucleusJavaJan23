@@ -50,3 +50,56 @@ pom.xml:
   
   
   
+  
+package com.mywebservices;
+import javax.jws.WebMethod;
+import javax.jws.WebService;
+import javax.jws.soap.SOAPBinding;
+import javax.jws.soap.SOAPBinding.Style;
+//Service Endpoint Interface  
+@WebService
+@SOAPBinding(style = Style.RPC)
+public interface HelloWorld{
+    @WebMethod
+    String getHelloWorldAsString(String name);
+}
+
+
+
+
+
+package com.mywebservices;
+import javax.jws.WebService;
+//Service Implementation
+@WebService(endpointInterface = "com.mywebservices.HelloWorld")
+public class HelloWorldImpl implements HelloWorld{
+    @Override
+    public String getHelloWorldAsString(String name) {
+        return "Hello World JAX-WS " + name;
+    }
+}
+
+
+
+
+package com.mywebservices;
+import javax.xml.ws.Endpoint;
+//Endpoint publisher
+public class HelloWorldPublisher{
+    public static void main(String[] args) {
+        try {
+
+
+            Endpoint.publish("http://localhost:7788/ws/hello", new HelloWorldImpl());
+        }
+        catch(javax.xml.ws.WebServiceException e){
+            System.out.println(e);
+        }
+    }
+}
+
+
+
+
+
+  
