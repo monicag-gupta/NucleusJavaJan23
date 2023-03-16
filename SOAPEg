@@ -1,0 +1,52 @@
+JAXWSPrj2
+Web Module Version : 2.5
+Add the classes. There are created 4 files for hello world WS example:
+HelloWorld.java under package com.mywebservices
+HelloWorldImpl.java under package com.mywebservices
+HelloWorldPublisher.java under package com.mywebservices
+HelloWorldClient.java under package com.mywebservices.client
+The first 3 files are created for server side and 1 application for client side.
+
+
+
+
+
+pom.xml:
+<dependencies>
+    <dependency>
+      <groupId>javax.servlet</groupId>
+      <artifactId>javax.servlet-api</artifactId>
+      <version>4.0.1</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>javax.xml</groupId>
+      <artifactId>webservices-api</artifactId>
+      <version>2.1-b16</version>
+    </dependency>
+    <dependency>
+      <groupId>jakarta.xml.ws</groupId>
+      <artifactId>jakarta.xml.ws-api</artifactId>
+      <version>2.3.3</version>
+    </dependency>
+    <dependency>
+      <groupId>com.sun.xml.ws</groupId>
+      <artifactId>jaxws-rt</artifactId>
+      <version>2.3.3</version>
+    </dependency>
+    <dependency>
+      <groupId>com.sun.xml.messaging.saaj</groupId>
+      <artifactId>saaj-impl</artifactId>
+      <version>1.5.0</version>
+    </dependency>
+    <dependency>
+      <groupId>javax.xml.soap</groupId>
+      <artifactId>saaj-api</artifactId>
+      <version>1.3.5</version>
+    </dependency>
+  </dependencies>
+  
+  
+  
+  
+  
