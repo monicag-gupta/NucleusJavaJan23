@@ -209,3 +209,88 @@ public class EmpDAO {
 
 
 
+
+
+package com.rest;
+import com.rest.entity.*;
+
+import javax.ws.rs.*;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
+import java.util.List;
+//http://localhost:8080/WebServicePrj2134/rest/empPostman/getAll
+@Path("/empPostman")
+public class EmpCrudPostman {
+    @GET @Path("/getAll")
+    @Produces({"application/json", "application/xml"})
+    public List<Emp> ListEmps() {
+        EmpDAO edao=new EmpDAO();
+        return edao.getAllEmps();
+    }
+    @GET
+    @Path("/getEmp/{eid}")
+    @Produces({"application/json", "application/xml"})
+    public Emp getEmp( @PathParam("eid") int eid) {
+        EmpDAO edao=new EmpDAO();
+        return edao.getEmp(eid);
+    }
+
+    @PUT
+    @Path("/updateEmp")
+    //@Produces({"application/json", "application/xml"})
+    @Produces(MediaType.TEXT_PLAIN)
+    public String upEmp(
+            @QueryParam("eid") int eid,
+            @QueryParam("ename") String ename)
+    {
+        Emp e=new Emp(eid,ename);
+        EmpDAO edao=new EmpDAO();
+        String r=edao.updateEmp(e);
+        return r;
+
+    }
+    @DELETE
+    @Path("/delEmp")
+    @Produces({"application/json", "application/xml"})
+    //@Produces(MediaType.TEXT_PLAIN)
+    public List<Emp> delEmp(
+            @QueryParam("eid") int eid)
+    {
+        EmpDAO edao=new EmpDAO();
+        return  edao.delEmp(eid);
+
+    }
+    @POST
+    @Path("/addPost")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.TEXT_PLAIN)
+    public String addEmpPost(Emp e)
+    {
+        EmpDAO edao=new EmpDAO();
+        edao.addEmp(e);
+        return "success by post";
+    }
+    @GET
+    @Path("/add")
+    //@Produces({"application/json", "application/xml"})
+    @Produces(MediaType.TEXT_PLAIN)
+    public String addEmp(
+            @QueryParam("eid") int eid,
+            @QueryParam("ename") String ename)
+    {
+        Emp e=new Emp(eid,ename);
+        EmpDAO edao=new EmpDAO();
+        edao.addEmp(e);
+        return "success";
+
+    }
+
+}
+
+
+
+
+
+
+
+
