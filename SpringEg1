@@ -1,0 +1,74 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.programcreek.entrylevel</groupId>
+  <artifactId>helloworld</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+ 	<dependencies>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-core</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+	</dependencies>
+ 	<properties>
+		<spring.version>5.0.1.RELEASE</spring.version>
+    <java.version>11</java.version>
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target>
+	</properties>
+</project>
+
+
+
+
+Create a package : com.springcore
+create the class : HelloWorld.java
+create the test class : MainApp.java
+create the xml file directly in resource folder to provide the values : Beans.xml
+Load the spring jar files dependencies: Core, Beans, Context, Logging
+Run the test class
+
+
+
+package com.springcore;
+public class HelloWorld {
+private String message; //property
+public void setMessage(String message){
+this.message = message;
+}
+public void getMessage(){
+System .out.println("Your Message : " + message);
+}
+}
+
+package com.springcore;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+public class MainApp {
+public static void main(String[] args) {
+ApplicationContext context =
+new ClassPathXmlApplicationContext("Beans.xml");
+HelloWorld obj = (HelloWorld) context.getBean("idhello");
+obj.getMessage();
+}
+}
+
+
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:schemaLocation="http://www.springframework.org/schema/beans
+ http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+ 		<bean id="idhello" class="com.springcore.HelloWorld">
+ 			<property name="message" value="Hello World!"/>
+ 		</bean>
+</beans>
+
+
+
+
