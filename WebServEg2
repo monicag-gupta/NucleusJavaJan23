@@ -292,5 +292,87 @@ public class EmpCrudPostman {
 
 
 
+<html>
+<body>
+    <h2>Jersey RESTful Web Application!</h2>
+    <p>
+    <a href="rest/hello/Ishu">Click Here</a>
+    <br>
+    <a href="rest/hello/helloWorld">Click Here for helloworld</a>
+    </p>
+    <hr>
+    <br>
+    <form action="rest/hello/add" method="post">
+    Enter Id:<input type="text" name="id"/><br/><br/>
+    Enter Name:<input type="text" name="name"/><br/><br/>
+    Enter Price:<input type="text" name="price"/><br/><br/>
+    <input type="submit" value="Add Product"/>
+    </form>
+
+    <hr>
+    <br>
+    <h2>Jersey RESTful Web Application!</h2>
+    <p>
+        <a href="rest/empCRUD/">Click Here</a>
+    </p>
+    <hr>
+    <h2>Form to add Emp by Get: Create in CRUD: </h2>
+    <form action="rest/empCRUD/add" method="get">
+      Enter Emp id: <input type="number" name="eid">
+      Enter Emp Name: <input type="text" name="ename">
+      <input type="Submit">
+    </form>
+    <br>
+    <hr>
+    <h2>Form to add Emp by Post: Create in CRUD: </h2>
+    <form action="rest/empCRUD/addPost" method="post">
+      Enter Emp id: <input type="number" name="eid">
+      Enter Emp Name: <input type="text" name="ename">
+      <input type="Submit">
+    </form>
+    <br>
+    <hr>
+    <h2>Get List of Emps : Read in CRUD: </h2>
+    <a href="rest/empCRUD/getAll"> Get the list of Emps</a>
+
+    <br>
+    <hr>
+    <h2>Form to Update Emp by Get: Update in CRUD: </h2>
+    <form action="rest/empCRUD/updateEmp" method="get">
+      Enter Emp id: <input type="number" name="eid">
+      Enter Emp Name: <input type="text" name="ename">
+      <input type="Submit">
+    </form>
+
+    <br>
+    <hr>
+    <h2>Form to Delete Emp by Get: Delete in CRUD: </h2>
+    <form action="rest/empCRUD/delEmp" method="get">
+      Enter Emp id: <input type="number" name="eid">
+      <input type="Submit">
+    </form>
+
+    <br>
+    <hr>
+    <h2>Form to Get an Emp by Get: Read in CRUD: </h2>
+    <form action="rest/empCRUD/getEmp" method="get">
+      Enter Emp id: <input type="number" name="eid">
+      <input type="Submit">
+    </form>
+    <hr>
+    <br>
+    <h1>Upload File with RESTFul WebService</h1>
+    <form action="rest/UpldFile/fileupload" method="post" enctype="multipart/form-data">
+       <p>
+        Choose a file : <input type="file" name="file" />
+       </p>
+       <input type="submit" value="Upload" />
+    </form>
+    <br>
+    <hr>
+    <h1>End of REST</h1>
+
+  </body>
+</html>
 
 
