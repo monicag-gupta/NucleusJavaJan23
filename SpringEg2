@@ -1,0 +1,84 @@
+package core.ioc;
+
+public interface IHotDrink {
+    void prepare();
+}
+
+
+
+
+package core.ioc;
+
+public class Restaurant {
+    IHotDrink iHotDrink;
+    public Restaurant(IHotDrink iHotDrink){this.iHotDrink=iHotDrink;}
+    public Restaurant(){iHotDrink = new Tea();}
+    public void serve(){
+        iHotDrink.prepare();
+        System.out.println("..Serving ... ");
+    }
+}
+
+
+
+package core.ioc;
+
+public class Tea implements IHotDrink {
+    public void prepare(){
+        System.out.println("Tea is prepared");
+    }
+}
+
+
+
+package core.ioc;
+
+public class Coffee implements IHotDrink {
+    public void prepare(){
+        System.out.println("Coffee is prepared");
+    }
+}
+
+
+
+
+
+package ioccontainer;
+import core.ioc.*;
+
+public class ContainerClass {
+    public Restaurant getRestaurantCoffee(){
+        return new Restaurant(getCoffee());
+    }
+    public Restaurant getRestaurantTea(){
+        return new Restaurant(getTea());
+    }
+    public Tea getTea(){
+        return new Tea();
+    }
+    public Coffee getCoffee(){
+        return new Coffee();
+    }
+
+
+}
+
+
+
+
+
+package ioccontainer;
+import core.ioc.*;
+
+public class Main {
+    public static void main(String[] args) {
+        ContainerClass c= new ContainerClass();
+        Restaurant r= c.getRestaurantCoffee();
+        r.serve();
+    }
+}
+
+
+
+
+
