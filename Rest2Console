@@ -1,0 +1,32 @@
+@GET
+    @Path("/getEmp/{eid}")
+    @Produces({"application/json", "application/xml"})
+    public Emp getEmp( @PathParam("eid") int eid) {
+        EmpDAO edao=new EmpDAO();
+        Emp e=edao.getEmp(eid);
+        if (e == null) {
+           // throw new NotFoundException();
+            throw new WebApplicationException(Response.Status.NOT_FOUND);
+        }
+        return e;
+    }
+
+
+
+
+@GET
+    @Path("/getEmp/{eid}")
+    @Produces({"application/json", "application/xml"})
+    public Emp getEmp( @PathParam("eid") int eid) {
+        EmpDAO edao=new EmpDAO();
+        Emp e=edao.getEmp(eid);
+        if (e == null) {
+            throw new NotFoundException();
+        }
+        return e;
+    }
+
+
+
+
+
