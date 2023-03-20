@@ -142,6 +142,10 @@ The BeanFactory  provides a factory pattern which separates the dependencies lik
 </project>
 
 
+Create a package : com.springcore
+create the class : HelloWorld.java
+create the test class : MainApp.java
+create the xml file directly in resource folder to provide the values : Beans.xml
 
 
 
