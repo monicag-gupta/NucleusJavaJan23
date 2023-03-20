@@ -81,4 +81,32 @@ public class Main {
 
 
 
+Spring is well-organized architecture consisting  of several modules. Modules in the Spring framework are:
+Spring AOP, Aspects and Instrumentation: 
+To allow users to implement custom aspects, complementing their use of OOP with AOP
+These modules support aspect oriented programming implementation where you can use Advices, Pointcuts etc. to decouple the code.
+The aspects module provides support to integration with AspectJ.
+The instrumentation module provides support to class instrumentation and classloader implementations.
+Spring ORM
+The ORM package is related to the database access. It provides integration layers for JDO, Hibernate, iBatis, etc.
+Spring DAO, Data Access / Integration
+The DAO (Data Access Object) support in Spring is primarily for standardizing the data access work using JDBC, Hibernate or JDO.
+This group comprises of JDBC, ORM, OXM, JMS and Transaction modules. These modules basically provide support to interact with the database.
+Spring Context
+This package builds on the beans package to add support for message sources and for the Observer design pattern, and the ability for application objects to obtain resources using a consistent API.
+Spring Web
+The Spring Web module is part of Spring’s web application development stack, which includes Spring MVC.
+This group comprises of Web, Web-Servlet, Web-Struts and Web-Portlet. These modules provide support to create web application.
+Spring Web MVC
+This is the Module which provides the MVC implementations for the web applications.
+Spring Test
+This layer provides support of testing with JUnit and TestNG.
+Spring Core
+The Core package is the most important component of the Spring Framework. This component provides the Dependency Injection features. 
+The BeanFactory  provides a factory pattern which separates the dependencies like initialization, creation and access of the objects from your actual program logic.
+
+
+
+
+
 
