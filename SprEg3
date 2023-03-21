@@ -96,3 +96,100 @@ public class MainApp {
 
 
 
+
+package com.springcore;
+
+public class HelloWorld {
+    public Cust message;
+    public void setMessage(Cust message) {
+        this.message = message;
+    }
+    public HelloWorld(){}
+    public HelloWorld(Cust message) {
+        this.message = message;
+    }
+
+    @Override
+    public String toString() {
+        return "HelloWorld{" +
+                "message='" + message + '\'' +
+                '}';
+    }
+}
+
+
+
+
+package com.springcore;
+
+public class Cust {
+    int x;
+    int y;
+    int z;
+
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    public void setY(int y) {
+        this.y = y;
+    }
+
+    public void setZ(int z) {
+        this.z = z;
+    }
+
+    @Override
+    public String toString() {
+        return "{" +
+                "x=" + x +
+                ", y=" + y +
+                ", z=" + z +
+                '}';
+    }
+}
+
+
+
+
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+ http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+    <bean id="idhello" class="com.springcore.HelloWorld">
+<!--        <property name="message" value="Hello World!"/>-->
+        <constructor-arg ref="custBean"/>
+    </bean>
+
+    <bean id="custBean" class="com.springcore.Cust">
+        <property name="x" value="1"/>
+        <property name="y" value="2"/>
+        <property name="z" value="11"/>
+    </bean>
+</beans>
+
+
+
+
+package com.springcore;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+public class MainApp {
+    public static void main(String[] args) {
+
+
+        ApplicationContext context = (ApplicationContext) new ClassPathXmlApplicationContext("Beans.xml");
+        HelloWorld hw = (HelloWorld) context.getBean("idhello");
+        System.out.println(hw);
+
+    }
+}
+
+
+
+
+
+
