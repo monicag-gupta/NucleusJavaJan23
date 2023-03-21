@@ -1,0 +1,122 @@
+@Component :       
+It is generic  stereotype for any spring managed component.
+@Repository :
+Specialized form of @Component. This annotation work as marker for any class which fulfills the role of repository or Data Access  Object(Persistent Layer).
+@Controller :
+Specialized form of @Component and applied to Presentation Layer.
+@Service :
+Specialized form of @Component and applied to Service Layer.
+@Configuration :
+@Configuration annotated class is used to define beans.  Have methods with annotation @Bean
+@Bean
+It is a method level annotation which work with @Configuration
+@Scope
+Every bean defined in IoC container needs to have a scope, default scope is Singleton.
+@Required 
+Bean property setter methods must be populated in XML configuration file at configuration time. Otherwise, the container throws a BeanInitializationException exception.
+@DependsOn
+@Primary
+@Lazy
+@Import
+@ImportResource
+@Value
+
+
+
+
+
+
+package com.springcore;
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
+@Configuration
+public class MyAppConfiguration {
+    @Bean("restaurantTeaBean") 
+    public Restaurant getRestaurantTeaBean()
+    {
+        return new Restaurant(this.getTeaBean());
+        
+    }
+    @Bean("restaurantCoffeeBean")
+    public Restaurant getRestaurantCoffeeBean()
+    {
+        return new Restaurant(this.getCoffeeBean());
+
+    }
+    @Bean("teaBean")
+    public Tea getTeaBean()
+    {
+        return new Tea();
+    }
+    @Bean("coffeeBean")
+    public Coffee getCoffeeBean()
+    {
+        return new Coffee();
+    }
+    
+}
+
+
+
+
+
+package com.springcore;
+
+public class Restaurant {
+    public void serve(){
+        System.out.println("Serving..");
+        iHotDrink.prepare();
+    }
+    public Restaurant(){    }
+
+      IHotDrink iHotDrink;
+      public void setiHotDrink(IHotDrink iHotDrink) {
+        this.iHotDrink = iHotDrink;
+    }
+
+    public Restaurant(IHotDrink iHotDrink) {
+        this.iHotDrink = iHotDrink;
+    }
+
+}
+
+
+
+
+package com.springcore;
+
+public class Tea implements IHotDrink{
+       public void prepare(){
+        System.out.println("Tea is prepared");
+    }
+}
+
+
+
+package com.springcore;
+
+public class Coffee implements IHotDrink{
+     public void prepare(){
+        System.out.println("Coffee is prepared");
+    }
+}
+
+
+
+
+
+
+package com.springcore;
+
+public interface IHotDrink {
+    void prepare();
+}
+
+
+
+
+
+
+
