@@ -1,0 +1,191 @@
+package com.springcore;
+
+public class Restaurant {
+    public void serve(){
+        System.out.println("Business logic:Serve");
+    }
+    public Restaurant(){
+        System.out.println("Constructing Restaurant:Constructor");
+    }
+
+    @Override
+    protected void finalize()  {
+        System.out.println("Cleaning the Restaurant: finalize");
+    }
+    public void init(){
+        System.out.println("Init-method called: init after constructor");
+    }
+    public void destroy(){
+        System.out.println("Destroy method: destroy at context closure");
+    }
+    IHotDrink iHotDrink;
+
+    public void setiHotDrink(IHotDrink iHotDrink) {
+        this.iHotDrink = iHotDrink;
+    }
+}
+
+
+
+package com.springcore;
+
+public class Tea implements IHotDrink{
+    public Tea(){
+        System.out.println("Tea constructed");
+    }
+
+    @Override
+    protected void finalize() throws Throwable {
+        System.out.println("Tea destroyed");
+    }
+
+    public void prepare(){
+        System.out.println("Tea is prepared");
+    }
+}
+
+
+
+
+package com.springcore;
+
+public class Coffee implements IHotDrink{
+    public Coffee(){
+        System.out.println("Coffee constructed");
+    }
+
+    @Override
+    protected void finalize() throws Throwable {
+        System.out.println("Coffee destroyed");
+    }
+    public void prepare(){
+        System.out.println("Coffee is prepared");
+    }
+}
+
+
+
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+ http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+<bean id="restaurantBean" class="com.springcore.Restaurant" init-method="init"
+      destroy-method="destroy">
+    <property name="iHotDrink" ref="teaBean"/>
+</bean>
+    <bean id="teaBean" class="com.springcore.Tea"></bean>
+    <bean id="coffeeBean" class="com.springcore.Coffee"></bean>
+</beans>
+
+
+
+
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+ http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+<bean id="restaurantBean" class="com.springcore.Restaurant" init-method="init"
+      destroy-method="destroy">
+    <property name="iHotDrink" ref="teaBean"/>
+</bean>
+    <bean id="teaBean" class="com.springcore.Tea"></bean>
+    <bean id="coffeeBean" class="com.springcore.Coffee"></bean>
+</beans>
+
+
+
+package com.springcore;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.AbstractApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+public class MainApp {
+    public static void main(String[] args) {
+
+        System.out.println("1. In main: Create Context");
+        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("Beans.xml");
+        ((AbstractApplicationContext)context).registerShutdownHook();
+
+        System.out.println("6. All beans seem eager, so constructed: next getBean(restaurant):");
+        Restaurant r=(Restaurant) context.getBean("restaurantBean");
+        System.out.println("7. Calling business logic");
+        r.serve();
+        r=null;
+        context.close();
+        System.gc();
+        System.out.println("At last Main ends");
+    }
+}
+
+
+
+
+
+package com.springcore;
+
+public class Restaurant {
+    public void serve(){
+        System.out.println("8. Business logic:Serve");
+    }
+    public Restaurant(){
+        System.out.println("2. Constructing Restaurant:Constructor");
+    }
+
+    @Override
+    protected void finalize()  {
+        System.out.println("9. Cleaning the Restaurant: finalize");
+    }
+    public void init(){
+        System.out.println("3. Init-method called: init after constructor");
+    }
+    public void destroy(){
+        System.out.println("7.5: Destroy method: destroy at context closure");
+    }
+    IHotDrink iHotDrink;
+
+    public void setiHotDrink(IHotDrink iHotDrink) {
+        this.iHotDrink = iHotDrink;
+    }
+}
+
+
+
+
+package com.springcore;
+
+public class Tea implements IHotDrink{
+    public Tea(){
+        System.out.println("4. Tea constructed");
+    }
+
+    @Override
+    protected void finalize() throws Throwable {
+        System.out.println("Tea destroyed");
+    }
+
+    public void prepare(){
+        System.out.println("Tea is prepared");
+    }
+}
+
+
+
+
+package com.springcore;
+
+public class Coffee implements IHotDrink{
+    public Coffee(){
+        System.out.println("5. Coffee constructed");
+    }
+
+    @Override
+    protected void finalize() throws Throwable {
+        System.out.println("Coffee destroyed");
+    }
+    public void prepare(){
+        System.out.println("Coffee is prepared");
+    }
+}
