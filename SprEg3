@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>org.example</groupId>
+    <artifactId>Spr2Prj</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <properties>
+        <spring.version>5.0.1.RELEASE</spring.version>
+        <java.version>11</java.version>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-core</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+    </dependencies>
+
+</project>
+
+
+
+
+
+
+package com.springcore;
+
+public class HelloWorld {
+    public String message;
+    public void setMessage(String message) {
+        this.message = message;
+    }
+    public HelloWorld(){}
+    public HelloWorld(String message) {
+        this.message = message;
+    }
+
+    @Override
+    public String toString() {
+        return "HelloWorld{" +
+                "message='" + message + '\'' +
+                '}';
+    }
+}
+
+
+
+
+
+
+
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+ http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+    <bean id="idhello" class="com.springcore.HelloWorld">
+<!--        <property name="message" value="Hello World!"/>-->
+        <constructor-arg value="Hello Again"/>
+    </bean>
+</beans>
+
+
+
+
+
+package com.springcore;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+public class MainApp {
+    public static void main(String[] args) {
+
+
+        ApplicationContext context = (ApplicationContext) new ClassPathXmlApplicationContext("Beans.xml");
+        HelloWorld hw = (HelloWorld) context.getBean("idhello");
+        hw.setMessage("Hello Hello");
+        System.out.println(hw);
+
+    }
+}
+
+
+
+
