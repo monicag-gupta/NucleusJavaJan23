@@ -394,6 +394,32 @@ Step 14: Main ends: JVM ends
 
 
 
+package com.springcore;
+
+public class Restaurant {
+    public void serve(){
+        System.out.println("Business logic:Serve");
+    }
+    public Restaurant(){
+        System.out.println("Constructing Restaurant:Constructor");
+    }
+
+    @Override
+    protected void finalize()  {
+        System.out.println("Cleaning the Restaurant: finalize");
+    }
+    public void init(){
+        System.out.println("Init-method called: init after constructor");
+    }
+    public void destroy(){
+        System.out.println("Destroy method: destroy at context closure");
+    }
+}
+
+
+
+
+
 
 
 
