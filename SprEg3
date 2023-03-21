@@ -37,6 +37,8 @@
 
 
 
+
+
 package com.springcore;
 
 public class HelloWorld {
@@ -331,3 +333,26 @@ public class Restaurant {
 
 
 
+
+
+package com.springcore;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+public class MainApp {
+    public static void main(String[] args) {
+
+
+        ApplicationContext context = (ApplicationContext) new ClassPathXmlApplicationContext("Beans.xml");
+        Restaurant restaurant1=(Restaurant) context.getBean("restaurantTeaBean");
+        restaurant1.setName("Restaurant1");
+        restaurant1.serve();
+        Restaurant restaurant2=(Restaurant) context.getBean("restaurantCoffeeBean");
+        restaurant2.serve();
+        Restaurant restaurant3=(Restaurant) context.getBean("restaurantTeaBean");
+        restaurant3.serve();
+
+
+    }
+}
