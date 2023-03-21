@@ -35,6 +35,8 @@
 
 
 
+
+
 package com.springcore;
 
 public class HelloWorld {
@@ -271,3 +273,26 @@ public class Coffee implements IHotDrink{
 
 
 
+
+
+
+
+
+package com.springcore;
+
+public class Restaurant {
+    IHotDrink iHotDrink;
+    String name;
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Restaurant(IHotDrink iHotDrink) {
+        this.iHotDrink = iHotDrink;
+    }
+    public void serve(){
+        System.out.print("Serving..from restaurant : " + name + "\t:");
+        iHotDrink.prepare();
+    }
+}
