@@ -244,3 +244,65 @@ public class Restaurant {
 
 
 
+
+@postConstruct
+@preDestroy
+
+Dependency even in Nexus:
+
+<dependency>
+    <groupId>javax.annotation</groupId>
+    <artifactId>javax.annotation-api</artifactId>
+    <version>1.3.2</version>
+</dependency>
+
+
+
+Restaurant.java:
+package com.springcore;
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
+import org.springframework.stereotype.Component;
+
+@Component("restaurantBean")
+public class Restaurant {
+	public void greetCustomer() {
+		System.out.println("Hello Customers!!");
+	}
+	// Annotate this method to execute it automatically as the bean is instantiated
+    @PostConstruct
+    public void init() throws Exception    {
+        System.out.println("Bean HelloWorld has been instantiated and I'm the init() method");
+    }
+     // Annotate this method to execute it when Spring container is closed
+    @PreDestroy
+    public void destroy() throws Exception    {
+        System.out.println("Conatiner has been closed and I'm the destroy() method");
+    }
+}
+
+
+
+
+
+TestSpringProject.java
+package com.springcore;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+public class TestSpringProject {
+	public static void main(String[] args) {
+		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
+		context.scan("com.springcore");
+		context.refresh();
+		Restaurant obj = (Restaurant) context.getBean("restaurantBean");
+		obj.greetCustomer();
+		context.close();
+	}
+}
+
+
+
+
+
+
+
+
