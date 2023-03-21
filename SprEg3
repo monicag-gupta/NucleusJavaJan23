@@ -356,3 +356,44 @@ public class MainApp {
 
     }
 }
+
+
+
+
+
+Stages in a bean’s lifecycle:
+Instantiate - The Spring container instantiates the bean.
+Populate properties- Spring IoC container injects the bean’s properties.
+Set Bean Name- Spring container sets the bean name. If the bean implements BeanNameAware, spring container passes the bean’s id to setBeanName() method.
+Set Bean Factory-If the bean implements BeanFactoryAware, Spring container passes theBeanFactory to setBeanFactory().
+Pre Initialization-This stage is also called the bean postprocess . If there are anyBeanPostProcessors, theSpring container calls the postProcesserBeforeInitialization () method.
+Initialize beans- If the bean implements IntializingBean,its afterPropertySet()method is called. If the bean has init method declaration, the specified initialization method is called.
+Post Initialization- IfBeanPostProcessors is implemented by the bean, the Spring container calls their postProcessAfterinitalization() method.
+Ready to Use- Now the bean is ready to be used by the application.
+Destroy- The bean is destroyed during this stage. If the bean implements DisposableBean, the Spring IoC container will call the destroy() method . If a custom destroy () method is defined, the container calls the specified method.
+
+
+
+Project of Beans with Life Cycle:
+Step 1: Beans Classes Created – with data
+Step2: Beans.xml Created
+Step 3: JVM starts: load Main() in memory
+Step 4: IOC container – load configuration; setBeanFactory(); annotations
+Step 5: Constructed Beans
+Step 6: pre-init(), init-method(), post-init()
+Step 7: load dependencies; property set()
+Step 8: getBean()
+Step 9: Shutdown hook()
+Step 10: Utility method- logic
+Step 11: destroy(): close()
+Step 12: finalize(); dispose()
+Step 13: gc() for beans
+Step 14: Main ends: JVM ends
+
+
+
+
+
+
+
+
