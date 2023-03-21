@@ -296,3 +296,38 @@ public class Restaurant {
         iHotDrink.prepare();
     }
 }
+
+
+
+
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+ http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+<!--    <bean id="idhello" class="com.springcore.HelloWorld">-->
+<!--                <property name="message" ref="custBean"/>-->
+<!--&lt;!&ndash;        <constructor-arg ref="custBean"/>&ndash;&gt;-->
+<!--    </bean>-->
+
+<!--    <bean id="custBean" class="com.springcore.Cust">-->
+<!--        <property name="x" value="1"/>-->
+<!--        <property name="y" value="2"/>-->
+<!--        <property name="z" value="11"/>-->
+<!--    </bean>-->
+    <bean id="restaurantTeaBean" class="com.springcore.Restaurant" scope="prototype">
+        <constructor-arg ref="teaBean"/>
+    </bean>
+    <!-- default scope is singleton -->
+    <bean id="restaurantCoffeeBean" class="com.springcore.Restaurant" scope="singleton">
+        <constructor-arg ref="coffeeBean"/>
+    </bean>
+    <bean id="teaBean" class="com.springcore.Tea"> </bean>
+    <bean id="coffeeBean" class="com.springcore.Coffee"> </bean>
+</beans>
+
+
+
+
+
+
