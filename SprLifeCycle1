@@ -189,3 +189,58 @@ public class Coffee implements IHotDrink{
         System.out.println("Coffee is prepared");
     }
 }
+
+
+
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+ http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+<bean id="restaurantBean" class="com.springcore.Restaurant" init-method="init"
+      destroy-method="destroy" lazy-init="true">
+    <property name="iHotDrink" ref="teaBean"/>
+</bean>
+    <bean id="teaBean" class="com.springcore.Tea" lazy-init="true"></bean>
+    <bean id="coffeeBean" class="com.springcore.Coffee" lazy-init="true"></bean>
+</beans>
+
+
+
+package com.springcore;
+
+public class Restaurant {
+    public void serve(){
+        System.out.println("8. Business logic:Serve");
+    }
+    public Restaurant(){
+        System.out.println("Not 2. Constructing Restaurant:Constructor");
+    }
+
+    @Override
+    protected void finalize()  {
+        System.out.println("9. Cleaning the Restaurant: finalize");
+    }
+    public void init(){
+        System.out.println("3. Init-method called: init after constructor");
+    }
+    public void destroy(){
+        System.out.println("7.5: Destroy method: destroy at context closure");
+    }
+    IHotDrink iHotDrink;
+
+    public void setiHotDrink(IHotDrink iHotDrink) {
+        this.iHotDrink = iHotDrink;
+    }
+
+    public Restaurant(IHotDrink iHotDrink) {
+        System.out.println("Not 2. Constructing Restaurant:Constructor");
+        this.iHotDrink = iHotDrink;
+    }
+
+}
+
+
+
+
+
