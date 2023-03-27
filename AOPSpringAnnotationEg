@@ -152,3 +152,125 @@ Beans.xml in resource
 
 
 
+
+
+
+
+
+package com.springcore;
+public class Restaurant {
+    public void greetCustomer(int booking) {
+        if(booking == 0)
+    throw new ArithmeticException();
+   System.out.println("Hello Customers");
+    }
+   
+}
+
+
+
+
+
+package com.springcore;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.AbstractApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+public class TestSpringProject {
+	public static void main(String[] args) {  
+		ApplicationContext context = new ClassPathXmlApplicationContext("Beans.xml");
+		Restaurant restaurantObj = (Restaurant) context.getBean("restaurantBean");
+		System.out.println("RestaurantBean Initialised");
+		restaurantObj.greetCustomer(10);
+	 }  
+} 
+
+
+
+
+
+package com.springcore;
+
+import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.annotation.Aspect;
+import org.aspectj.lang.annotation.Before;
+
+@Aspect
+public class BeforeAdvisor {
+
+    @Before("execution(* com.springcore.Restaurant.greetCustomer(..))")
+    public void logBefore(JoinPoint joinPoint) {
+
+    System.out.println("additional concern (Advertisement) before actual logic");  
+    }
+
+}
+
+
+
+
+
+
+package com.springcore;
+import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.annotation.*;
+
+@Aspect
+public class AfterAdvisor {
+	@After("execution(* com.springcore.Restaurant.greetCustomer(..))")
+    public void logAfter(JoinPoint joinPoint) {
+		System.out.println("additional concern after (finally) advice");   
+    }
+	@AfterReturning("execution(* com.springcore.Restaurant.greetCustomer(..))")
+    public void logAfterReturning(JoinPoint joinPoint) {
+		System.out.println("additional concern after returning(vouchers) advice");   
+    }
+	@AfterThrowing("execution(* com.springcore.Restaurant.greetCustomer(..))")
+    public void logAfterThrowing(JoinPoint joinPoint) {
+		System.out.println("additional concern if exception (send away customers) occurs");  
+    }
+	}
+
+
+
+
+
+package com.springcore;
+import org.aspectj.lang.ProceedingJoinPoint;
+import org.aspectj.lang.annotation.*;
+
+@Aspect
+public class AroundAdvisor {
+	@Around("execution(* com.springcore.Restaurant.greetCustomer(..))")
+    public void logAround(ProceedingJoinPoint joinPoint) throws Throwable {
+
+		System.out.println("additional concern around before actual (take order) logic");  
+		joinPoint.proceed(); 
+        System.out.println("additional concern around after actual (bill) logic");  
+    }
+}
+
+
+
+
+
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xmlns:aop="http://www.springframework.org/schema/aop"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd 
+    http://www.springframework.org/schema/aop 
+    http://www.springframework.org/schema/aop/spring-aop-3.0.xsd ">
+
+    <aop:aspectj-autoproxy />
+    <bean id="restaurantBean" class="com.springcore.Restaurant" />
+    <!-- Aspect -->
+    <bean id="BA" class="com.springcore.BeforeAdvisor" />
+     <bean id="AA" class="com.springcore.AfterAdvisor" />
+     <bean id="ArA" class="com.springcore.AroundAdvisor" />
+</beans>
+
+
+
+
+
