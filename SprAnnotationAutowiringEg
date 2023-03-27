@@ -1,0 +1,472 @@
+Prepare a Java Project: SpringAutoIOC
+Add Package: com.springcore
+Add Classes:
+IHotDrink.java : Interface 
+Restaurant.java : Business Class
+Tea.java : Implementer Class
+Coffee.java : Implementer Class
+Soup.java
+MainApp.java  : Main Class
+
+
+
+
+
+package com.springcore;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Component;
+@Component("restaurantBean")
+public class Restaurant {
+	//@Autowired
+    //@Qualifier("coffeeBean")
+	IHotDrink hotDrink;
+	/*	public Restaurant(iHotDrink hotDrink) { //autowired with Qualifier
+		this.hotDrink = hotDrink;
+	} */
+	/*
+  @Autowired
+	public Restaurant(Tea hotDrink) { //constructor/Setter autowired
+		this.hotDrink = hotDrink;
+	} */
+	public Restaurant() {}
+	public void serveHotDrink() {
+		hotDrink.prepareHotDrink();
+	}	}
+
+
+
+
+
+
+package com.springcore;
+import org.springframework.stereotype.Component;
+
+
+@Component("teaBean")
+public class Tea implements IHotDrink {
+	@Override
+	public void prepareHotDrink() {
+		System.out.println("Dear customer, we are preparing tea for you!!");
+	}
+}
+
+
+
+
+
+
+package com.springcore;
+import org.springframework.stereotype.Component;
+
+
+@Component("coffeeBean")
+
+public class Coffee implements IHotDrink {
+	@Override
+	public void prepareHotDrink() {
+		System.out.println("Dear customer, we are preparing coffee for you!!");
+	}
+}
+
+
+
+
+
+
+package com.springcore;
+import org.springframework.stereotype.Component;
+
+
+@Component("soupBean")
+public class Soup implements IHotDrink {
+	@Override
+	public void prepareHotDrink() {
+		System.out.println("Dear customer, we are preparing Soup for you!!");
+	}
+}
+
+
+
+
+
+
+package com.springcore;
+
+public interface IHotDrink {
+
+	public void prepareHotDrink();
+
+}
+
+
+
+
+
+package com.springcore;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+public class MainApp {
+	public static void main(String[] args) {
+		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
+		context.scan("com.springcore");
+		context.refresh();
+		Restaurant obj = (Restaurant) context.getBean("restaurantBean");
+		obj.serveHotDrink();
+		
+		context.close();
+	}
+}
+
+
+
+
+--------------------------------------------------------------------------------------------------------------
+
+SpringServicePrj
+package com.springservice;
+class MathService
+package com.springconsumer;
+class MainApp
+
+
+
+package com.springservice;
+import org.springframework.stereotype.Service;
+
+@Service("ms")
+public class MathService {
+
+	public int add(int x, int y) {
+		return x + y;
+	}
+	
+	public int subtract(int x, int y) {
+		return x - y;
+	}
+}
+
+
+
+package com.springconsumer;
+import com.springservice.*;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+public class MainApp {
+	public static void main(String[] args) {
+		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
+		context.scan("com.springservice");
+		context.refresh();
+
+		MathService ms = context.getBean(MathService.class);
+		int add = ms.add(1, 2);
+		System.out.println("Addition of 1 and 2 = " + add);
+		int subtract = ms.subtract(2, 1);
+		System.out.println("Subtraction of 2 and 1 = " + subtract);
+		//close the spring context
+		context.close();
+	}
+}
+
+
+
+
+
+-----------------------------------------------------------------------------------------------------
+package com.springcore;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+@Component("restaurantbean")
+public class Restaurant {
+    IHotDrink hotDrink;
+    String restaurantName;
+    public void setRestaurantName(String restaurantName) {
+        this.restaurantName=restaurantName;
+    }
+    @Autowired
+    public Restaurant(IHotDrink hotDrink) {
+        this.hotDrink = hotDrink;
+    }
+
+    public void ServeHotDrink() {
+       // System.out.println("\n" + restaurantName + " is serving: ");
+        hotDrink.prepareHotDrink();
+    }
+}
+
+
+
+
+package com.springcore;
+
+import org.springframework.stereotype.Component;
+
+@Component("teabean")
+public class Tea implements IHotDrink {
+
+    @Override
+    public void prepareHotDrink() {
+
+        System.out.println("Dear customer, we are preparing tea for you!!");
+    }
+
+}
+
+
+
+
+
+package com.springcore;
+
+import org.springframework.stereotype.Component;
+
+@Component("coffeebean")
+public class Coffee implements IHotDrink{
+
+    @Override
+    public void prepareHotDrink() {
+
+        System.out.println("Dear customer, we are preparing coffee for you!!");
+    }
+
+}
+
+
+
+
+
+package com.springcore;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+public class Main3 {
+    public static void main(String[] args) {
+        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
+        context.scan("com.springcore");
+        context.refresh();
+        Restaurant r1=(Restaurant) context.getBean("restaurantbean");
+        r1.ServeHotDrink();
+    }
+}
+
+//Output will be error as 2 beans are of type IHOTDRINK
+
+ <dependency>
+            <groupId>javax.inject</groupId>
+            <artifactId>javax.inject</artifactId>
+            <version>1</version>
+        </dependency>
+
+
+
+
+package com.springcore;
+
+import org.springframework.stereotype.Component;
+import javax.inject.Inject;
+import javax.inject.Named;
+
+@Component("restaurantbean")
+public class Restaurant {
+    IHotDrink hotDrink;
+    String restaurantName;
+    public void setRestaurantName(String restaurantName) {
+        this.restaurantName=restaurantName;
+    }
+//@Autowired
+@Inject
+@Named("teabean")
+    public Restaurant(IHotDrink hotDrink) {
+        this.hotDrink = hotDrink;
+    }
+    public void ServeHotDrink() {
+       // System.out.println("\n" + restaurantName + " is serving: ");
+        hotDrink.prepareHotDrink();
+    }
+}
+
+
+
+--------------------------------------------------------------------------------------
+
+
+
+package com.springcore;
+
+import org.springframework.stereotype.Repository;
+
+@Repository("repoBean")
+
+public class HotDrinkRepo {
+    IHotDrink iHotDrink;
+public HotDrinkRepo(){
+    iHotDrink=new Tea();
+}
+    public void setiHotDrink(IHotDrink iHotDrink) {
+        this.iHotDrink = iHotDrink;
+    }
+    public IHotDrink getiHotDrink(){
+        return iHotDrink;
+    }
+    public void prepareIhotdrink(){
+        iHotDrink.prepareHotDrink();
+    }
+}
+
+
+
+
+
+
+package com.springcore;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+public class Main3 {
+    public static void main(String[] args) {
+        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
+        context.scan("com.springcore");
+        context.refresh();
+        HotDrinkRepo hotDrinkRepo=(HotDrinkRepo) context.getBean("repoBean");
+        hotDrinkRepo.setiHotDrink(new Coffee());
+        hotDrinkRepo.prepareIhotdrink();
+    }
+}
+
+
+
+
+
+
+--------------------------------------------------------------------------------------------------------
+
+package com.springcore;
+
+public class Restaurant {
+    public void serve(){
+        iHotDrink.prepare();
+        System.out.println("Serving..");
+    }
+    public Restaurant(){    }
+
+      IHotDrink iHotDrink;
+
+      public void setIHotDrink(IHotDrink iHotDrink) {
+        this.iHotDrink = iHotDrink;
+    }
+
+    public Restaurant(IHotDrink iHotDrink) {
+        this.iHotDrink = iHotDrink;
+    }
+
+}
+
+
+
+package com.springcore;
+
+import org.springframework.stereotype.Component;
+
+//@Component("teaBean")
+public class Tea implements IHotDrink{
+       public void prepare(){
+        System.out.println("Tea is prepared");
+    }
+}
+
+
+
+
+
+package com.springcore;
+
+import org.springframework.stereotype.Component;
+
+//@Component("coffeeBean")
+public class Coffee implements IHotDrink{
+     public void prepare(){
+        System.out.println("Coffee is prepared");
+    }
+}
+
+
+
+
+
+
+package com.springcore;
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
+
+@Configuration
+@ComponentScan
+public class MyAppConfiguration {
+    @Bean("restaurantTeaBean")
+    public Restaurant getRestaurantTeaBean()     {
+        return new Restaurant(this.getTeaBean());    }
+    @Bean("restaurantCoffeeBean")
+    public Restaurant getRestaurantCoffeeBean()     {
+        return new Restaurant(this.getCoffeeBean());    }
+    @Bean("teaBean")
+    public Tea getTeaBean()     {
+        return new Tea();    }
+    @Bean("coffeeBean")
+    public Coffee getCoffeeBean()    {
+        return new Coffee();    }
+
+}
+
+
+
+
+
+
+
+package com.springcore;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+
+public class MainApp {
+    public static void main(String[] args) {
+           AnnotationConfigApplicationContext context2 =
+                new AnnotationConfigApplicationContext(MyAppConfiguration.class);
+        for (String beanName : context2.getBeanDefinitionNames()) {
+            System.out.println(beanName);
+        }
+
+
+    }
+}
+
+
+
+
+
+
+Output:
+org.springframework.context.annotation.internalConfigurationAnnotationProcessor
+org.springframework.context.annotation.internalAutowiredAnnotationProcessor
+org.springframework.context.annotation.internalRequiredAnnotationProcessor
+org.springframework.context.event.internalEventListenerProcessor
+org.springframework.context.event.internalEventListenerFactory
+myAppConfiguration
+teaBean
+restaurantTeaBean
+restaurantCoffeeBean
+coffeeBean
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
