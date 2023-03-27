@@ -1,0 +1,95 @@
+package target;
+
+public class Restaurant {
+    public void greetings(){
+        System.out.println("Hello customers! Eat well!");
+    }
+}
+
+
+package weaver;
+
+public class JoinpointBefore {
+    public void advertise(){
+        System.out.println("Advertisements");
+    }
+}
+
+
+
+package weaver;
+
+public class JoinpointAfter {
+    public void discount(){
+        System.out.println("50 % discount on next visit");
+    }
+}
+
+
+package weaver;
+
+public class JoinpointAround {
+    public void menu(){
+        System.out.println("Menu just before");
+    }
+    public void bill(){
+        System.out.println("Bill amount!!");
+    }
+}
+
+
+
+
+package weaver;
+
+import target.Restaurant;
+
+public class PointcutProxyRestaurant {
+    private Restaurant restaurant;
+    public PointcutProxyRestaurant(){
+        restaurant=new Restaurant();
+    }
+    public void greetings() {
+        restaurant.greetings();
+    }
+}
+
+
+
+
+
+package weaver;
+
+public class AOPBean {
+    public static void main(String[] args) {
+        JoinpointBefore joinpointBefore=new JoinpointBefore();
+        JoinpointAfter joinpointAfter=new JoinpointAfter();
+        JoinpointAround joinpointAround=new JoinpointAround();
+        PointcutProxyRestaurant pointcutProxyRestaurant=new PointcutProxyRestaurant();
+        joinpointBefore.advertise();
+        joinpointAround.menu();
+        pointcutProxyRestaurant.greetings();
+        joinpointAround.bill();
+        joinpointAfter.discount();
+    }
+}
+
+
+
+
+
+C:\Users\monica\ProjectsJava\AOPJavaEgPrj\src>tree /f
+Folder PATH listing
+Volume serial number is FCD5-48C0
+C:.
+│   Main.java
+│
+├───target
+│       Restaurant.java
+│
+└───weaver
+        AOPBean.java
+        JoinpointAfter.java
+        JoinpointAround.java
+        JoinpointBefore.java
+        PointcutProxyRestaurant.java
