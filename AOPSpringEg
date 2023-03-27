@@ -106,3 +106,143 @@ Put dependencies in pom.xml
 
 
 
+
+
+package com.springcore;
+import java.lang.reflect.Method;  
+import org.springframework.aop.MethodBeforeAdvice;  
+public class BeforeAdvisor implements MethodBeforeAdvice{  
+    @Override  
+    public void before(Method method, Object[] args, Object target)throws Throwable {  
+        System.out.println("additional concern (Advertisements: Music) before actual logic");  
+    }  
+} 
+
+
+
+
+
+
+package com.springcore;
+
+import java.lang.reflect.Method;  
+import org.springframework.aop.AfterReturningAdvice;  
+public class AfterAdvisor implements AfterReturningAdvice{  
+    @Override  
+    public void afterReturning(Object returnValue, Method method,   Object[] args, Object target) throws Throwable {  
+          System.out.println("additional concern (Vouchers for next order) after returning advice");  
+    }  
+  
+} 
+
+
+
+
+
+
+
+package com.springcore;
+import org.aopalliance.intercept.MethodInterceptor;  
+import org.aopalliance.intercept.MethodInvocation;  
+public class AroundAdvisor implements MethodInterceptor{  
+    @Override  
+    public Object invoke(MethodInvocation mi) throws Throwable {  
+        Object obj;  
+        System.out.println("additional concern around (Menu items) before actual logic");  
+        obj=mi.proceed();  
+        System.out.println("additional concern around (Bills: take money) after actual logic");  
+        return obj;  
+    }  
+ }
+
+
+
+
+
+package com.springcore;
+
+import org.springframework.aop.ThrowsAdvice;  
+public class ThrowsAdvisor implements ThrowsAdvice{  
+    public void afterThrowing(Exception ex){  
+        System.out.println("additional concern (no booking ID: No entertainment: Send customer back ) if exception occurs");  
+    }  
+} 
+
+
+
+
+
+
+
+Beans.xml:
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+	<bean id="restaurantBean" class="com.springcore.Restaurant" scope="singleton"
+		init-method="init" destroy-method="destroy"></bean>
+	<bean id="ba" class="com.springcore.BeforeAdvisor"></bean>
+	<bean id="aa" class="com.springcore.AfterAdvisor"></bean>
+    <bean id="ara" class="com.springcore.AroundAdvisor"></bean>
+    <bean id="ta" class="com.springcore.ThrowsAdvisor"></bean>
+	<bean id="proxy" class="org.springframework.aop.framework.ProxyFactoryBean">
+		<property name="target" ref="restaurantBean"></property>
+		<property name="interceptorNames">
+			<list>
+				<value>ba</value>	<value>aa</value>
+				<value>ara</value>	<value>ta</value>
+			</list>
+		</property>
+	</bean>
+</beans>
+
+
+
+
+
+
+package com.springcore;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.AbstractApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+public class TestSpringProject {
+	public static void main(String[] args) {  
+		ApplicationContext context = new ClassPathXmlApplicationContext("Beans.xml");
+		Restaurant restaurantObj = (Restaurant) context.getBean("proxy",Restaurant.class);
+		System.out.println("RestaurantBean Initialised");
+		((AbstractApplicationContext)context).registerShutdownHook();
+		restaurantObj.greetCustomer(10);
+	 }  
+} 
+
+
+
+
+
+Changed Main class: TestSpringProject:
+
+package com.springcore;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.AbstractApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+public class TestSpringProject {
+	public static void main(String[] args) {  
+		ApplicationContext context = new ClassPathXmlApplicationContext("Beans.xml");
+		Restaurant restaurantObj = (Restaurant) context.getBean("proxy",Restaurant.class);
+		System.out.println("RestaurantBean Initialised");
+		((AbstractApplicationContext)context).registerShutdownHook();
+		try{
+		restaurantObj.greetCustomer(0);  }
+		catch(Exception e)
+		{ System.err.println(e);}
+	}  
+} 
+
+
+
+
+
+
+
+
