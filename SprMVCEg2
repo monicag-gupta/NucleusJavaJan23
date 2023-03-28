@@ -99,6 +99,7 @@ Candidate's Hobby : <input type="text" name="candidateHobby" />
 
 
 
+AdmissionSuccess.jsp
 
 <html>
 <body>
@@ -127,5 +128,9 @@ index.jsp:
 
 </body>
 </html>
+
+
+
+
 
 
