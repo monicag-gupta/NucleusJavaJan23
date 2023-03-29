@@ -46,4 +46,23 @@ WEB-INF->jsp->index.jsp :
 
 
 
+WEB-INF->jsp->final.jsp :
+
+<html>
+
+   <head>
+      <title>Spring Page Redirection</title>
+   </head>
+
+   <body>
+      <h2>Redirected/Forwarded Page</h2>
+   </body>
+
+</html>
+
+
+
+
+
+
 
