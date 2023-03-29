@@ -18,3 +18,153 @@ Name: <input type="text" name="uname"/>
 
 
 
+com.serv.controller.ReadParam :
+
+package com.serv.controller;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
+@Controller
+public class ReadParam {
+//    @GetMapping(path="/users")
+//    public ModelAndView getUsers(@RequestParam(name="uname", required = false) String uname) {
+//
+//        ModelAndView modelAndView = new ModelAndView("users", "uname",uname);
+//        return modelAndView;
+//    }
+    @GetMapping(path="/users")
+    public ModelAndView getUsers(@RequestParam(name="uname", defaultValue = "Ishu") String uname) {
+        ModelAndView modelAndView = new ModelAndView("users", "uname",uname);
+        return modelAndView;
+    }
+}
+
+
+
+
+
+
+Web-inf / jsp / users.jsp :
+
+<html>
+<body>
+<h2>
+Welcome ${uname}!!
+</h2>
+</body>
+</html>
+
+
+
+
+
+Web-inf -> serv-servlet.xml :
+
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/mvc
+        http://www.springframework.org/schema/mvc/spring-mvc.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd">
+    <mvc:annotation-driven />
+    <context:component-scan	base-package="com.serv.controller" />
+    <mvc:default-servlet-handler />
+    <bean id="viewResolver" class="org.springframework.web.servlet.view.UrlBasedViewResolver">
+        <property name="viewClass" value="org.springframework.web.servlet.view.JstlView" />
+        <property name="prefix" value="/WEB-INF/jsp/" />
+        <property name="suffix" value=".jsp" />
+    </bean>
+</beans>
+
+
+
+
+
+
+com.serv2.controller.ReadParam :
+
+package com.serv2.controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
+@RestController
+public class ReadParam {
+    @GetMapping("/userid/{id}")
+    public ModelAndView getUsersId(@PathVariable String id) {
+
+        ModelAndView modelAndView = new ModelAndView("users", "uname",id);
+        return modelAndView;
+    }
+}
+
+
+
+
+
+
+
+Web-inf -> serv2-servlet.xml :
+
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/mvc
+        http://www.springframework.org/schema/mvc/spring-mvc.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd">
+    <mvc:annotation-driven />
+    <context:component-scan	base-package="com.serv2.controller" />
+    <mvc:default-servlet-handler />
+    <bean id="viewResolver" class="org.springframework.web.servlet.view.UrlBasedViewResolver">
+        <property name="viewClass" value="org.springframework.web.servlet.view.JstlView" />
+        <property name="prefix" value="/WEB-INF/jsp/" />
+        <property name="suffix" value=".jsp" />
+    </bean>
+</beans>
+
+
+
+
+
+web-inf -> web.xml :
+
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
+  <display-name>SpringWeb</display-name>
+  <servlet>   <servlet-name>serv</servlet-name>
+    <servlet-class> org.springframework.web.servlet.DispatcherServlet  </servlet-class>
+    <load-on-startup>1</load-on-startup>	</servlet>
+  <servlet-mapping>
+    <servlet-name>serv</servlet-name>
+    <url-pattern>/welcome.jsp</url-pattern>
+    <url-pattern>/index.jsp</url-pattern>
+    <url-pattern>/welcome.html</url-pattern>
+    <url-pattern>*.html</url-pattern>
+  </servlet-mapping>
+  <servlet>   <servlet-name>serv2</servlet-name>
+    <servlet-class> org.springframework.web.servlet.DispatcherServlet  </servlet-class>
+    <load-on-startup>1</load-on-startup>	</servlet>
+  <servlet-mapping>
+    <servlet-name>serv2</servlet-name>
+    <url-pattern>/</url-pattern>
+  </servlet-mapping>
+</web-app>
+
+
+
+
+
