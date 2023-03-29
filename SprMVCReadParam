@@ -168,3 +168,101 @@ web-inf -> web.xml :
 
 
 
+
+
+
+
+
+WEB-INF -> spring-servlet.xml
+
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+    <context:annotation-config />
+    <context:component-scan base-package="com.springmvc" />
+
+</beans>
+
+
+
+
+com.springmvc.HelloController :
+
+package com.springmvc;
+import javax.servlet.http.HttpServletResponse;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestHeader;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@Controller
+public class HelloController {
+    @RequestMapping(value = "/hello.html")
+    public String hello(
+            @RequestHeader(value="Accept") String accept,
+            @RequestHeader(value="Accept-Language") String acceptLanguage,
+            @RequestHeader(value="User-Agent", defaultValue="foo") String userAgent,
+            HttpServletResponse response) {
+        System.out.println("accept: " + accept);
+        System.out.println("acceptLanguage: " + acceptLanguage);
+        System.out.println("userAgent: " + userAgent);
+        String s=" Accept: " + accept + " acceptLanguage: " + acceptLanguage + " userAgent: " + userAgent;
+        return s;
+    }
+}
+
+
+
+
+
+
+
+Web.xml :
+
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://java.sun.com/xml/ns/javaee"
+         xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+         http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+         id="WebApp_ID" version="2.5">
+  <display-name>Archtype created web app</display-name>
+  <welcome-file-list>
+    <welcome-file>index.jsp</welcome-file>
+
+  </welcome-file-list>
+
+  <servlet>
+    <servlet-name>spring</servlet-name>
+    <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>spring</servlet-name>
+    <url-pattern>*.html</url-pattern>
+  </servlet-mapping>
+
+</web-app>
+
+
+
+
+Index.jsp :
+
+<html>
+<body>
+<h2>Hello World!</h2>
+<a href="hello.html">hello</a>
+</body>
+</html>
+
+
+
+
+
+
