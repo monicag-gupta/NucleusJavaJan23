@@ -1,3 +1,12 @@
+Difference between forward and Redirect :
+
+Forward: is faster, the client browser is not involved, the browser displays the original URL, the request is transferred do the forwarded URL.
+Redirect: is slower, the client browser is involved, the browser displays the redirected URL, it creates a new request to the redirected URL.
+
+
+
+
+
 src
 │   └───main
 │       ├───java
