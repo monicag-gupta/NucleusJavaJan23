@@ -1,0 +1,24 @@
+src
+│   └───main
+│       ├───java
+│       │   └───com
+│       │       ├───serv
+│       │       │   └───controller
+│       │       │           RedirectController.java
+│       └───webapp
+│           │   index.jsp
+│           │
+│           └───WEB-INF
+│               │   serv-servlet.xml
+│               │   web.xml
+│               │
+│               └───jsp
+│                       final.jsp
+│                       index.jsp
+
+
+
+
+
+
+
