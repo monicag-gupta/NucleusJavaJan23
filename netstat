@@ -1,0 +1,12 @@
+cmd :
+
+
+> netstat -ano  | findstr "8080"
+.....
+(process id occupying the port Eg : 30345)
+
+
+> taskkill /F /PID 30345
+(process is terminated)
+
+
