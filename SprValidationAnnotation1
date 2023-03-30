@@ -184,6 +184,110 @@ public class Customer {
 
 
 
+springmvc.form.controller.CustomerController
+
+package springmvc.form.controller;
+import javax.validation.Valid;
+import org.springframework.beans.propertyeditors.StringTrimmerEditor;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
+import springmvc.form.model.Customer;
+@Controller
+@RequestMapping("/customer")
+public class CustomerController {
+    // add an initbinder ... to convert trim input strings; remove leading and trailing whitespace; resolve issue for our validation
+    @InitBinder
+    public void initBinder(WebDataBinder dataBinder) {
+        StringTrimmerEditor stringTrimmerEditor = new StringTrimmerEditor(true);
+        dataBinder.registerCustomEditor(String.class, stringTrimmerEditor);
+    }
+    @RequestMapping("/showForm")
+    public String showForm(Model theModel) {
+        theModel.addAttribute("customer", new Customer());
+        return "customer-form";
+    }
+    @RequestMapping("/processForm")
+    public String processForm(@Valid @ModelAttribute("customer") Customer theCustomer, BindingResult theBindingResult) {
+        if (theBindingResult.hasErrors()) {
+            return "customer-form";
+        } else {
+            return "customer-confirmation";
+        }
+    }
+}
+
+
+
+
+
+WEB-INF -> views -> customer-form.jsp
+
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+    <html>  <head>
+        <title>Customer Registration Form</title>         <style>
+            .error {
+                color: red;
+            }
+        </style>     </head>
+    <body>
+        <h1> Spring MVC 5 - Form Validation Example</h1>
+        <i>Fill out the form. Asterisk (*) means required.</i>
+        <br><br>
+        <form:form action="processForm" modelAttribute="customer">
+            First name: <form:input path="firstName" />
+            <br><br> Last name (*): <form:input path="lastName" />
+            <form:errors path="lastName" cssClass="error" />
+            <br><br> Free passes (*): <form:input path="freePasses" />
+            <form:errors path="freePasses" cssClass="error" />
+            <br><br> Email (*): <form:input path="email" />
+            <form:errors path="email" cssClass="error" />
+            <br><br> Postal Code: <form:input path="postalCode" />
+            <form:errors path="postalCode" cssClass="error" />
+            <br><br> <input type="submit" value="Submit" />
+        </form:form>
+    </body>
+    </html>
+
+
+
+
+
+WEB-INF -> views -> customer-confirmation.jsp
+
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <title>Customer Confirmation</title>
+    </head>
+    <body>
+        The customer is confirmed!!! 
+    </body>
+    </html>
+
+
+
+
+
+
+Webapp -> index.jsp
+
+
+<html>
+<body>
+<h2>Hello World!</h2>
+<a href="customer/showForm">Click here for customer-showForm </a>
+</body>
+</html>
+
+
+
+
 
 
 
