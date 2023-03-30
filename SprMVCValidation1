@@ -481,3 +481,36 @@ public class EmployeeValidator implements Validator {
 
 
 
+Resources -> messages.properties 
+
+lbl.page=Add New Employee
+lbl.firstName=First Name
+lbl.lastName=Last Name
+lbl.email=Email Id
+
+error.firstName=First Name can not be blank
+error.lastName=Last Name can not be blank
+error.email=Email Id can not be blank
+
+lbl.Id2=Employee Id
+lbl.firstName2=First Name
+lbl.lastName2=Last Name
+lbl.page2=All Employees in System
+
+
+
+
+Resources -> messages_zh_CN.properties
+
+lbl.Id2=\u5458\u5DE5ID
+lbl.firstName2=\u540D\u5B57
+lbl.lastName2=\u59D3
+lbl.page2=\u7CFB\u7EDF\u4E2D\u7684\u6240\u6709\u5458\u5DE5
+
+
+
+
+
+
+
+
