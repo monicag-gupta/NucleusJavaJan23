@@ -1,0 +1,27 @@
+C:\Users\monica\ProjectsJava\SprMVCValidPrj1\src>tree /F
+Folder PATH listing
+└───main
+    ├───java
+    │   └───com
+    │       ├───controller
+    │       │       EmployeeController.java
+    │       ├───dao
+    │       │       EmployeeDAO.java
+    │       │       EmployeeDAOImpl.java
+    │       ├───model
+    │       │       Employee.java
+    │       ├───service
+    │       │       EmployeeManager.java
+    │       │       EmployeeManagerImpl.java
+    │       └───validator
+    │               EmployeeValidator.java
+    ├───resources
+    │       messages.properties
+    └───webapp
+        │   index.jsp
+        └───WEB-INF
+            │   spring-servlet.xml
+            │   web.xml
+            └───views
+                    addEmployee.jsp
+                    addSuccess.jsp
