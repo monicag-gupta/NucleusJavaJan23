@@ -352,4 +352,132 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 
 
 
+com.model. Employee
+
+package com.model;
+
+import java.io.Serializable;
+
+public class Employee implements Serializable
+{
+    private static final long serialVersionUID = 1L;
+
+    private Integer id;
+    private String firstName;
+    private String lastName;
+    private String email;
+
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    @Override
+    public String toString() {
+        return "Employee [id=" + id + ", firstName=" + firstName
+                + ", lastName=" + lastName + ", email=" + email + "]";
+    }
+}
+
+
+
+
+
+
+
+com.service. EmployeeManager
+
+package com.service;
+
+import java.util.List;
+
+import com.model.Employee;
+
+public interface EmployeeManager
+{
+    public List<Employee> getAllEmployees();
+}
+
+
+
+
+
+
+com.service. EmployeeManagerImpl
+
+package com.service;
+import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import com.dao.EmployeeDAO;
+import com.model.Employee;
+@Service
+public class EmployeeManagerImpl implements EmployeeManager {
+    @Autowired
+    EmployeeDAO dao;
+    public List<Employee> getAllEmployees()     {
+        return dao.getAllEmployees();
+    }
+}
+
+
+
+
+
+
+
+com.validator. EmployeeValidator
+
+
+package com.validator;
+import org.springframework.stereotype.Component;
+import org.springframework.validation.Errors;
+import org.springframework.validation.ValidationUtils;
+import org.springframework.validation.Validator;
+import com.model.Employee;
+@Component
+public class EmployeeValidator implements Validator {
+    public boolean supports(Class clazz) {
+        return Employee.class.isAssignableFrom(clazz);
+    }
+    public void validate(Object target, Errors errors)     {
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "firstName", "error.firstName", "First name is required.");
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "lastName", "error.lastName", "Last name is required.");
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "email", "error.email", "Email is required.");
+    }
+}
+
+
+
+
+
+
 
