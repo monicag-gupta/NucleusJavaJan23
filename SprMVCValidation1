@@ -211,3 +211,145 @@ WEB-INF ->views -> addEmployee.jsp
 
 
 
+Resources -> messages.properties
+
+lbl.page=Add New Employee
+lbl.firstName=First Name
+lbl.lastName=Last Name
+lbl.email=Email Id
+
+error.firstName=First Name can not be blank
+error.lastName=Last Name can not be blank
+error.email=Email Id can not be blank
+
+
+
+
+
+com.controller. EmployeeController 
+
+package com.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
+
+import com.model.Employee;
+import com.service.EmployeeManager;
+import com.validator.EmployeeValidator;
+
+@Controller
+@RequestMapping("addNew")
+@SessionAttributes("employee")
+public class EmployeeController
+{
+    @Autowired
+    EmployeeManager manager;
+
+    @Autowired
+    EmployeeValidator validator;
+
+    @RequestMapping(method = RequestMethod.GET)
+    public String setupForm(Model model)
+    {
+        Employee employee = new Employee();
+        model.addAttribute("employee", employee);
+        return "addEmployee";
+    }
+
+    @RequestMapping(method = RequestMethod.POST)
+    public String submitForm(@ModelAttribute("employee") Employee employee,
+                             BindingResult result, SessionStatus status)
+    {
+
+        validator.validate(employee, result);
+
+        if (result.hasErrors()) {
+            return "addEmployee";
+        }
+        //Store the employee information in database
+        //manager.createNewRecord(employeeVO);
+
+        //Mark Session Complete
+        status.setComplete();
+        return "redirect:addNew/success";
+    }
+
+    @RequestMapping(value = "/success", method = RequestMethod.GET)
+    public String success(Model model)
+    {
+        return "addSuccess";
+    }
+}
+
+
+
+
+
+
+com.dao. EmployeeDAO  
+
+package com.dao;
+
+import java.util.List;
+
+import com.model.Employee;
+
+public interface EmployeeDAO
+{
+    public List<Employee> getAllEmployees();
+}
+
+
+
+
+com.dao. EmployeeDAOImpl 
+
+package com.dao;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.stereotype.Repository;
+
+import com.model.Employee;
+
+@Repository
+public class EmployeeDAOImpl implements EmployeeDAO {
+
+    public List<Employee> getAllEmployees()
+    {
+        List<Employee> employees = new ArrayList<Employee>();
+
+        Employee vo1 = new Employee();
+        vo1.setId(1);
+        vo1.setFirstName("Ishu");
+        vo1.setLastName("Gupta");
+        employees.add(vo1);
+
+        Employee vo2 = new Employee();
+        vo2.setId(2);
+        vo2.setFirstName("Ishani");
+        vo2.setLastName("Choudhury");
+        employees.add(vo2);
+
+        return employees;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
