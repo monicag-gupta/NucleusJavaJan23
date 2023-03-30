@@ -30,7 +30,7 @@ Pom.xml
     <dependency>
       <groupId>org.hibernate</groupId>
       <artifactId>hibernate-validator</artifactId>
-      <version>5.4.1.Final</version>
+      <version>5.4.0.Final</version>
     </dependency>
   </dependencies>
   <properties>
@@ -82,7 +82,26 @@ public class MVCConfig implements WebMvcConfigurer {
 
 
 
+springmvc.form.config. SpringMvcDispatcherServletInitializer
 
+
+package springmvc.form.config;
+import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
+
+public class SpringMvcDispatcherServletInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
+       @Override
+    protected String[] getServletMappings() {
+        return new String[] { "/"  };
+    }
+    @Override
+    protected Class<?>[] getRootConfigClasses() {
+        return null;
+    }
+    @Override
+    protected Class<?>[] getServletConfigClasses() {
+        return new Class[] { MVCConfig.class };
+    }
+}
 
 
 
