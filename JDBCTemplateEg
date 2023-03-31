@@ -1,3 +1,61 @@
 Drop table Employee;
 create table employee(  id int,  name char(100),  salary numeric); 
 
+
+
+
+
+Project: JDBCSpringPrj
+package com.jdbc
+Employee class for entity
+EmployeeDao for DAO operations
+Test for main()
+applicationContext.xml
+
+
+
+<dependencies>
+       <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-jdbc</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.oracle.ojdbc</groupId>
+            <artifactId>ojdbc10</artifactId>
+            <version>19.3.0.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-core</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+    </dependencies>
+
+
+
+
+
+<properties>
+        <spring.version>5.2.23.RELEASE</spring.version>
+        <java.version>11</java.version>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+
+
+
+
+
+
+
+
+
+
