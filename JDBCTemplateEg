@@ -1,0 +1,3 @@
+Drop table Employee;
+create table employee(  id int,  name char(100),  salary numeric); 
+
