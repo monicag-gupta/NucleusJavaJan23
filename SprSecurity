@@ -310,7 +310,7 @@ public class HomeController {
     @RequestMapping(value = "/", method = RequestMethod.GET)  
     public String index() {  
         return "index";  	 }  
-    @RequestMapping(value="/logout", method=RequestMethod.GET)  
+    @RequestMapping(value="/logout", method=RequestMethod.POST)  
     public String logoutPage(HttpServletRequest request, HttpServletResponse response) {  
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();  
         if (auth != null){      
