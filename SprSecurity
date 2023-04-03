@@ -296,4 +296,52 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 
 
+package com.springsecure.controller;
+import javax.servlet.http.HttpServletRequest;  
+import javax.servlet.http.HttpServletResponse;  
+import org.springframework.security.core.Authentication;  
+import org.springframework.security.core.context.SecurityContextHolder;  
+import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;  
+import org.springframework.stereotype.Controller;  
+import org.springframework.web.bind.annotation.RequestMapping;  
+import org.springframework.web.bind.annotation.RequestMethod;  
+@Controller  
+public class HomeController {  
+    @RequestMapping(value = "/", method = RequestMethod.GET)  
+    public String index() {  
+        return "index";  	 }  
+    @RequestMapping(value="/logout", method=RequestMethod.GET)  
+    public String logoutPage(HttpServletRequest request, HttpServletResponse response) {  
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();  
+        if (auth != null){      
+           new SecurityContextLogoutHandler().logout(request, response, auth);  	 }  
+         return "redirect:/";  
+     }  	} 
+
+
+
+
+
+
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"   
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ 	<head>
+ 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+ 		<title>Home</title>
+ 	</head>
+ 	<body>
+		<h3>Hello ${pageContext.request.userPrincipal.name},</h3>
+ 		<h4>Welcome to The Web Site!</h4>
+		<a href="<c:url value='/logout' />">Click here to logout</a>
+ 	</body>
+</html>
+
+
+
+
+
 
