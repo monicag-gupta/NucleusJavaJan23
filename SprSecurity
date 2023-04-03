@@ -132,3 +132,124 @@ Add dependencies in pom.xml
 
 
 
+
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>org.example</groupId>
+    <artifactId>SprSecurePrj2</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <properties>
+        <java.version>11</java.version>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>3.8.1</version>
+            <scope>test</scope>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-web -->
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-web</artifactId>
+            <version>5.2.15.RELEASE</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.springframework/spring-webmvc -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-webmvc</artifactId>
+            <version>5.2.15.RELEASE</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-core -->
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-core</artifactId>
+            <version>5.2.15.RELEASE</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-config -->
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-config</artifactId>
+            <version>5.2.15.RELEASE</version>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>4.0.1</version>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>jstl</artifactId>
+            <version>1.2</version>
+        </dependency>
+    </dependencies>
+
+</project>
+
+
+
+
+
+
+package com.springsecure;
+import org.springframework.context.annotation.Bean;  
+import org.springframework.context.annotation.ComponentScan;  
+import org.springframework.context.annotation.Configuration;  
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;  
+import org.springframework.web.servlet.view.InternalResourceViewResolver;  
+import org.springframework.web.servlet.view.JstlView;  
+@EnableWebMvc  
+@Configuration  
+@ComponentScan({ "com.springsecure.controller.*" })  
+public class AppConfig {  
+    @Bean  
+    public InternalResourceViewResolver viewResolver() {  
+        InternalResourceViewResolver viewResolver  
+                          = new InternalResourceViewResolver();  
+        viewResolver.setViewClass(JstlView.class);  
+        viewResolver.setPrefix("/WEB-INF/views/");  
+        viewResolver.setSuffix(".jsp");  
+        return viewResolver;  
+    }  	} 
+
+
+
+
+
+package com.springsecure;
+import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;  
+public class MvcWebApplicationInitializer extends  
+        AbstractAnnotationConfigDispatcherServletInitializer {  
+    @Override  
+    protected Class<?>[] getRootConfigClasses() {  
+        return new Class[] { WebSecurityConfig.class };  
+    }  
+    @Override  
+    protected Class<?>[] getServletConfigClasses() {  
+ 		return null;  
+    }  
+    @Override  
+    protected String[] getServletMappings() {  
+        return new String[] { "/" };  
+    }  
+} 
+
+
+
+
+
+
+
+
+
+
+
