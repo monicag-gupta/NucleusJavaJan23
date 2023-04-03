@@ -346,3 +346,21 @@ index.jsp:
 
 
 
+
+
+Site: -> web.xml
+Initializer: 
+(First run at root: WebSecurityConfig:
+every request to be configured:
+/
+formlogin()
+admin, java (InMemory)
+Once auth: /
+Controller: / -> web-inf -> views -> index.jsp
+(if /logout is clicked): controller -> configure() -> /
+
+
+
+
+
+
