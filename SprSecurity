@@ -1,0 +1,77 @@
+Spring Security provides its own set of authentication features. 
+Specifically, Spring Security currently supports authentication integration with all of these technologies:
+<b>HTTP BASIC authentication headers (an IEFT RFC-based standard)</b>
+<b>HTTP Digest authentication headers (an IEFT RFC-based standard)</b>
+HTTP X.509 client certificate exchange (an IEFT RFC-based standard)
+LDAP (a very common approach to cross-platform authentication needs, especially in large environments)
+<b>Form-based authentication (for simple user interface needs) </b>
+<b>OpenID authentication</b>
+Authentication based on pre-established request headers (such as Computer Associates Siteminder)
+JA-SIG Central Authentication Service (otherwise known as CAS, which is a popular open source single sign on system)
+Transparent authentication context propagation for Remote Method Invocation (RMI) and HttpInvoker (a Spring remoting protocol)
+<b>Automatic "remember-me" authentication (so you can tick a box to avoid re-authentication for a 
+predetermined period of time)</b>
+Anonymous authentication (allowing every call to automatically assume a particular security identity)
+
+
+
+Run-as authentication (which is useful if one call should proceed with a different security identity)
+Java Authentication and Authorization Service (JAAS)
+JEE container authentication (so you can still use Container Managed Authentication if desired)
+Kerberos
+Java Open Source Single Sign On (JOSSO) *
+OpenNMS Network Management Platform *
+AppFuse *
+AndroMDA *
+Mule ESB *
+Direct Web Request (DWR) *
+Grails *
+Tapestry *
+JTrac *
+Jasypt *
+Roller *
+Elastic Path *
+Atlassian Crowd *
+Your own authentication systems
+
+
+
+Spring’s FilterChain:
+
+BasicAuthenticationFilter: Tries to find a Basic Auth HTTP Header on the request and if found, tries to authenticate the user with the header’s username and password.
+UsernamePasswordAuthenticationFilter: Tries to find a username/password request parameter/POST body and if found, tries to authenticate the user with those values.
+DefaultLoginPageGeneratingFilter: Generates a login page for you, if you don’t explicitly disable that feature. THIS filter is why you get a default login page when enabling Spring Security.
+DefaultLogoutPageGeneratingFilter: Generates a logout page for you, if you don’t explicitly disable that feature.
+FilterSecurityInterceptor: Does your authorization.
+
+
+
+
+Spring 3.x Security Framework provides the following Features:
+Authentication and Authorization.
+Supports BASIC,Digest and Form-Based Authentication.
+Supports LDAP Authentication.
+Supports OpenID Authentication.
+Supports SSO (Single Sign-On) Implementation.
+Supports Cross-Site Request Forgery (CSRF) Implementation.
+Supports “Remember-Me” Feature through HTTP Cookies.
+Supports Implementation of ACLs
+Supports “Channel Security” that means automatically switching between HTTP and HTTPS.
+Supports I18N (Internationalisation).
+Supports JAAS (Java Authentication and Authorization Service).
+Supports Flow Authorization using Spring WebFlow Framework.
+Supports WS-Security using Spring Web Services.
+Supports Both XML Configuration and Annotations. Very Less or minimal XML Configuration.
+
+
+
+
+
+
+
+
+
+
+
+
+
