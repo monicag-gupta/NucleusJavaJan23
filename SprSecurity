@@ -68,6 +68,21 @@ Supports Both XML Configuration and Annotations. Very Less or minimal XML Config
 
 
 
+Design a Maven archtype-webapp project:
+SpringSecurityLoginExample
+Add the packages and classes as
+   com.springsecure package
+       AppConfig.java
+       MvcWebApplicationInitializer.java
+       SecurityWebApplicationInitializer.java
+       WebSecurityConfig.java
+   com.springsecure.controller package
+       HomeController.java
+Add the folder views in WEB-INF. Add index.jsp there
+Add dependencies in pom.xml
+
+
+
 
 
 
