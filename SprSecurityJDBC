@@ -1,0 +1,29 @@
+https://docs.spring.io/spring-security/site/docs/3.0.x/reference/appendix-schema.html
+
+
+CREATE TABLE users (
+  username varchar(50) NOT NULL PRIMARY KEY,
+  password varchar(50) NOT NULL,
+  enabled NUMBER(1) NOT NULL
+);
+
+CREATE TABLE authorities (
+  username varchar(50) NOT NULL,
+  authority varchar(50) NOT NULL,
+ constraint fk_authorities_users foreign key(username) references users(username)
+);
+
+INSERT INTO users (username, password, enabled) VALUES ('ishu', 'java', 1);
+
+INSERT INTO authorities (username, authority ) VALUES ('ishu', 'Admin');
+INSERT INTO authorities (username, authority ) VALUES ('ishu', 'CEO');
+
+commit;
+
+
+
+
+
+
+
+
