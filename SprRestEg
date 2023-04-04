@@ -1,3 +1,32 @@
+C:\Users\monica\ProjectsJava\SprRestPrj\src\main>tree /F
+Folder PATH listing
+Volume serial number is FCD5-48C0
+C:.
+├───java
+│   └───com
+│       └───rest
+│           │   EmpCRUDService.java
+│           │
+│           └───entity
+│                   Emp.java
+│                   EmpDAO.java
+│
+├───resources
+│       serv-servlet.xml
+│
+└───webapp
+    │   index.jsp
+    │
+    └───WEB-INF
+            web.xml
+
+
+
+
+
+
+pom.xml:
+
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
@@ -127,6 +156,324 @@
     <finalName>SprRestPrj</finalName>
   </build>
 </project>
+
+
+
+
+
+
+
+
+Web.xml:
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee;http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+  <listener>
+    <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+  </listener>
+  <context-param>
+    <param-name>contextConfigLocation</param-name>
+    <param-value>classpath:serv-servlet.xml</param-value>
+  </context-param>
+  <servlet>
+    <servlet-name>serv</servlet-name>
+    <servlet-class>org.glassfish.jersey.servlet.ServletContainer</servlet-class>
+    <init-param>
+      <param-name>jersey.config.server.provider.packages</param-name>
+      <param-value>com.rest</param-value>
+    </init-param>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>serv</servlet-name>
+    <url-pattern>/rest/*</url-pattern>
+  </servlet-mapping>
+</web-app>
+
+
+
+
+
+
+
+Resources->serv-servlet.xml :
+
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="empBean" class="com.rest.entity.Emp"/>
+    <bean id="empDaoBean" class="com.rest.entity.EmpDAO"/>
+    <bean id="EmpCrudBean" class="com.rest.EmpCRUDService"/>
+
+</beans>
+
+
+
+
+
+WebApp -> index.jsp :
+
+<html>
+<body>
+    <br>
+    <h2>Jersey RESTful Web Application!</h2>
+    <p>
+        <a href="rest/empCRUD/">Click Here</a>
+    </p>
+    <hr>
+    <h2>Form to add Emp by Get: Create in CRUD: </h2>
+    <form action="rest/empCRUD/add" method="get">
+      Enter Emp id: <input type="number" name="eid">
+      Enter Emp Name: <input type="text" name="ename">
+      <input type="Submit">
+    </form>
+    <br>
+    <hr>
+    <h2>Form to add Emp by Post: Create in CRUD: </h2>
+    <form action="rest/empCRUD/addPost" method="post">
+      Enter Emp id: <input type="number" name="eid">
+      Enter Emp Name: <input type="text" name="ename">
+      <input type="Submit">
+    </form>
+    <br>
+    <hr>
+    <h2>Get List of Emps : Read in CRUD: </h2>
+    <a href="rest/empCRUD/getAll"> Get the list of Emps</a>
+
+    <br>
+    <hr>
+    <h2>Form to Update Emp by Get: Update in CRUD: </h2>
+    <form action="rest/empCRUD/updateEmp" method="get">
+      Enter Emp id: <input type="number" name="eid">
+      Enter Emp Name: <input type="text" name="ename">
+      <input type="Submit">
+    </form>
+
+    <br>
+    <hr>
+    <h2>Form to Delete Emp by Get: Delete in CRUD: </h2>
+    <form action="rest/empCRUD/delEmp" method="get">
+      Enter Emp id: <input type="number" name="eid">
+      <input type="Submit">
+    </form>
+
+    <br>
+    <hr>
+    <h2>Form to Get an Emp by Get: Read in CRUD: </h2>
+    <form action="rest/empCRUD/getEmp" method="get">
+      Enter Emp id: <input type="number" name="eid">
+      <input type="Submit">
+    </form>
+
+    <h1>End of REST</h1>
+
+  </body>
+</html>
+
+
+
+
+
+
+com.rest.entity.Emp :
+
+package com.rest.entity;
+
+public class Emp {
+    private int empId;
+    private String empName;
+
+    public int getEmpId() {
+        return empId;
+    }
+
+    public void setEmpId(int empId) {
+        this.empId = empId;
+    }
+
+    public String getEmpName() {
+        return empName;
+    }
+
+    public void setEmpName(String empName) {
+        this.empName = empName;
+    }
+
+    public Emp(int empId, String empName) {
+        this.empId = empId;
+        this.empName = empName;
+    }
+    public Emp(){}
+
+    @Override
+    public String toString() {
+        return "\nEmp{" +
+                "empId=" + empId +
+                ", empName='" + empName + '\'' +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        Emp e=(Emp)obj;
+        return this.empId == e.empId;
+    }
+}
+
+
+
+
+
+com.rest.entity.EmpDAO :
+
+package com.rest.entity;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+public class EmpDAO {
+    private static ArrayList<Emp> emps = new ArrayList<>(Arrays.asList(new Emp(101, "Abc"),
+            new Emp(102,"Abcd"),new Emp(103,"Abcde"),
+            new Emp(104,"Abcdef")));
+    public EmpDAO(){
+
+    }
+    public Emp getEmp(int id)
+    {
+        Emp e=null;
+        for(Emp emp : emps){
+            if(emp.getEmpId()==id) {
+                e = emp;
+                break;
+            }
+        }
+        return e;
+    }
+    public List<Emp> getAllEmps(){
+        return emps;
+    }
+    public void addEmp(Emp e){
+        emps.add(e);
+    }
+    public List<Emp> delEmp(int empID){
+        emps.remove(new Emp(empID, "A"));
+        return emps;
+    }
+    public String updateEmp(Emp e){
+        String s="Not Found and so could not be Updated";
+        for(Emp emp : emps){
+            if(emp.getEmpId()==e.getEmpId()) {
+                emp.setEmpName(e.getEmpName());
+                s="Found and Updated";
+                break;
+            }
+        }
+        return s;
+    }
+}
+
+
+
+
+
+
+com.rest.EmpCRUDService:
+
+package com.rest;
+import com.rest.entity.*;
+
+import javax.ws.rs.*;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
+import java.util.List;
+
+@Path("/empCRUD")
+public class EmpCRUDService {
+    @GET
+    @Path("/")
+    @Produces(MediaType.TEXT_PLAIN)
+    public Response getMsg() {
+        return Response.status(200).entity("<h1>Emp CRUD works</h1>").build();
+    }
+    @GET @Path("/getAll")
+    @Produces({"application/json", "application/xml"})
+    public List<Emp> ListEmps() {
+        EmpDAO edao=new EmpDAO();
+        return edao.getAllEmps();
+    }
+    @GET
+    @Path("/getEmp")
+    @Produces({"application/json", "application/xml"})
+    public Emp getEmp( @QueryParam("eid") int eid) {
+        EmpDAO edao=new EmpDAO();
+        return edao.getEmp(eid);
+    }
+
+    @GET @Path("/updateEmp")
+    //@Produces({"application/json", "application/xml"})
+    @Produces(MediaType.TEXT_PLAIN)
+    public String upEmp(
+            @QueryParam("eid") int eid,
+            @QueryParam("ename") String ename)
+    {
+        Emp e=new Emp(eid,ename);
+        EmpDAO edao=new EmpDAO();
+        String r=edao.updateEmp(e);
+        return r;
+
+    }
+    @GET @Path("/delEmp")
+    @Produces({"application/json", "application/xml"})
+    //@Produces(MediaType.TEXT_PLAIN)
+    public List<Emp> delEmp(
+            @QueryParam("eid") int eid)
+    {
+        EmpDAO edao=new EmpDAO();
+        return  edao.delEmp(eid);
+
+    }
+    @POST
+    @Path("/addPost")
+    //@Consumes(MediaType.MULTIPART_FORM_DATA)
+    @Produces(MediaType.TEXT_PLAIN)
+    public String addEmpPost(
+            @FormParam("eid") int eid,
+            @FormParam("ename") String ename)
+    {
+        Emp e=new Emp(eid,ename);
+        EmpDAO edao=new EmpDAO();
+        edao.addEmp(e);
+        return "success by post";
+    }
+    @GET
+    @Path("/add")
+    //@Produces({"application/json", "application/xml"})
+    @Produces(MediaType.TEXT_PLAIN)
+    public String addEmp(
+            @QueryParam("eid") int eid,
+            @QueryParam("ename") String ename)
+    {
+        Emp e=new Emp(eid,ename);
+        EmpDAO edao=new EmpDAO();
+        edao.addEmp(e);
+        return "success";
+
+    }
+
+}
+
+
+
+
+
+
+
+
+
 
 
 
