@@ -25,5 +25,415 @@ commit;
 
 
 
+C:\Users\monica\ProjectsJava\SprSecurePrj3\src\main>tree /F
+Folder PATH listing
+Volume serial number is FCD5-48C0
+C:.
+├───java
+│   └───com
+│       └───springsecure
+│           │   MvcWebApplicationInitializer.java
+│           │   WebSecurityConfig.java
+│           │
+│           
+│
+├───resources
+└───webapp
+    │   health.html
+    │   index.jsp
+    │   logout.jsp
+    │
+    └───WEB-INF
+            web.xml
+
+
+
+
+
+
+
+
+pom.xml:
+
+<properties>
+    <java.version>11</java.version>
+    <maven.compiler.source>11</maven.compiler.source>
+    <maven.compiler.target>11</maven.compiler.target>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>3.8.1</version>
+      <scope>test</scope>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-taglibs -->
+    <dependency>
+      <groupId>org.springframework.security</groupId>
+      <artifactId>spring-security-taglibs</artifactId>
+      <version>5.2.15.RELEASE</version>
+    </dependency>
+
+    <!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-web -->
+    <dependency>
+      <groupId>org.springframework.security</groupId>
+      <artifactId>spring-security-web</artifactId>
+      <version>5.2.15.RELEASE</version>
+    </dependency>
+    <dependency>
+      <groupId>com.oracle.ojdbc</groupId>
+      <artifactId>ojdbc10</artifactId>
+      <version>19.3.0.0</version>
+    </dependency>
+    <dependency>
+      <groupId>javax.servlet.jsp</groupId>
+      <artifactId>jsp-api</artifactId>
+      <version>2.1</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>commons-logging</groupId>
+      <artifactId>commons-logging</artifactId>
+      <version>1.1.1</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/org.springframework/spring-jdbc -->
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-jdbc</artifactId>
+      <version>5.2.15.RELEASE</version>
+    </dependency>
+
+    <!-- https://mvnrepository.com/artifact/org.springframework/spring-webmvc -->
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-webmvc</artifactId>
+      <version>5.2.15.RELEASE</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-core -->
+    <dependency>
+      <groupId>org.springframework.security</groupId>
+      <artifactId>spring-security-core</artifactId>
+      <version>5.2.15.RELEASE</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-config -->
+    <dependency>
+      <groupId>org.springframework.security</groupId>
+      <artifactId>spring-security-config</artifactId>
+      <version>5.2.15.RELEASE</version>
+    </dependency>
+    <dependency>
+      <groupId>javax.servlet</groupId>
+      <artifactId>javax.servlet-api</artifactId>
+      <version>4.0.1</version>
+    </dependency>
+    <dependency>
+      <groupId>javax.servlet</groupId>
+      <artifactId>jstl</artifactId>
+      <version>1.2</version>
+    </dependency>
+  </dependencies>
+
+
+
+
+
+
+
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>org.example</groupId>
+  <artifactId>SprSecurePrj3</artifactId>
+  <packaging>war</packaging>
+  <version>1.0-SNAPSHOT</version>
+  <name>SprSecurePrj3 Maven Webapp</name>
+  <url>http://maven.apache.org</url>
+
+  <properties>
+    <java.version>11</java.version>
+    <maven.compiler.source>11</maven.compiler.source>
+    <maven.compiler.target>11</maven.compiler.target>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>3.8.1</version>
+      <scope>test</scope>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-taglibs -->
+    <dependency>
+      <groupId>org.springframework.security</groupId>
+      <artifactId>spring-security-taglibs</artifactId>
+      <version>5.2.15.RELEASE</version>
+    </dependency>
+
+    <!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-web -->
+    <dependency>
+      <groupId>org.springframework.security</groupId>
+      <artifactId>spring-security-web</artifactId>
+      <version>5.2.15.RELEASE</version>
+    </dependency>
+    <dependency>
+      <groupId>com.oracle.ojdbc</groupId>
+      <artifactId>ojdbc10</artifactId>
+      <version>19.3.0.0</version>
+    </dependency>
+    <dependency>
+      <groupId>javax.servlet.jsp</groupId>
+      <artifactId>jsp-api</artifactId>
+      <version>2.1</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>commons-logging</groupId>
+      <artifactId>commons-logging</artifactId>
+      <version>1.1.1</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/org.springframework/spring-jdbc -->
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-jdbc</artifactId>
+      <version>5.2.15.RELEASE</version>
+    </dependency>
+
+    <!-- https://mvnrepository.com/artifact/org.springframework/spring-webmvc -->
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-webmvc</artifactId>
+      <version>5.2.15.RELEASE</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-core -->
+    <dependency>
+      <groupId>org.springframework.security</groupId>
+      <artifactId>spring-security-core</artifactId>
+      <version>5.2.15.RELEASE</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-config -->
+    <dependency>
+      <groupId>org.springframework.security</groupId>
+      <artifactId>spring-security-config</artifactId>
+      <version>5.2.15.RELEASE</version>
+    </dependency>
+    <dependency>
+      <groupId>javax.servlet</groupId>
+      <artifactId>javax.servlet-api</artifactId>
+      <version>4.0.1</version>
+    </dependency>
+    <dependency>
+      <groupId>javax.servlet</groupId>
+      <artifactId>jstl</artifactId>
+      <version>1.2</version>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <finalName>SprSecurePrj3</finalName>
+  </build>
+</project>
+
+
+
+
+
+
+com.springsecure. WebSecurityConfig :
+
+package com.springsecure;
+
+import javax.sql.DataSource;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.jdbc.datasource.DriverManagerDataSource;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.crypto.password.NoOpPasswordEncoder;
+import java.sql.SQLException;
+@Configuration
+@EnableWebSecurity
+public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+@Bean
+public DataSource getDataSource() throws SQLException {
+    DriverManagerDataSource dataSource = new DriverManagerDataSource();
+    dataSource.setDriverClassName("oracle.jdbc.driver.OracleDriver");
+    dataSource.setUrl("jdbc:oracle:thin:@localhost:1521:orcl");
+    dataSource.setUsername("monica");
+    dataSource.setPassword("gupta");
+    return dataSource;
+}
+    @Override
+    public void configure(AuthenticationManagerBuilder auth)
+            throws Exception {
+        DataSource ds = (DataSource) getDataSource();
+        auth.jdbcAuthentication().dataSource(ds)
+                .passwordEncoder(NoOpPasswordEncoder.getInstance());
+    }
+    @Override
+    public void configure(WebSecurity web) throws Exception {
+        web.ignoring()
+           // Spring Security should completely ignore URLs ending with .html
+           .antMatchers("/*.html");
+    }
+}
+
+
+
+
+
+
+
+com.springsecure. WebSecurityConfig :
+
+package com.springsecure;
+
+
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.sql.DataSource;
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.jdbc.datasource.DriverManagerDataSource;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+
+import com.springsecure.dao.AppUserDetailsServiceDAO;
+import org.springframework.security.crypto.password.NoOpPasswordEncoder;
+
+import java.sql.SQLException;
+
+@Configuration
+@EnableWebSecurity
+public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+@Bean
+public DataSource getDataSource() throws SQLException {
+    DriverManagerDataSource dataSource = new DriverManagerDataSource();
+    dataSource.setDriverClassName("oracle.jdbc.driver.OracleDriver");
+    dataSource.setUrl("jdbc:oracle:thin:@localhost:1521:orcl");
+    dataSource.setUsername("monica");
+    dataSource.setPassword("gupta");
+    return dataSource;
+}
+    @Override
+    public void configure(AuthenticationManagerBuilder auth)
+            throws Exception {
+
+        // in-memory authentication
+        // auth.inMemoryAuthentication().withUser("monica").password("java").roles("USER");
+
+        // using custom UserDetailsService DAO
+        // auth.userDetailsService(new AppUserDetailsServiceDAO());
+
+        // using JDBC
+        //Context ctx = new InitialContext();
+        DataSource ds = (DataSource) getDataSource();
+
+        final String findUserQuery = "select username, password, enabled "
+                + "from users " + "where username = ?";
+        final String findRoles = "select username, authority " + "from authorities "
+                + "where username = ?";
+
+        auth.jdbcAuthentication().dataSource(ds)
+                .passwordEncoder(NoOpPasswordEncoder.getInstance());
+                //.usersByUsernameQuery(findUserQuery)
+               // .authoritiesByUsernameQuery(findRoles);
+    }
+
+    @Override
+    public void configure(WebSecurity web) throws Exception {
+        web
+                .ignoring()
+                // Spring Security should completely ignore URLs ending with .html
+                .antMatchers("/*.html");
+    }
+
+}
+
+
+
+
+
+
+
+com.springsecure. MvcWebApplicationInitializer :
+
+package com.springsecure;
+
+import org.springframework.security.web.context.AbstractSecurityWebApplicationInitializer;
+public class MvcWebApplicationInitializer extends
+        AbstractSecurityWebApplicationInitializer {
+
+    public MvcWebApplicationInitializer() {
+        
+        super(WebSecurityConfig.class);
+    }
+}
+
+
+
+
+
+Webapp/index.jsp :
+
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "https://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Home Page</title></head>
+<body>
+<h3>Home Page</h3>
+	<p> Hello <b><sec:authentication property="principal.username"/> </b> <br>
+      Roles: <b><sec:authentication property="principal.authorities" /></b>   </p>
+    <form action="logout.html" method="post">
+      <input type="submit" value="Logout" />
+      <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+    </form>
+</body>
+</html>
+
+
+
+
+
+health.html:
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Health Check</title>
+</head>
+<body>
+    <h3>Service is up and running!!</h3>
+</body>
+</html>
+
+
+
+
+Webapp/logout.html :
+
+<html>
+<body>
+<h1> Logout </h1>
+</body>
+</html>
+
+
+
+
+
+
 
 
