@@ -263,9 +263,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 public DataSource getDataSource() throws SQLException {
     DriverManagerDataSource dataSource = new DriverManagerDataSource();
     dataSource.setDriverClassName("oracle.jdbc.driver.OracleDriver");
-    dataSource.setUrl("jdbc:oracle:thin:@localhost:1521:orcl");
-    dataSource.setUsername("monica");
-    dataSource.setPassword("gupta");
+    dataSource.setUrl("jdbc:oracle:thin:@10.1.50.198:1535/nsbt19c");
+    dataSource.setUsername("sh");
+    dataSource.setPassword("sh");
     return dataSource;
 }
     @Override
