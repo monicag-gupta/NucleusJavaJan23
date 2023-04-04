@@ -1,0 +1,381 @@
+C:\Users\monica\ProjectsJava\SprSecurePrj2\src\main>tree /F
+Folder PATH listing
+Volume serial number is FCD5-48C0
+C:.
+├───java
+│   └───com
+│       └───springsecure
+│           │   AppConfig.java
+│           │   MvcWebApplicationInitializer.java
+│           │   SecurityWebApplicationInitializer.java
+│           │   WebSecurityConfig.java
+│           │
+│           └───controller
+│                   HomeController.java
+│
+├───resources
+└───webapp
+    └───WEB-INF
+        │   web.xml
+        │
+        └───views
+                admin.jsp
+                index.jsp
+                login.jsp
+
+
+
+
+
+pom:
+
+ <dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>3.8.1</version>
+            <scope>test</scope>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-web -->
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-web</artifactId>
+            <version>5.2.15.RELEASE</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.springframework/spring-webmvc -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-webmvc</artifactId>
+            <version>5.2.15.RELEASE</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-core -->
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-core</artifactId>
+            <version>5.2.15.RELEASE</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-config -->
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-config</artifactId>
+            <version>5.2.15.RELEASE</version>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>4.0.1</version>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>jstl</artifactId>
+            <version>1.2</version>
+        </dependency>
+    </dependencies>
+
+
+
+
+pom.xml:
+
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>org.example</groupId>
+    <artifactId>SprSecurePrj2</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <properties>
+        <java.version>11</java.version>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>3.8.1</version>
+            <scope>test</scope>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-web -->
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-web</artifactId>
+            <version>5.2.15.RELEASE</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.springframework/spring-webmvc -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-webmvc</artifactId>
+            <version>5.2.15.RELEASE</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-core -->
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-core</artifactId>
+            <version>5.2.15.RELEASE</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-config -->
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-config</artifactId>
+            <version>5.2.15.RELEASE</version>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>4.0.1</version>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>jstl</artifactId>
+            <version>1.2</version>
+        </dependency>
+    </dependencies>
+
+</project>
+
+
+
+
+
+
+com.springsecure.AppConfig :
+
+package com.springsecure;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.view.InternalResourceViewResolver;
+import org.springframework.web.servlet.view.JstlView;
+@EnableWebMvc
+@Configuration
+@ComponentScan({ "com.springsecure.controller.*" })
+public class AppConfig {
+    @Bean
+    public InternalResourceViewResolver viewResolver() {
+        InternalResourceViewResolver viewResolver
+                = new InternalResourceViewResolver();
+        viewResolver.setViewClass(JstlView.class);
+        viewResolver.setPrefix("/WEB-INF/views/");
+        viewResolver.setSuffix(".jsp");
+        return viewResolver;
+    }
+}
+
+
+
+
+
+com.springsecure.MvcWebApplicationInitializer :
+
+package com.springsecure;
+import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
+public class MvcWebApplicationInitializer extends
+        AbstractAnnotationConfigDispatcherServletInitializer {
+    @Override
+    protected Class<?>[] getRootConfigClasses() {
+        return new Class[] { WebSecurityConfig.class };
+    }
+    @Override
+    protected Class<?>[] getServletConfigClasses() {
+        // TODO Auto-generated method stub
+        return null;
+    }
+    @Override
+    protected String[] getServletMappings() {
+        return new String[] { "/" };
+    }
+}
+
+
+
+
+
+com.springsecure. SecurityWebApplicationInitializer :
+
+package com.springsecure;
+import org.springframework.security.web.context.*;
+public class SecurityWebApplicationInitializer
+        extends AbstractSecurityWebApplicationInitializer {
+}
+
+
+
+
+
+
+
+com.springsecure.WebSecurityConfig :
+
+package com.springsecure;
+import org.springframework.context.annotation.*;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.*;
+import org.springframework.security.core.userdetails.*;
+import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+@EnableWebSecurity
+@ComponentScan("com.springsecure")
+public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+    @Bean
+    public UserDetailsService userDetailsService() {
+        InMemoryUserDetailsManager manager = new InMemoryUserDetailsManager();
+        manager.createUser(User.withDefaultPasswordEncoder()
+                .username("admin").password("java").roles("ADMIN").build());
+        return manager;
+    }
+
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        http
+                .authorizeRequests()
+                .anyRequest().hasRole("ADMIN")
+                .and().formLogin()
+                .and()
+                .rememberMe()
+                .key("rem")
+                .rememberMeParameter("remember") // it is name of checkbox at login page
+                .rememberMeCookieName("rememberlogin") // it is name of the cookie
+                .tokenValiditySeconds(100) // remember for number of seconds
+                .and()
+                .httpBasic()
+                .and()
+                .logout()
+                .logoutUrl("/j_spring_security_logout")
+                .logoutSuccessUrl("/")  	      ;
+    }
+
+//    @Override
+//    protected void configure(HttpSecurity http) throws Exception {
+//
+//        http.authorizeRequests().
+//                antMatchers("/index", "/user","/").permitAll()
+//                .antMatchers("/admin").authenticated()
+//                .and()
+//                .formLogin()
+//                .loginPage("/login")
+//                .and()
+//                .rememberMe()
+//                .key("rem-me-key")
+//                .rememberMeParameter("remember") // it is name of checkbox at login page
+//                .rememberMeCookieName("rememberlogin") // it is name of the cookie
+//                .tokenValiditySeconds(100) // remember for number of seconds
+//                .and()
+//                .logout()
+//                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"));
+//    }
+}
+
+
+
+
+com.springsecure.controller.HomeController :
+
+
+package com.springsecure.controller;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+@Controller
+public class HomeController {
+    @RequestMapping(value = "/", method = RequestMethod.GET)
+    public String index() {
+        return "admin";
+    }
+    @RequestMapping(value = "/login", method = RequestMethod.GET)
+    public String login() {
+        return "login";
+    }
+    @RequestMapping(value = "/admin", method = RequestMethod.GET)
+    public String admin() {
+        return "admin";
+    }
+    @RequestMapping(value = "/logout", method = RequestMethod.POST)
+    public String logout() {
+        return "index";
+    }
+}
+
+
+
+
+
+WEB-INF\views\admin.jsp :
+
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Admin Page</title>
+</head>
+<body>
+Welcome Admin! ?
+<a href="logout">logout</a>
+</body>
+</html>
+
+
+
+
+WEB-INF\views\index.jsp :
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Home Page</title>
+</head>
+<body>
+Goto Login page :
+<a href="login">login</a>
+</body>
+</html>
+
+
+
+
+
+
+WEB-INF\views\login.jsp :
+
+<%@ taglib    prefix="c"    uri="http://java.sun.com/jsp/jstl/core"%>
+<c:url value="/login" var="loginUrl"/>
+<form action="${loginUrl}" method="post">
+    <c:if test="${param.error != null}">
+        <p>            Invalid username and password.        </p>
+    </c:if>
+    <c:if test="${param.logout != null}">
+        <p>        You have been logged out.     </p>	    </c:if>	    
+<p>        <label for="username">Username</label>
+        <input type="text" id="username" name="username"/>
+    </p>    <p>
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password"/>
+    </p>    <p>
+        <label for="remember"> Remember me</label>
+        <input type="checkbox" name="remember" />
+    </p>
+    <input type="hidden"  name="${_csrf.parameterName}"  value="${_csrf.token}"/>
+    <button type="submit" class="btn">Log in</button>
+</form>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
