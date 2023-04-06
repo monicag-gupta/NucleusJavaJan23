@@ -130,7 +130,7 @@ Ref: http://www.techferry.com/articles/hibernate-jpa-annotations.html
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-core</artifactId>
-            <version>5.4.28.Final</version>
+            <version>5.4.8.Final</version>
         </dependency>
         <dependency>
             <groupId>com.oracle.ojdbc</groupId>
