@@ -142,6 +142,21 @@ Ref: http://www.techferry.com/articles/hibernate-jpa-annotations.html
 
 
 
+Create a Java-Maven Project
+Add the dependencies library-> Hibernate + oracle
+Add the class files in the package in src folder
+Add the package com.hibernate
+Add HibernateUtil.java in the package. This file  will remain same in all projects.
+Add and Edit the hibernate.cfg.xml file in resources
+Execute the program
+
+Properties of the Example:
+CRUD Operation on Student table.
+
+
+
+
+
 
 
 
