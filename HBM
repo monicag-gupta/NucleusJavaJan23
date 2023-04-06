@@ -125,6 +125,27 @@ Ref: http://www.techferry.com/articles/hibernate-jpa-annotations.html
 
 
 
+<dependencies>
+        <!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-core -->
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-core</artifactId>
+            <version>5.4.28.Final</version>
+        </dependency>
+        <dependency>
+            <groupId>com.oracle.ojdbc</groupId>
+            <artifactId>ojdbc10</artifactId>
+            <version>19.3.0.0</version>
+        </dependency>
+
+    </dependencies>
+
+
+
+
+
+
+
 
 
   
