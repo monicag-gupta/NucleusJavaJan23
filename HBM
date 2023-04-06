@@ -1,0 +1,39 @@
+  Properties
+
+  Description
+
+hibernate.dialect
+  This property
+  makes Hibernate generate the appropriate SQL for the chosen database.
+
+hibernate.connection.driver_class
+  The JDBC
+  driver class.
+  
+  hibernate.connection.url
+  The JDBC
+  URL to the database instance.
+  
+  hibernate.connection.username
+  The database
+  username.
+  
+  hibernate.connection.password
+  The database
+  password.
+  
+  hibernate.connection.pool_size
+  Limits the
+  number of connections waiting in the Hibernate database connection pool.
+  
+  hibernate.connection.autocommit
+  Allows autocommit
+  mode to be used for the JDBC connection.
+
+
+
+
+
+  
+ 
+
