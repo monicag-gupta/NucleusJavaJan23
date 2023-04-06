@@ -34,6 +34,94 @@ hibernate.connection.driver_class
 
 
 
+Database & Dialect Property:
+DB2
+org.hibernate.dialect.DB2Dialect
+HSQLDB
+org.hibernate.dialect.HSQLDialect
+HypersonicSQL
+org.hibernate.dialect.HSQLDialect
+Informix
+org.hibernate.dialect.InformixDialect
+Ingres
+org.hibernate.dialect.IngresDialect
+Interbase
+org.hibernate.dialect.InterbaseDialect
+Microsoft SQL Server 2000
+org.hibernate.dialect.SQLServerDialect
+Microsoft SQL Server 2005
+org.hibernate.dialect.SQLServer2005Dialect
+Microsoft SQL Server 2008
+org.hibernate.dialect.SQLServer2008Dialect
+MySQL5
+org.hibernate.dialect.MySQL5Dialect
+Oracle (any version)
+org.hibernate.dialect.OracleDialect
+Oracle 11g
+org.hibernate.dialect.Oracle10gDialect
+Oracle 12c
+org.hibernate.dialect.Oracle12cDialect
+Oracle 9i
+org.hibernate.dialect.Oracle9iDialect
+PostgreSQL
+org.hibernate.dialect.PostgreSQLDialect
+Progress
+org.hibernate.dialect.ProgressDialect
+SAP DB
+org.hibernate.dialect.SAPDBDialect
+Sybase
+org.hibernate.dialect.SybaseDialect
+Sybase Anywhere
+org.hibernate.dialect.SybaseAnywhereDialect
+
+
+
+
+
+
+hibernate.hbm2ddl.auto automatically validates or exports schema DDL to the database when the SessionFactory is created.
+The hbm2ddl.auto property of hibernate either creates or validates a database table. The possible values for hbm2ddl.auto are:
+validate: validate the schema, makes no changes to the database. Useful with Testing Professionals
+update: update the schema.
+create: creates the schema, destroying previous data.
+create-drop: drop the schema when the SessionFactory is closed explicitly, typically when the application is stopped. Web based applications
+
+
+
+
+Hibernate JPA Annotations:
+
+Annotation
+Package Detail/Import statement
+@Entity
+import javax.persistence.Entity;
+@Table
+import javax.persistence.Table;
+@Column
+import javax.persistence.Column;
+@Id
+import javax.persistence.Id;
+@GeneratedValue
+import javax.persistence.GeneratedValue;
+@Version
+import javax.persistence.Version;
+@OrderBy
+import javax.persistence.OrderBy;
+@Transient
+import javax.persistence.Transient;
+@Lob
+import javax.persistence.Lob;
+
+
+
+
+
+
+
+
+
+
+
   
  
 
