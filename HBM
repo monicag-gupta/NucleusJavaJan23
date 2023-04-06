@@ -133,9 +133,9 @@ Ref: http://www.techferry.com/articles/hibernate-jpa-annotations.html
             <version>5.4.8.Final</version>
         </dependency>
         <dependency>
-            <groupId>com.oracle.ojdbc</groupId>
-            <artifactId>ojdbc10</artifactId>
-            <version>19.3.0.0</version>
+            <groupId>com.oracle</groupId>
+            <artifactId>ojdbc14</artifactId>
+            <version>10.2.0.5</version>
         </dependency>
 
     </dependencies>
