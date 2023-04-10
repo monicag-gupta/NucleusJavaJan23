@@ -1,0 +1,253 @@
+Generate Numeric Primary Key Values :
+
+Most table models use simple, numerical primary keys. 
+They are easy to use and very efficient at the same time.
+You can either set their values programmatically or use one of JPA’s generation strategies to create them automatically. 
+The easiest way to do that is to annotate your primary key attribute with a @GeneratedValue annotation. 
+Hibernate will then pick a strategy based on the database-specific dialect.
+
+
+
+
+@Entity
+public class Book {
+     @Id
+    @GeneratedValue
+    private Long id; 
+}
+Using the auto strategy, or not referencing a strategy at all, is the simplest but not the best way. It’s better to specify the strategy. You can choose between:
+GenerationType.AUTO – Let Hibernate pick one of the following strategies.
+GenerationType.SEQUENCE – Use a database sequence.
+GenerationType.IDENTITY – Use an autoincremented database columns.
+GenerationType.TABLE – Use a database table to simulate a sequence.
+That ensures that a Hibernate update will not accidentally change your generation strategy and if you’re using the GenerationType.SEQUENCE, it will also activate Hibernate’s performance optimizations.
+Defining the strategy is simple. 
+You just need to provide it as the value of the strategy attribute of the @GeneratedValue annotation.
+
+
+
+
+@Entity
+public class Book {
+  
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    private Long id;
+      
+    …
+}
+
+By default, Hibernate uses a sequence called hibernate_sequence. You can also tell Hibernate to use one of your own database sequences.
+
+
+
+
+Composite Primary Keys:
+JPA and Hibernate also provide multiple ways to map composite primary keys that consist of multiple attributes.
+The embedded id approach uses an embeddable to map the primary key attributes.
+An embeddable is a pure Java class that is annotated with @Embeddable. It defines attribute mappings in a reusable way.
+If you want to use it as an embedded id, you also need to implement the equals and hashCode methods.
+
+
+
+
+@Embeddable
+public class AddressKey implements Serializable {
+    private Long xId;   private Long yId; 
+    public AddressKey() {} 
+    public AddressKey(Long xId, Long yId) { this.xId = xId; this.yId = yId; } 
+    public Long getxId() {   return xId;     }
+    public void setxId(Long xId) {   this.xId = xId;    }
+    public Long getyId() {   return yId;    }
+    public void setyId(Long yId) {   this.yId = yId;    }
+    @Override
+    public int hashCode() {
+        final int prime = 31;  int result = 1;
+        result = prime * result + ((xId == null) ? 0 : xId.hashCode());
+        result = prime * result + ((yId == null) ? 0 : yId.hashCode());
+        return result;
+    } @Override
+    public boolean equals(Object obj) {
+        if (this == obj)     return true;
+        if (obj == null)     return false;
+        if (getClass() != obj.getClass())  return false;
+        AddressKey other = (AddressKey) obj;
+        if (xId == null) {
+            if (other.xId != null)  return false;
+        } else if (!xId.equals(other.xId)) return false;
+        if (yId == null) {
+            if (other.yId != null)   return false;
+        } else if (!yId.equals(other.yId))    return false;
+        return true;
+    }	}
+    
+    
+    
+    
+    
+    @Entity
+public class Address {
+  
+    @EmbeddedId
+    private AddressKey id;
+  
+    private String city;
+  
+    private String street;
+  
+    private String country;
+  
+    @OneToOne(mappedBy = "address")
+    private Person person;
+  
+    ...
+}
+
+
+
+main():
+
+EntityManager em = emf.createEntityManager();
+em.getTransaction().begin();
+Address a = new Address();
+AddressKey aKey = new AddressKey(1L, 2L);
+a.setId(aKey);
+a.setCity("A City");
+a.setCountry("A Country");
+a.setStreet("A Street");
+em.persist(a);
+em.getTransaction().commit();
+em.close();
+em = emf.createEntityManager();
+em.getTransaction().begin();
+aKey = new AddressKey(1L, 2L);
+a = em.find(Address.class, aKey);
+em.getTransaction().commit();
+em.close();
+
+
+
+
+
+
+Relationships:
+
+One-to-one: A @OneToOne relation mapping to a single-value association to another entity.
+One-to-many: A @OneToMany mapping is used for a many-valued association with one-to-many multiplicity.
+Many-to-one: A @ManyToOne mapping is used for a single-valued association to another entity class that has many-to-one multiplicity.
+Many-to-many: A @ManyToMany mapping for a many-valued association with many-to-many multiplicity.
+There are following types of cascade:
+CascadeType.PERSIST: When we persist an entity all the entities held in this field persist too. 
+CascadeType.REMOVE: When we delete an entity all the entities held in this field delete too.
+CascadeType.REFRESH: When we refresh an entity all the entities held in this field refresh too.
+CascadeType.MERGE: When we merge an entity all the entities held in this flied merged too
+The property cascade = CascadeType.ALL indicates that when we persist, remove, refresh or merge this entity all the entities held in this field would be persist, remove, delete or update.
+
+
+
+
+Default Fetch type in case of the below annotations.
+
+@OneToOne – Default fetch type is EAGER
+@OneToMany – Default fetch type is LAZY.
+@ManyToOne – Default fetch type is EAGER.
+@ManyToMany – Default fetch type is LAZY.
+@ElementCollection – Default fetch type is EAGER.
+
+
+
+
+
+Example:
+
+com.hibernate.Student:
+
+package com.hibernate;
+import javax.persistence.CascadeType;import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;import javax.persistence.Id;
+import javax.persistence.JoinColumn;import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+@Entity
+@Table(name = "STUDENT")
+public class Student {
+@Id
+@GeneratedValue
+private int student_id;
+private String student_name;
+@ManyToOne(cascade = CascadeType.ALL)
+private StudentAddress studentAddress;
+public StudentAddress getStudentAddress() {return studentAddress;}
+public void setStudentAddress(StudentAddress studentAddress) {
+this.studentAddress = studentAddress;}
+public int getStudent_id() { return student_id;}
+public void setStudent_id(int student_id) {
+this.student_id = student_id;}
+public String getStudent_name() { return student_name;}
+public void setStudent_name(String student_name) {
+this.student_name = student_name;}
+}
+
+
+
+StudentAddress:
+package com.hibernate;
+import java.util.HashSet;import java.util.Set;
+import javax.persistence.CascadeType;import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;import javax.persistence.Id;
+import javax.persistence.OneToMany;import javax.persistence.Table;
+@Entity
+@Table(name= "STUDENTADDRESS")
+public class StudentAddress {
+@Id
+@GeneratedValue
+private int address_id;
+private String address;
+@OneToMany(cascade = CascadeType.ALL, mappedBy = "studentAddress")
+private Set<Student> students = new HashSet<Student>(0);
+public Set<Student> getStudents() {return students;}
+public void setStudents(Set<Student> students) {this.students = students;}
+public String getAddress() {return address;}
+public void setAddress(String address) {this.address = address;}
+}
+
+
+
+
+
+Main:
+package com.hibernate;
+import org.hibernate.Session;import org.hibernate.SessionFactory;
+public class Main {
+   public static void main(String[] args) {
+     StudentAddress studentAddress = new StudentAddress();
+     studentAddress.setAddress("Delhi, India");
+     Student student1 = new Student();
+     student1.setStudent_name("AAA1");
+     student1.setStudentAddress(studentAddress);
+     Student student2 = new Student();
+     student2.setStudent_name("AAA2");
+     student2.setStudentAddress(studentAddress);
+     (studentAddress.getStudents()).add(student1);
+     (studentAddress.getStudents()).add(student2);
+     SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+     Session session = sessionFactory.openSession();
+     session.beginTransaction();
+     session.save(studentAddress);
+     session.getTransaction().commit();
+     session.close();
+     sessionFactory.close();
+}  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
