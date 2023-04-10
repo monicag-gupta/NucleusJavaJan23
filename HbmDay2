@@ -765,7 +765,12 @@ public class MainTest {
 
 
 
+SQL> select * from employee101;
 
+"TYPE","ID","NAME","BONUS","SALARY","CONTRACT_DURATION","PAY_PER_HOUR"
+"employee",101,"Ishu Gupta",,,,
+"regularemployee",102,"Tanvi Sahu",5,50000,,
+"contractemployee",103,"Dhruvi",,,"15 hours",1000
 
 
 
@@ -859,6 +864,26 @@ public class MainTest {
     }  	}
 
 
+SQL> select * from employee102;
+
+"ID","NAME"
+104,"Ishu Gupta"
+
+SQL> select * from regularemployee102;
+
+"ID","NAME","BONUS","SALARY"
+105,"Tanvi Sahu",5,50000
+
+SQL> select * from contractemployee102;
+
+"ID","NAME","CONTRACT_DURATION","PAY_PER_HOUR"
+106,"Dhruvi","15 hours",1000
+
+
+
+
+
+
 
 
 Employee
@@ -912,6 +937,19 @@ public class Contract_Employee extends Employee{
 } 
 
 
+SQL> select * from employee103;
+"ID","NAME"
+121,"Ishu Gupta"
+122,"Tanvi Sahu"
+123,"Dhruvi"
+
+SQL> select * from contractemployee103;
+"CONTRACT_DURATION","PAY_PER_HOUR","ID"
+"15 hours",1000,123
+
+SQL> select * from regularemployee103;
+"BONUS","SALARY","ID"
+5,50000,122
 
 
 
