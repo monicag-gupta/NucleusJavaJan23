@@ -1,3 +1,27 @@
+Hibernate Native Queries:
+// Prep work
+SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+Session session = sessionFactory.getCurrentSession();
+
+// Get All Employees
+Transaction tx = session.beginTransaction();
+SQLQuery query = session.createSQLQuery("select emp_id, emp_name, emp_salary from Employee");
+List<Object[]> rows = query.list();
+for(Object[] row : rows){
+	Employee emp = new Employee();
+	emp.setId(Long.parseLong(row[0].toString()));
+	emp.setName(row[1].toString());
+	emp.setSalary(Double.parseDouble(row[2].toString()));
+	System.out.println(emp);
+}
+
+
+
+
+
+
+
+
 Generate Numeric Primary Key Values :
 
 Most table models use simple, numerical primary keys. 
