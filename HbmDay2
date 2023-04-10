@@ -395,6 +395,264 @@ public class Main {
 
 
 
+Example: Lazy Vs Eager Loading
+
+C:\Users\monica\ProjectsJava\HbmPrj1\src\main>tree /F
+Folder PATH listing
+Volume serial number is FCD5-48C0
+C:.
+├───java
+│   ├───com
+│   │   └───hibernate
+│   │           Book.java
+│   │           HibernateUtil.java
+│   │           Main.java
+│   │           Story.java
+│   ││
+└───resources
+        hibernate.cfg.xml
+
+
+
+com.hibernate.Book : Lazy Fetching 
+package com.hibernate;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+
+@Entity
+public class Book {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private int bookId;
+
+    @Column(name = "book_name")
+    private String bookName;
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "book_id", referencedColumnName = "bookId")
+    private List<Story> storyList = new ArrayList<>();
+
+    public int getBookId() {
+        return bookId;
+    }
+
+    public void setBookId(int bookId) {
+        this.bookId = bookId;
+    }
+
+    public String getBookName() {
+        return bookName;
+    }
+
+    public void setBookName(String bookName) {
+        this.bookName = bookName;
+    }
+
+    public List<Story> getStoryList() {
+        return storyList;
+    }
+
+    public void setStoryList(List<Story> storyList) {
+        this.storyList = storyList;
+    }
+
+    @Override
+    public String toString() {
+        return "\nBook{" +
+                "bookId=" + bookId +
+                ", bookName='" + bookName + '\'' +
+                ", storyList=" + storyList +
+                '}';
+    }
+}
+
+
+
+
+
+com.hibernate.Story
+package com.hibernate;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
+public class Story {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private int storyId;
+
+    @Column(name = "story_name")
+    private String storyName;
+
+    public int getStoryId() {
+        return storyId;
+    }
+
+    public void setStoryId(int storyId) {
+        this.storyId = storyId;
+    }
+
+    public String getStoryName() {
+        return storyName;
+    }
+
+    public void setStoryName(String storyName) {
+        this.storyName = storyName;
+    }
+
+    public Story(String storyName) {
+        this.storyName = storyName;
+    }
+    public Story(){}
+
+    @Override
+    public String toString() {
+        return "Story{" +
+                "storyId=" + storyId +
+                ", storyName='" + storyName + '\'' +
+                '}';
+    }
+}
+
+
+
+
+
+
+package com.hibernate;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import java.util.Arrays;
+import java.util.List;
+public class Main {
+    public static void main(String[] args) {
+        Book book=new Book();
+        book.setBookName("Java Rocks");
+        book.setStoryList(Arrays.asList(new Story("Collections"),new Story("Lambda")));
+        SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+        Session session = sessionFactory.openSession();
+        session.beginTransaction();
+        session.save(book);
+ //        Book book1=session.get(Book.class,61);
+//        List<Book> lists=(List<Book>) session.createQuery("FROM Book").getResultList();
+//        System.out.println(lists);
+ //       System.out.println(book1);
+        session.getTransaction().commit();
+        session.close();
+        sessionFactory.close();
+    }
+}
+
+
+
+com.hibernate.Main: For fetch:
+package com.hibernate;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import java.util.Arrays;
+import java.util.List;
+public class Main {
+    public static void main(String[] args) {
+        Book book=new Book();
+        book.setBookName("Java Rocks");
+        book.setStoryList(Arrays.asList(new Story("Collections"),new Story("Lambda")));
+        SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+        Session session = sessionFactory.openSession();
+        session.beginTransaction();
+ //       session.save(book);
+ //        Book book1=session.get(Book.class,61);
+        List<Book> lists=(List<Book>) session.createQuery("FROM Book").getResultList();
+        System.out.println(lists);
+ //       System.out.println(book1);
+        session.getTransaction().commit();
+        session.close();
+        sessionFactory.close();
+    }
+}
+
+
+
+com.hibernate.Book : EAGER Fetching :
+package com.hibernate;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+
+@Entity
+public class Book {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private int bookId;
+
+    @Column(name = "book_name")
+    private String bookName;
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "book_id", referencedColumnName = "bookId")
+    private List<Story> storyList = new ArrayList<>();
+
+    public int getBookId() {
+        return bookId;
+    }
+
+    public void setBookId(int bookId) {
+        this.bookId = bookId;
+    }
+
+    public String getBookName() {
+        return bookName;
+    }
+
+    public void setBookName(String bookName) {
+        this.bookName = bookName;
+    }
+
+    public List<Story> getStoryList() {
+        return storyList;
+    }
+
+    public void setStoryList(List<Story> storyList) {
+        this.storyList = storyList;
+    }
+
+    @Override
+    public String toString() {
+        return "\nBook{" +
+                "bookId=" + bookId +
+                ", bookName='" + bookName + '\'' +
+                ", storyList=" + storyList +
+                '}';
+    }
+}
+
+
 
 
 
