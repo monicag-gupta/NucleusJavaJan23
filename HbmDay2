@@ -741,27 +741,175 @@ public class Contract_Employee extends Employee{
 
 
 MainTest
+package com.mypackage;
+import org.hibernate.Session;  import org.hibernate.SessionFactory;  import org.hibernate.Transaction;
+import org.hibernate.boot.Metadata; import org.hibernate.boot.MetadataSources;
+import org.hibernate.boot.registry.StandardServiceRegistry;
+import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
+public class MainTest {
+    public static void main(String args[])    {
+        StandardServiceRegistry ssr = new StandardServiceRegistryBuilder().configure("hibernate.cfg.xml").build();
+        Metadata meta = new MetadataSources(ssr).getMetadataBuilder().build();
+        SessionFactory factory=meta.getSessionFactoryBuilder().build();
+        Session session=factory.openSession();
+        Transaction t=session.beginTransaction();
+        Employee e1=new Employee();    e1.setName("Ishu Gupta");
+        Regular_Employee e2=new Regular_Employee();
+        e2.setName("Tanvi Sahu");  e2.setSalary(50000);  e2.setBonus(5);
+        Contract_Employee e3=new Contract_Employee();
+        e3.setName("Dhruvi");  e3.setPay_per_hour(1000);
+        e3.setContract_duration("15 hours");
+        session.persist(e1); session.persist(e2); session.persist(e3);
+        t.commit();   session.close(); System.out.println("success");
+    }  	}
+
+
+
+
+
+
+
+Employee
 package com.mypackage;  
-import org.hibernate.Session;  import org.hibernate.SessionFactory;  import org.hibernate.Transaction;  
-import org.hibernate.boot.Metadata; import org.hibernate.boot.MetadataSources;  
-import org.hibernate.boot.registry.StandardServiceRegistry;  
-import org.hibernate.boot.registry.StandardServiceRegistryBuilder;  
-public class MainTest {  
-    public static void main(String args[])    {  
-        StandardServiceRegistry ssr = new StandardServiceRegistryBuilder().configure("hibernate.cfg.xml").build();  
-        Metadata meta = new MetadataSources(ssr).getMetadataBuilder().build();    
-        SessionFactory factory=meta.getSessionFactoryBuilder().build();  
-        Session session=factory.openSession();  
-        Transaction t=session.beginTransaction();    
-            Employee e1=new Employee();    e1.setName("Gaurav Chawla");    
-            Regular_Employee e2=new Regular_Employee();    
-            e2.setName("Vivek Kumar");  e2.setSalary(50000);  e2.setBonus(5);    
-            Contract_Employee e3=new Contract_Employee();    
-            e3.setName("Arjun Kumar");  e3.setPay_per_hour(1000);    
-            e3.setContract_duration("15 hours");    
-            session.persist(e1); session.persist(e2); session.persist(e3);    
-            t.commit();   session.close(); System.out.println("success");        
-    }  	} 
+import javax.persistence.*;  
+@Entity  
+@Table(name = "employee102")  
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)  
+public class Employee {  
+  @Id  
+  @GeneratedValue(strategy=GenerationType.AUTO)    
+  @Column(name = "id")  
+  private int id;  
+  @Column(name = "name")  
+  private String name;  
+  //setters and getters  
+} 
+
+
+
+
+Regular_Employee
+package com.mypackage;  
+import javax.persistence.*;  
+@Entity  
+@Table(name="regularemployee102")  
+@AttributeOverrides({  
+    @AttributeOverride(name="id", column=@Column(name="id")),  
+    @AttributeOverride(name="name", column=@Column(name="name"))  
+})  
+public class Regular_Employee extends Employee{  
+  @Column(name="salary")    
+  private float salary;  
+  @Column(name="bonus")     
+  private int bonus;  
+  //setters and getters  
+} 
+
+
+
+
+Contract_Employee
+package com.mypackage;  
+import javax.persistence.*;  
+@Entity  
+@Table(name="contractemployee102")  
+@AttributeOverrides({  
+    @AttributeOverride(name="id", column=@Column(name="id")),  
+    @AttributeOverride(name="name", column=@Column(name="name"))  
+})  
+public class Contract_Employee extends Employee{     
+    @Column(name="pay_per_hour")  
+    private float pay_per_hour;  
+    @Column(name="contract_duration")  
+    private String contract_duration;  
+    public float getPay_per_hour() {  
+        return pay_per_hour;      }  
+    public void setPay_per_hour(float payPerHour) {  
+        pay_per_hour = payPerHour;     }  
+    public String getContract_duration() {  
+        return contract_duration;      }  
+    public void setContract_duration(String contractDuration) {  
+        contract_duration = contractDuration;      }  
+} 
+
+
+
+
+MainTest
+package com.mypackage;
+import org.hibernate.Session;  import org.hibernate.SessionFactory;  import org.hibernate.Transaction;
+import org.hibernate.boot.Metadata; import org.hibernate.boot.MetadataSources;
+import org.hibernate.boot.registry.StandardServiceRegistry;
+import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
+public class MainTest {
+    public static void main(String args[])    {
+        StandardServiceRegistry ssr = new StandardServiceRegistryBuilder().configure("hibernate.cfg.xml").build();
+        Metadata meta = new MetadataSources(ssr).getMetadataBuilder().build();
+        SessionFactory factory=meta.getSessionFactoryBuilder().build();
+        Session session=factory.openSession();
+        Transaction t=session.beginTransaction();
+        Employee e1=new Employee();    e1.setName("Ishu Gupta");
+        Regular_Employee e2=new Regular_Employee();
+        e2.setName("Tanvi Sahu");  e2.setSalary(50000);  e2.setBonus(5);
+        Contract_Employee e3=new Contract_Employee();
+        e3.setName("Dhruvi");  e3.setPay_per_hour(1000);
+        e3.setContract_duration("15 hours");
+        session.persist(e1); session.persist(e2); session.persist(e3);
+        t.commit();   session.close(); System.out.println("success");
+    }  	}
+
+
+
+
+Employee
+package com.mypackage;  
+import javax.persistence.*;    
+@Entity  
+@Table(name = "employee103")  
+@Inheritance(strategy=InheritanceType.JOINED)  
+public class Employee {  
+  @Id  
+  @GeneratedValue(strategy=GenerationType.AUTO)  
+  @Column(name = "id")  
+  private int id;  
+  @Column(name = "name")  
+  private String name;  
+  //setters and getters  
+} 
+
+
+
+
+Regular_Employee
+package com.mypackage;  
+import javax.persistence.*;  
+@Entity  
+@Table(name="regularemployee103")  
+@PrimaryKeyJoinColumn(name="ID")  
+public class Regular_Employee extends Employee{  
+   @Column(name="salary")    
+   private float salary;  
+   @Column(name="bonus")     
+   private int bonus;  
+   //setters and getters  
+} 
+
+
+Contract_Employee
+package com.mypackage;  
+import javax.persistence.*;  
+@Entity  
+@Table(name="contractemployee103")  
+@PrimaryKeyJoinColumn(name="ID")  
+public class Contract_Employee extends Employee{  
+    @Column(name="pay_per_hour")  
+    private float pay_per_hour;  
+      
+    @Column(name="contract_duration")  
+    private String contract_duration;  
+  
+    //setters and getters  
+} 
 
 
 
