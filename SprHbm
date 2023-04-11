@@ -1,0 +1,40 @@
+void persist(Object entity) : persists the given object.
+Serializable save(Object entity) : persists the given object and returns id.
+void saveOrUpdate(Object entity) : persists or updates the given object. If id is found, it updates the record otherwise saves the record.
+void update(Object entity) : updates the given object.
+void delete(Object entity) : deletes the given object on the basis of id.
+Object get(Class entityClass, Serializable id) : returns the persistent object on the basis of given id. Returns null if not found.
+Object load(Class entityClass, Serializable id) : returns the persistent object on the basis of given id. Return an exception if not found.
+List loadAll(Class entityClass) : returns the all the persistent objects.
+
+
+
+
+By using @Transactional, many important aspects such as transaction propagation are handled automatically. 
+
+
+
+
+SpringHbmPrj1
+create table in the database 
+Create SpringHbmPrj1 as Java Project
+Package com.hibernate
+Resources -> applicationContext.xml 
+It contains information of DataSource, SessionFactory etc.
+Employee.java
+It is the persistent class
+EmployeeDao.java
+It is the dao class that uses HibernateTemplate.
+InsertTest.java 
+It calls methods of EmployeeDao class.
+
+
+
+Create table Employee:
+Drop table EMPLOYEE;
+Create table Employee(id int not null, name varchar(255), salary real, Primary Key(id));
+
+
+
+
+
