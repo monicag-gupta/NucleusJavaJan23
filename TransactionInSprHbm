@@ -1,0 +1,411 @@
+Example
+Tree /F:
+C:\Users\monica\ProjectsJava\HbmSprPrj3\src>tree /F
+Folder PATH listing
+Volume serial number is FCD5-48C0
+C:.
+├───main
+│   ├───java
+│   │   ├───com
+│   │   │   └───hibernate
+│   │   │           Address.java
+│   │   │           AddressDao.java
+│   │   │           EmpAddDao.java
+│   │   │           Employee.java
+│   │   │           EmployeeDao.java
+│   │   │           Test.java
+│   │   │
+│   │   └───org
+│   │       └───example
+│   │               Main.java
+│   │
+│   └───resources
+│           applicationContext.xml
+│
+└───test
+    └───java
+
+
+
+
+
+
+Pom.xml:
+
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>org.example</groupId>
+    <artifactId>HbmSprPrj3</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <dependencies>
+        <!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-core -->
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-core</artifactId>
+            <version>5.4.28.Final</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-orm</artifactId>
+            <version>5.0.1.RELEASE</version>
+        </dependency>
+        <!-- Thanks for using https://jar-download.com -->
+
+        <dependency>
+            <groupId>com.oracle.ojdbc</groupId>
+            <artifactId>ojdbc10</artifactId>
+            <version>19.3.0.0</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.springframework/spring-hibernate -->
+<!--        <dependency>-->
+<!--            <groupId>org.springframework</groupId>-->
+<!--            <artifactId>spring-hibernate</artifactId>-->
+<!--            <version>1.2.8</version>-->
+<!--        </dependency>-->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-core</artifactId>
+            <version>5.0.1.RELEASE</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+            <version>5.0.1.RELEASE</version>
+        </dependency>
+
+    </dependencies>
+    <properties>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+</project>
+
+
+
+
+
+
+
+applicationContext.xml :
+
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd"
+       xmlns:tx="http://www.springframework.org/schema/tx">
+    <bean id="dataSource"
+          class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" />
+        <property name="url" value="jdbc:oracle:thin:@localhost:1521:orcl" />
+        <property name="username" value="monica" />
+        <property name="password" value="gupta" />
+    </bean>
+    <bean id="mysessionFactory"
+          class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"></property>
+        <property name="annotatedClasses">
+            <list>
+                <value>com.hibernate.Employee </value>
+                <value>com.hibernate.Address </value>
+            </list>
+        </property>
+
+        <property name="hibernateProperties">
+            <props>
+                <prop key="hibernate.dialect">org.hibernate.dialect.Oracle12cDialect</prop>
+<!--                <prop key="hibernate.hbm2ddl.auto">create</prop>-->
+                <prop key="hibernate.show_sql">true</prop>
+            </props>
+        </property>
+    </bean>
+    <bean id="template" class="org.springframework.orm.hibernate5.HibernateTemplate">
+        <property name="sessionFactory" ref="mysessionFactory"></property>
+    </bean>
+    <bean id="transactionManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+        <property name="sessionFactory" ref="mysessionFactory" />
+    </bean>
+    <tx:annotation-driven transaction-manager="transactionManager" />
+    <bean id="d" class="com.hibernate.EmployeeDao">
+        <property name="template" ref="template"></property>
+    </bean>
+    <bean id="a" class="com.hibernate.AddressDao">
+        <property name="template" ref="template"></property>
+    </bean>
+    <bean id="ea" class="com.hibernate.EmpAddDao">
+        <property name="template" ref="template"></property>
+    </bean>
+</beans>
+
+
+
+
+
+
+
+
+
+
+
+Employee:
+
+package com.hibernate;
+import javax.persistence.*;
+
+@Entity
+public class Employee {
+    @Id
+    private int id;
+    private String name;
+    private float salary;
+//    @OneToOne(cascade = CascadeType.ALL)
+//    private Address  address;
+//
+//    public Address getAddress() {
+//        return address;
+//    }
+//
+//    public void setAddress(Address address) {
+//        this.address = address;
+//    }
+
+    public Employee() {}
+    public Employee(int id, String name, float salary) {
+        this.id = id;  this.name = name;  this.salary = salary; }
+    //public Employee(int id, String name, float salary, Address address) {
+    //  this.id = id;  this.name = name;  this.salary = salary; this.address=address}
+    public int getId() {	return id;	}
+    public void setId(int id) {	this.id = id;	}
+    public String getName() {	return name;	}
+    public void setName(String name) {	this.name = name;	}
+    public float getSalary() {	return salary;	}
+    public void setSalary(float salary) {	this.salary = salary;	}
+
+    @Override
+    public String toString() {
+        return "Employee{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", salary=" + salary +
+//                ", address=" + address +
+                '}';
+    }
+}
+
+
+
+
+
+Address:
+
+package com.hibernate;
+
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
+public class Address {
+    @Id
+    private int pincode;
+    private String addressText;
+
+    public int getPincode() {
+        return pincode;
+    }
+
+    public void setPincode(int pincode) {
+        this.pincode = pincode;
+    }
+
+    public String getAddressText() {
+        return addressText;
+    }
+
+    public void setAddressText(String addressText) {
+        this.addressText = addressText;
+    }
+    public Address(){}
+    public Address(int pincode, String addressText) {
+        this.pincode = pincode;
+        this.addressText = addressText;
+    }
+
+    @Override
+    public String toString() {
+        return "Address{" +
+                "pincode=" + pincode +
+                ", addressText='" + addressText + '\'' +
+                '}';
+    }
+}
+
+
+
+
+
+
+EmployeeDao
+
+package com.hibernate;
+import java.util.*;
+import org.springframework.orm.hibernate5.HibernateTemplate;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.springframework.transaction.annotation.Transactional;
+//@EnableTransactionManagement
+@Transactional //(readOnly = true)
+public class EmployeeDao {
+    HibernateTemplate template;
+
+    public HibernateTemplate getTemplate() {
+        return template;
+    }
+
+    public void setTemplate(HibernateTemplate template) {  this.template = template;  	}
+    //@Transactional(readOnly = false)
+    public void saveEmployee(Employee e){  	template.save(e); 	}
+    //@Transactional(readOnly = false)
+    public void updateEmployee(Employee e){  	template.update(e); }
+    //@Transactional(readOnly = false)
+    public void deleteEmployee(Employee e){  template.delete(e);  }
+    //@Transactional(readOnly = false)
+    public Employee getById(int id){  Employee e=(Employee)template.get(Employee.class,id);	return e; 	}
+//    @Transactional(readOnly = false)
+    public List<Employee> getEmployees(){
+        List<Employee> list=new ArrayList<Employee>();
+        list=template.loadAll(Employee.class);
+        return list;
+    }
+}
+
+
+
+
+
+
+AddressDao
+
+package com.hibernate;
+import java.util.*;
+import org.springframework.orm.hibernate5.HibernateTemplate;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.springframework.transaction.annotation.Transactional;
+//@EnableTransactionManagement
+@Transactional //(readOnly = true)
+public class AddressDao {
+    HibernateTemplate template;
+
+    public HibernateTemplate getTemplate() {
+        return template;
+    }
+
+    public void setTemplate(HibernateTemplate template) {  this.template = template;  	}
+//    @Transactional(readOnly = false)
+    public void saveAddress(Address e){  	template.save(e); 	}
+//    @Transactional(readOnly = false)
+    public void updateAddress(Address e){  	template.update(e); }
+//    @Transactional(readOnly = false)
+    public void deleteAddress(Address e){  template.delete(e);  }
+//    @Transactional(readOnly = false)
+    public Address getByPin(int pin){  Address e=(Address)template.get(Address.class,pin);	return e; 	}
+//    @Transactional(readOnly = false)
+    public List<Address> getAllAddress(){
+        List<Address> list=new ArrayList<>();
+        list=template.loadAll(Address.class);
+        return list;
+    }
+}
+
+
+
+
+
+
+
+EmpAddDao
+
+package com.hibernate;
+import java.util.*;
+import org.springframework.orm.hibernate5.HibernateTemplate;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.springframework.transaction.annotation.Transactional;
+//@EnableTransactionManagement
+@Transactional //(readOnly = true)
+public class EmpAddDao {
+    HibernateTemplate template;
+
+    public HibernateTemplate getTemplate() {
+        return template;
+    }
+
+    public void setTemplate(HibernateTemplate template) {  this.template = template;  	}
+    //@Transactional(readOnly = false)
+    public void saveEmpAdd(Employee e, Address a){  	template.save(e); template.save(a); 	}
+    //@Transactional(readOnly = false)
+    public void updateEmpAdd(Employee e, Address a){  	template.update(e);template.update(a); }
+    //@Transactional(readOnly = false)
+    public void deleteEmpAdd(Employee e, Address a){  template.delete(e); template.delete(a);  }
+    //@Transactional(readOnly = false)
+    public Employee getById(int id){  Employee e=(Employee)template.get(Employee.class,id);	return e; 	}
+
+    //    @Transactional(readOnly = false)
+    public Address getByPin(int pin){  Address e=(Address)template.get(Address.class,pin);	return e; 	}
+
+    //    @Transactional(readOnly = false)
+    public List<Employee> getEmployees(){
+        List<Employee> list=new ArrayList<Employee>();
+        list=template.loadAll(Employee.class);
+        return list;
+    }
+
+    //    @Transactional(readOnly = false)
+    public List<Address> getAllAddress(){
+        List<Address> list=new ArrayList<>();
+        list=template.loadAll(Address.class);
+        return list;
+    }
+}
+
+
+
+
+
+
+
+Test
+
+package com.hibernate;
+import org.hibernate.FlushMode;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+public class Test {
+    public static void main(String[] args) {
+        ApplicationContext ctx=new ClassPathXmlApplicationContext("applicationContext.xml");
+//        EmployeeDao dao=(EmployeeDao)ctx.getBean("d");
+//        AddressDao dao2=(AddressDao)ctx.getBean("a");
+        EmpAddDao dao3=(EmpAddDao)ctx.getBean("ea") ;
+        //dao.getTemplate().getSessionFactory().getCurrentSession().setFlushMode(FlushMode.AUTO);
+        Address address=new Address(523456,"India");
+       // Address address=new Address(123456,"India"); //then 223456, 323456, 423456
+        Employee employee=new Employee(101, "Ishu2",50000);
+//        Employee employee=new Employee(101, "Ishu2",50000, address); //for one2one relation
+            dao3.saveEmpAdd(employee,address);  //run this for seeing transaction combined for both entities
+//        dao2.saveAddress(address); //run this for seeing transaction separately running for both entities
+//        dao.saveEmployee(employee); //run this for seeing transaction separately running for both entities
+//        dao.saveEmployee(employee); //run this alone for one2one relation
+    }
+}
+
+
+
+
+
+
+
+
+
+
