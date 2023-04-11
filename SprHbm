@@ -37,4 +37,99 @@ Create table Employee(id int not null, name varchar(255), salary real, Primary K
 
 
 
+Employee
+package com.hibernate;
+import javax.persistence.*;
+@Entity
+public class Employee {
+    @Id
+    private int id;
+    private String name;
+    private float salary;
+    public Employee() {}
+    public Employee(int id, String name, float salary) {
+        this.id = id;  this.name = name;  this.salary = salary;   }
+    public int getId() {	return id;	}
+    public void setId(int id) {	this.id = id;	}
+    public String getName() {	return name;	}
+    public void setName(String name) {	this.name = name;	}
+    public float getSalary() {	return salary;	}
+    public void setSalary(float salary) {	this.salary = salary;	}
+    public String toString(){	return id+" "+name+" "+salary;	}
+}
+
+
+
+
+
+EmployeeDao
+package com.hibernate;
+import java.util.*;
+import org.springframework.orm.hibernate5.HibernateTemplate;
+import org.springframework.transaction.annotation.Transactional;  
+public class EmployeeDao {  
+	HibernateTemplate template;
+	public void setTemplate(HibernateTemplate template) {  this.template = template;  	}  
+	@Transactional(readOnly = false)
+	public void saveEmployee(Employee e){  	template.save(e); 	}  
+	@Transactional(readOnly = false)  
+	public void updateEmployee(Employee e){  	template.update(e); }  
+	@Transactional(readOnly = false)  
+	public void deleteEmployee(Employee e){  template.delete(e);  }  
+	@Transactional(readOnly = false)
+	public Employee getById(int id){  Employee e=(Employee)template.get(Employee.class,id);	return e; 	}  
+	@Transactional(readOnly = false) 
+	public List<Employee> getEmployees(){  
+		List<Employee> list=new ArrayList<Employee>();  
+		list=template.loadAll(Employee.class);  
+		return list; 	}  }
+//If you specify readOnly as true, the flush mode will be set as FlushMode.NEVER in the current Hibernate Session preventing the session from committing the transaction.
+
+
+
+<dependencies>
+        <!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-core -->
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-core</artifactId>
+            <version>5.4.28.Final</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-orm</artifactId>
+            <version>5.0.1.RELEASE</version>
+        </dependency>
+        <!-- Thanks for using https://jar-download.com -->
+
+        <dependency>
+            <groupId>com.oracle.ojdbc</groupId>
+            <artifactId>ojdbc10</artifactId>
+            <version>19.3.0.0</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.springframework/spring-hibernate -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-hibernate</artifactId>
+            <version>1.2.8</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-core</artifactId>
+            <version>5.0.1.RELEASE</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+            <version>5.0.1.RELEASE</version>
+        </dependency>
+
+    </dependencies>
+    
+    
+    
+    
+    
+    
+
+
 
