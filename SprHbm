@@ -25,7 +25,7 @@ Employee.java
 It is the persistent class
 EmployeeDao.java
 It is the dao class that uses HibernateTemplate.
-InsertTest.java 
+Test.java 
 It calls methods of EmployeeDao class.
 
 
@@ -188,4 +188,7 @@ public static void main(String[] args) {
     dao.saveEmployee(e);  
     }  
 } 
+
+
+
 
