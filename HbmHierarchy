@@ -1,0 +1,34 @@
+HBM:
+
+Configuration : JDBC (DataSource) properties to SessionFactory, mapped classes/XML, HBM properties to SessionFactory(Dialect, Hbm2DDL.auto, show_sql, pool, cache)
+  SessionFactory : (from ServiceRegistry): Concurrent, heavy weight, one per DB
+      Session : physical connection
+        Transaction : ACID, begin, commit, rollback
+          Query : actual query : HQL, SQL
+ 
+ 
+ SprHBM:
+      Beans
+        Beans: ConfigurationBean : DS :JDBCDS
+          Bean: HibernateProperties : mapped classes/XML, HBM properties to SessionFactory(Dialect, Hbm2DDL.auto, show_sql, pool, cache)
+            Bean : SessionFactory
+            Bean: Transaction
+            Bean: HbmTemplate
+            Bean : DAO DI 
+  //Transactions are fully managed by Spring
+  //@Transactional
+ 
+    
+ SprMVCHBM:
+  Security
+    ServDispatcher
+      Beans
+        Beans: ConfigurationBean : DS :JDBCDS
+          Bean: HibernateProperties : mapped classes/XML, HBM properties to SessionFactory(Dialect, Hbm2DDL.auto, show_sql, pool, cache)
+            Bean : SessionFactory
+            Bean: Transaction
+            Bean: HbmTemplate
+            Bean : DAO DI 
+  //Transactions are fully managed by Spring
+  //@Transactional
+          
